@@ -1,0 +1,6 @@
+# GitHub Pages Configuration for EduPath
+
+This file ensures proper routing for GitHub Pages deployment.
+The site is configured to serve the main directory as the root.
+
+All files in the edupath-5 folder will be served directly.

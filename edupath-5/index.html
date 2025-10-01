@@ -1,0 +1,1754 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Your Career Compass</title>
+    <meta name="description" content="Personalized guidance for subject choice, courses, colleges, and careers." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link rel="stylesheet" href="assets/styles.css?v=mobile-responsive" />
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link active" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link active" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <!-- Live Stats Banner -->
+        <div class="stats-banner">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number" id="student-count">25,847</div>
+              <div class="stat-label" data-i18n="home.stats.students">Students Guided</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="college-count">3,250</div>
+              <div class="stat-label" data-i18n="home.stats.colleges">Colleges Listed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="scholarship-count">680+</div>
+              <div class="stat-label" data-i18n="home.stats.scholarships">Active Scholarships</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="success-rate">92%</div>
+              <div class="stat-label" data-i18n="home.stats.placement">Placement Rate</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-badge">
+              <span class="badge-text">🔥 Most Trusted Career Platform</span>
+            </div>
+            <h1 data-i18n="home.hero.title" data-i18n-html="true">Find Your Perfect Career Path in <span class="highlight-text">Minutes</span></h1>
+            <p class="hero-description" data-i18n="home.hero.subtitle">Join over 25,000 students who found their ideal career paths through our comprehensive platform. Get data-driven guidance for engineering, medical, commerce, and arts streams with real admission statistics and placement data.</p>
+          </div>
+          <div class="hero-image">
+            <div class="image-container">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Students studying together" />
+              <!-- Floating Elements -->
+              <div class="floating-element element-1">
+                <div class="mini-card">
+                  <div class="mini-icon">🎓</div>
+                  <div class="mini-text">Career Match: 95%</div>
+                </div>
+              </div>
+              <div class="floating-element element-2">
+                <div class="mini-card">
+                  <div class="mini-icon">💰</div>
+                  <div class="mini-text">₹50L+ Avg Salary</div>
+                </div>
+              </div>
+              <div class="floating-element element-3">
+                <div class="mini-card">
+                  <div class="mini-icon">📊</div>
+                  <div class="mini-text">Live Updates</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>🔥 Trending Now</h2>
+          <p>See what's popular among students this week</p>
+        </div>
+        <div class="trending-grid">
+          <div class="trending-item">
+            <div class="trending-badge">Most Searched</div>
+            <h3>💻 Computer Science & AI</h3>
+            <p>Average Salary: ₹8-35 LPA</p>
+            <div class="trending-stats">
+              <span>📈 +38% job growth</span>
+              <span>👥 4.2K exploring</span>
+            </div>
+          </div>
+          <div class="trending-item">
+            <div class="trending-badge">Hot Topic</div>
+            <h3>🏥 NEET & JEE 2024</h3>
+            <p>Registration & Exam Dates</p>
+            <div class="trending-stats">
+              <span>📅 Applications Live</span>
+              <span>👥 12.4K registered</span>
+            </div>
+          </div>
+          <div class="trending-item">
+            <div class="trending-badge">Trending</div>
+            <h3>🌱 Green Technology</h3>
+            <p>Sustainable Engineering</p>
+            <div class="trending-stats">
+              <span>💰 ₹6-28 LPA range</span>
+              <span>👥 1.8K interested</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Everything You Need to Plan Your Future</h2>
+          <p>Powerful tools and insights to make informed career decisions</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card featured">
+            <div class="feature-badge">Most Popular</div>
+            <div class="feature-icon">🎯</div>
+            <h3>Career Assessment Tool</h3>
+            <p>Scientific aptitude analysis based on Holland Career Theory and multiple intelligence framework. Validated by career counselors and used by 25,000+ students nationwide.</p>
+            <div class="feature-stats">
+              <span class="stat">⏱️ 5 mins</span>
+              <span class="stat">🎯 95% accurate</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>750+ Courses</h3>
+            <p>Comprehensive database covering undergraduate, postgraduate, and diploma programs with real placement statistics, curriculum details, and industry demand analysis.</p>
+            <div class="feature-stats">
+              <span class="stat">📊 Live updates</span>
+              <span class="stat">💰 Salary data</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🏛️</div>
+            <h3>3,250+ Institutions</h3>
+            <p>Government and private colleges with NIRF rankings, NAAC accreditation, admission cutoffs, fee structures, and alumni placement records.</p>
+            <div class="feature-stats">
+              <span class="stat">🗺️ Map view</span>
+              <span class="stat">📝 Cut-offs</span>
+            </div>
+            <a href="colleges.html" class="feature-cta">Find Colleges →</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Live Scholarships</h3>
+            <p>Comprehensive scholarship database including Central, State, and Private funding with eligibility criteria and application tracking.</p>
+            <div class="feature-stats">
+              <span class="stat">🔔 Deadline alerts</span>
+              <span class="stat">680+ active</span>
+            </div>
+            <a href="scholarships.html" class="feature-cta">Browse Scholarships →</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <h3>Smart Timeline</h3>
+            <p>Stay organized with personalized timeline tracking important dates, deadlines, and milestones in your journey.</p>
+            <div class="feature-stats">
+              <span class="stat">🔔 Reminders</span>
+              <span class="stat">📈 Progress</span>
+            </div>
+            <a href="timeline.html" class="feature-cta">Create Timeline →</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Career Explorer</h3>
+            <p>Interactive career exploration with one-touch navigation through streams, specializations, and education paths.</p>
+            <div class="feature-stats">
+              <span class="stat">🔄 Interactive</span>
+              <span class="stat">🎯 Detailed paths</span>
+            </div>
+            <a href="career.html" class="feature-cta">Explore Careers →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <div class="cta-text">
+            <h2>🚀 Ready to Discover Your Perfect Career?</h2>
+            <p>Join 25,847+ students who discovered their ideal career paths with EduPath. Make informed decisions backed by real data and expert guidance.</p>
+            <div class="urgency-text">
+              <span class="urgency-icon">⏰</span>
+              <span>New scholarship deadlines every week - don't miss out!</span>
+            </div>
+          </div>
+          <div class="cta-actions">
+            <a href="quiz.html" class="btn-primary btn-large">🎯 Start Your Career Quiz</a>
+            <a href="courses.html" class="btn-secondary btn-large">📚 Browse Courses</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p data-i18n="footer.copyright">© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script src="page-transitions.js"></script>
+    <script src="assets/i18n-helper.js"></script>
+    <script src="assets/main.js"></script>
+    
+    <style>
+      /* Enhanced Landing Page Styles */
+      
+      /* Stats Banner */
+      .stats-banner {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        border: 2px solid rgba(102, 126, 234, 0.1);
+      }
+      
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 2rem;
+        text-align: center;
+      }
+      
+      .stat-item {
+        padding: 1rem;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-label {
+        color: #64748b;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
+      
+      /* Enhanced Hero */
+      .hero-badge {
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      
+      .badge-text {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        color: #92400e;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border: 2px solid #f59e0b;
+      }
+      
+      .highlight-text {
+        color: white;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .hero-description {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+      
+      .btn-hero {
+        font-size: 1rem;
+        padding: 1rem 2rem;
+      }
+      
+      /* Floating Elements */
+      .image-container {
+        position: relative;
+        border-radius: 1.5rem;
+        overflow: hidden;
+      }
+      
+      .floating-element {
+        position: absolute;
+        animation: float 3s ease-in-out infinite;
+      }
+      
+      .element-1 {
+        top: 20%;
+        right: -10px;
+        animation-delay: 0s;
+      }
+      
+      .element-2 {
+        bottom: 30%;
+        left: -10px;
+        animation-delay: 1s;
+      }
+      
+      .element-3 {
+        top: 60%;
+        right: 20px;
+        animation-delay: 2s;
+      }
+      
+      .mini-card {
+        background: white;
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid rgba(102, 126, 234, 0.1);
+      }
+      
+      .mini-icon {
+        font-size: 1.2rem;
+      }
+      
+      .mini-text {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      /* Trending Section */
+      .trending-section {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        padding: 4rem 0;
+        margin: 4rem 0;
+      }
+      
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .trending-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      
+      .trending-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        position: relative;
+        border: 2px solid rgba(245, 158, 11, 0.2);
+      }
+      
+      .trending-badge {
+        position: absolute;
+        top: -10px;
+        left: 1rem;
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      
+      .trending-stats {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+      
+      /* Enhanced Features */
+      .feature-card {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .feature-card.featured {
+        border: 2px solid #667eea;
+        transform: scale(1.02);
+      }
+      
+      .feature-badge {
+        position: absolute;
+        top: -10px;
+        right: 1rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      
+      .feature-stats {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+        font-size: 0.875rem;
+      }
+      
+      .stat {
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-weight: 500;
+      }
+      
+      .feature-cta {
+        display: inline-block;
+        color: #667eea;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 1rem;
+        transition: all 0.2s ease;
+      }
+      
+      .feature-cta:hover {
+        color: #4f46e5;
+        transform: translateX(5px);
+      }
+      
+
+      
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4rem 0;
+        margin: 4rem 0;
+        text-align: center;
+      }
+      
+      .cta-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .cta-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .cta-text p {
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        font-weight: 500;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      
+      .urgency-text {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .urgency-icon {
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+      }
+      
+      .cta-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .btn-large {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+      }
+      
+      .cta-actions .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+      }
+      
+      .cta-actions .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      
+      /* Hero Note Styles */
+      .hero-note {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        background: rgba(102, 126, 234, 0.05);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        border-radius: 0.75rem;
+        text-align: center;
+      }
+      
+      .hero-note small {
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+      
+      .auth-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+      
+      .auth-link:hover {
+        color: #4f46e5;
+        text-decoration: underline;
+      }
+      
+      /* Mobile Responsive Styles for Landing Page */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+        
+        /* Hero Section Mobile */
+        .hero {
+          padding: 2rem 0;
+        }
+        
+        .hero-content {
+          flex-direction: column;
+          gap: 2rem;
+          text-align: center;
+        }
+        
+        .hero-text {
+          order: 2;
+        }
+        
+        .hero-image {
+          order: 1;
+          max-width: 100%;
+        }
+        
+        .hero-text h1 {
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+        
+        .hero-description {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .hero-buttons {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+        
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-secondary {
+          width: 100%;
+          text-align: center;
+          min-height: 48px;
+          font-size: 1rem;
+        }
+        
+        /* Quick Benefits Mobile */
+        .quick-benefits {
+          flex-direction: column;
+          gap: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .benefit-item {
+          justify-content: center;
+          padding: 0.75rem 1rem;
+        }
+        
+        /* Stats Banner Mobile */
+        .stats-banner {
+          padding: 1.5rem 1rem;
+          margin-bottom: 2rem;
+        }
+        
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+          text-align: center;
+        }
+        
+        .stat-number {
+          font-size: 1.75rem;
+        }
+        
+        .stat-label {
+          font-size: 0.75rem;
+        }
+        
+        /* Social Proof Mobile */
+        .testimonial-preview {
+          flex-direction: column;
+          text-align: center;
+          gap: 1rem;
+        }
+        
+        .testimonial-avatars {
+          justify-content: center;
+        }
+        
+        /* Section Headers Mobile */
+        .section-header h2 {
+          font-size: 1.75rem;
+        }
+        
+        .section-header p {
+          font-size: 0.9rem;
+        }
+        
+        /* Trending Section Mobile */
+        .trending-section {
+          padding: 2rem 0;
+          margin: 2rem 0;
+        }
+        
+        .trending-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        
+        .trending-item {
+          padding: 1.5rem;
+        }
+        
+        .trending-stats {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+        
+        /* Features Grid Mobile */
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        
+        .feature-card {
+          padding: 1.5rem;
+          text-align: center;
+        }
+        
+        .feature-card.featured {
+          transform: none;
+        }
+        
+        .feature-stats {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        
+
+        
+        /* CTA Section Mobile */
+        .cta-section {
+          padding: 2rem 0;
+          margin: 2rem 0;
+        }
+        
+        .cta-text h2 {
+          font-size: 1.75rem;
+        }
+        
+        .cta-text p {
+          font-size: 1rem;
+        }
+        
+        .cta-actions {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+        
+        .btn-large {
+          width: 100%;
+          padding: 1rem;
+          font-size: 1rem;
+          min-height: 48px;
+        }
+        
+        /* Floating Elements Mobile */
+        .floating-element {
+          position: static;
+          margin: 1rem auto;
+          display: flex;
+          justify-content: center;
+        }
+        
+        .mini-card {
+          padding: 0.5rem 0.75rem;
+        }
+        
+        .mini-text {
+          font-size: 0.75rem;
+        }
+      }
+      
+      /* Extra Small Mobile Phones (<=480px) */
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 0.75rem;
+        }
+        
+        .hero {
+          padding: 1.5rem 0;
+        }
+        
+        .hero-text h1 {
+          font-size: 1.75rem;
+        }
+        
+        .hero-description {
+          font-size: 0.95rem;
+        }
+        
+        .stats-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        
+        .badge-text {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.75rem;
+        }
+        
+        .section-header h2 {
+          font-size: 1.5rem;
+        }
+        
+        .trending-item,
+        .feature-card {
+          padding: 1.25rem;
+        }
+        
+        .cta-text h2 {
+          font-size: 1.5rem;
+        }
+        
+        .urgency-text {
+          font-size: 0.875rem;
+          padding: 0.75rem;
+        }
+      }
+      
+      /* Landscape orientation adjustments for mobile */
+      @media (max-width: 768px) and (orientation: landscape) {
+        .hero {
+          padding: 1rem 0;
+        }
+        
+        .hero-content {
+          flex-direction: row;
+          align-items: center;
+        }
+        
+        .hero-text {
+          order: 1;
+          text-align: left;
+        }
+        
+        .hero-image {
+          order: 2;
+          max-width: 50%;
+        }
+        
+        .stats-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      
+      /* Touch target improvements for mobile */
+      @media (max-width: 768px) {
+        .btn-primary,
+        .btn-secondary,
+        .btn-outline {
+          min-height: 44px;
+          min-width: 44px;
+          touch-action: manipulation;
+        }
+        
+        .feature-cta {
+          min-height: 44px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.75rem;
+        }
+        
+        .mini-card {
+          min-height: 44px;
+        }
+      }
+      
+      /* Prevent horizontal scrolling on mobile */
+      @media (max-width: 768px) {
+        body {
+          overflow-x: hidden;
+        }
+        
+        .hero,
+        .trending-section,
+        .features,
+        .cta-section {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+        
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+      
+      /* Enhanced Button Styles for Reliability */
+      .btn-primary, .btn-secondary, .btn-hero, .btn-large, .feature-cta {
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      
+      .btn-primary:focus-visible,
+      .btn-secondary:focus-visible,
+      .feature-cta:focus-visible {
+        outline: 3px solid rgba(102, 126, 234, 0.5);
+        outline-offset: 2px;
+      }
+      
+      .btn-primary:active,
+      .btn-secondary:active,
+      .feature-cta:active {
+        transform: scale(0.95);
+      }
+      
+      /* Loading states */
+      .btn-loading {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      
+      .btn-loading::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        margin: auto;
+        border: 2px solid transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        right: 1rem;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Ripple effect for buttons */
+      .btn-primary::before,
+      .btn-secondary::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+      
+      .btn-primary:active::before,
+      .btn-secondary:active::before {
+        width: 300px;
+        height: 300px;
+      }
+      
+      /* Enhanced hover states */
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      }
+      
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .feature-cta:hover {
+        transform: translateX(5px);
+        color: #4f46e5;
+      }
+      
+      /* Disabled state */
+      .btn-primary:disabled,
+      .btn-secondary:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+      
+      /* Mobile-First Responsive Enhancements */
+      @media (max-width: 768px) {
+        /* Improved text readability */
+        body {
+          font-size: 16px; /* Prevents zoom on iOS */
+          line-height: 1.5;
+        }
+        
+        /* Better spacing for touch interfaces */
+        
+        /* Optimized image containers */
+        .image-container {
+          border-radius: 1rem;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Enhanced card spacing */
+        .trending-item,
+        .feature-card {
+          margin-bottom: 1rem;
+        }
+        
+        /* Improved form elements */
+        input, select, textarea {
+          font-size: 16px; /* Prevents zoom on iOS */
+          padding: 0.75rem;
+        }
+        
+        /* Better visual hierarchy */
+        .section-header {
+          margin-bottom: 2rem;
+        }
+        
+        /* Optimized padding for sections */
+        .trending-section,
+        .features,
+        .success-stories,
+        .cta-section {
+          padding: 3rem 0;
+        }
+      }
+      
+      /* Extra optimizations for very small screens */
+      @media (max-width: 375px) {
+        .container {
+          padding: 0 1rem;
+        }
+        
+        .hero-text h1 {
+          font-size: 1.625rem;
+          line-height: 1.3;
+        }
+        
+        .welcome-banner {
+          padding: 1.25rem;
+        }
+        
+        .btn-large {
+          font-size: 0.95rem;
+          padding: 0.875rem 1.25rem;
+        }
+        
+        .stats-grid {
+          gap: 0.75rem;
+        }
+        
+        .stat-number {
+          font-size: 1.375rem;
+        }
+      }
+      
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        .btn-primary, .btn-secondary {
+          border: 2px solid currentColor;
+        }
+      }
+      
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        .btn-primary, .btn-secondary, .feature-cta {
+          transition: none;
+        }
+        
+        .btn-primary::before, .btn-secondary::before {
+          display: none;
+        }
+        
+        @keyframes spin {
+          0%, 100% { transform: rotate(0deg); }
+        }
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .quick-benefits {
+          justify-content: center;
+        }
+        
+        .floating-element {
+          display: none;
+        }
+        
+        .cta-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .section-header h2 {
+          font-size: 2rem;
+        }
+        
+        .hero-content {
+          text-align: center;
+        }
+        
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+      }
+      
+      /* Performance optimizations for mobile */
+      @media (max-width: 768px) {
+        /* GPU acceleration for smoother animations */
+        .btn-primary,
+        .btn-secondary,
+        .feature-card,
+        .trending-item {
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+        }
+        
+        /* Optimize scroll performance */
+        .hero,
+        .trending-section,
+        .features,
+        .cta-section {
+          contain: layout style;
+        }
+        
+        /* Smooth scrolling for mobile */
+        html {
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Prevent overscroll bounce on iOS */
+        body {
+          overscroll-behavior: none;
+        }
+        
+        /* Optimize images for mobile */
+        img {
+          will-change: transform;
+        }
+        
+        /* Better text rendering on mobile */
+        * {
+          -webkit-text-size-adjust: 100%;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+    </style>
+    
+    <script src="assets/main.js"></script>
+    
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('home');
+      
+      // Animated Stats Counter
+      function animateStats() {
+        const stats = [
+          { id: 'student-count', target: 25847, suffix: '' },
+          { id: 'college-count', target: 3250, suffix: '' },
+          { id: 'scholarship-count', target: 680, suffix: '+' },
+          { id: 'success-rate', target: 92, suffix: '%' }
+        ];
+        
+        stats.forEach(stat => {
+          const element = document.getElementById(stat.id);
+          if (!element) return;
+          
+          let current = 0;
+          const increment = stat.target / 100;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= stat.target) {
+              current = stat.target;
+              clearInterval(timer);
+            }
+            element.textContent = Math.floor(current).toLocaleString() + stat.suffix;
+          }, 20);
+        });
+      }
+      
+      // Intersection Observer for stats animation
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateStats();
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      });
+      
+
+      
+      // Button State Management
+      const ButtonManager = {
+        // Store original button states
+        originalStates: new Map(),
+        
+        // Save original button state
+        saveOriginalState(button) {
+          if (!this.originalStates.has(button)) {
+            this.originalStates.set(button, {
+              innerHTML: button.innerHTML,
+              style: {
+                opacity: button.style.opacity,
+                background: button.style.background,
+                transform: button.style.transform,
+                pointerEvents: button.style.pointerEvents
+              }
+            });
+          }
+        },
+        
+        // Set button to loading state
+        setLoading(button, loadingText) {
+          this.saveOriginalState(button);
+          button.innerHTML = loadingText;
+          button.classList.add('btn-loading');
+          button.style.pointerEvents = 'none';
+        },
+        
+        // Restore button to original state
+        restore(button) {
+          if (this.originalStates.has(button)) {
+            const original = this.originalStates.get(button);
+            button.innerHTML = original.innerHTML;
+            button.classList.remove('btn-loading');
+            Object.assign(button.style, original.style);
+          }
+        },
+        
+        // Restore all buttons
+        restoreAll() {
+          this.originalStates.forEach((original, button) => {
+            this.restore(button);
+          });
+          this.originalStates.clear();
+        },
+        
+        // Handle navigation with timeout recovery
+        handleNavigation(button, href, loadingText, timeout = 3000) {
+          this.setLoading(button, loadingText);
+          
+          // Set timeout to restore button if navigation doesn't complete
+          setTimeout(() => {
+            // Check if we're still on the same page
+            if (window.location.pathname.includes('index.html') || 
+                window.location.pathname === '/' ||
+                window.location.pathname === '') {
+              this.restore(button);
+            }
+          }, timeout);
+        }
+      };
+      
+      // Global error handler for navigation failures
+      window.addEventListener('error', function(e) {
+        console.warn('Navigation error detected, restoring button states');
+        ButtonManager.restoreAll();
+      });
+      
+      // Page visibility change handler
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+          // Page became visible again, restore button states
+          setTimeout(() => {
+            ButtonManager.restoreAll();
+          }, 500);
+        }
+      });
+      
+      // Enhanced live data updates with error handling
+      function updateLiveData() {
+        try {
+          // Simulate live scholarship count updates
+          const scholarshipElement = document.getElementById('scholarship-count');
+          if (scholarshipElement) {
+            setInterval(() => {
+              try {
+                const currentText = scholarshipElement.textContent;
+                const currentNum = parseInt(currentText.replace(/\D/g, ''));
+                const variation = Math.floor(Math.random() * 5) - 2; // ±2 variation
+                const newNum = Math.max(678, currentNum + variation);
+                scholarshipElement.textContent = newNum + '+';
+              } catch (error) {
+                console.warn('Error updating scholarship count:', error);
+              }
+            }, 30000); // Update every 30 seconds
+          }
+          
+          // Simulate trending interest updates
+          const trendingStats = document.querySelectorAll('.trending-stats span');
+          trendingStats.forEach(stat => {
+            if (stat.textContent.includes('interested') || stat.textContent.includes('searching')) {
+              setInterval(() => {
+                try {
+                  const text = stat.textContent;
+                  const match = text.match(/(\d+\.?\d*)K/);
+                  if (match) {
+                    const num = parseFloat(match[1]);
+                    const variation = (Math.random() * 0.2) - 0.1; // ±0.1K variation
+                    const newNum = Math.max(0.1, num + variation);
+                    stat.textContent = text.replace(/(\d+\.?\d*)K/, newNum.toFixed(1) + 'K');
+                  }
+                } catch (error) {
+                  console.warn('Error updating trending stats:', error);
+                }
+              }, 15000); // Update every 15 seconds
+            }
+          });
+        } catch (error) {
+          console.warn('Error in updateLiveData:', error);
+        }
+      }
+      
+      // Initialize everything when DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM Content Loaded - Initializing enhanced button functionality');
+        
+        // Enhanced Button Click Handlers
+        initializeButtonHandlers();
+        
+        // Initialize floating language selector (restored - only navbar version was removed)
+        function initializeSelector() {
+          if (window.i18n && typeof window.i18n.initFloatingSelector === 'function') {
+            window.i18n.initFloatingSelector();
+          } else {
+            console.log('i18n not ready, retrying in 100ms...');
+            setTimeout(initializeSelector, 100);
+          }
+        }
+        
+        initializeSelector();
+        
+        // Listen for language changes
+        window.addEventListener('languageChanged', (e) => {
+          console.log('Language changed to:', e.detail.current);
+          // Update any dynamic content that needs language-specific formatting
+          updateDynamicContent();
+        });
+        
+        // Update dynamic content based on language
+        function updateDynamicContent() {
+          // Dynamic content updates can be added here in the future
+        }
+        
+        // Observe stats section for animation
+        const statsSection = document.querySelector('.stats-banner');
+        if (statsSection) {
+          statsObserver.observe(statsSection);
+        }
+
+        
+        // Start live data updates
+        setTimeout(updateLiveData, 5000);
+        
+        // Initialize authentication-aware home page with enhanced button functionality
+        setTimeout(() => {
+          if (window.eduPathAuth && window.eduPathAuth.isLoggedIn()) {
+            const welcomeSection = document.getElementById('welcome-section');
+            if (welcomeSection) {
+              welcomeSection.classList.remove('hidden');
+              
+              // Initialize welcome banner buttons after showing the section
+              initializeWelcomeBannerButtons();
+            }
+            
+            const user = window.eduPathAuth.getCurrentUser();
+            if (user && user.name) {
+              document.querySelectorAll('[data-user-name]').forEach(el => {
+                el.textContent = user.name;
+              });
+            }
+          } else {
+            // If not logged in, ensure welcome section is hidden
+            const welcomeSection = document.getElementById('welcome-section');
+            if (welcomeSection) {
+              welcomeSection.classList.add('hidden');
+            }
+          }
+        }, 500);
+        
+        // Enhanced Welcome Banner Button Initialization
+        function initializeWelcomeBannerButtons() {
+          console.log('Initializing welcome banner buttons');
+          
+          const profileBtn = document.querySelector('.welcome-actions a[href="profile.html"]');
+          const quizBtn = document.querySelector('.welcome-actions a[href="quiz.html"]');
+          
+          // Profile button functionality
+          if (profileBtn) {
+            // Remove any existing event listeners
+            profileBtn.replaceWith(profileBtn.cloneNode(true));
+            const newProfileBtn = document.querySelector('.welcome-actions a[href="profile.html"]');
+            
+            newProfileBtn.addEventListener('click', function(e) {
+              console.log('Welcome Profile button clicked');
+              
+              // Check if user is still authenticated
+              if (window.eduPathAuth && window.eduPathAuth.isLoggedIn()) {
+                ButtonManager.handleNavigation(this, 'profile.html', '👤 Loading Profile...');
+              } else {
+                e.preventDefault();
+                console.log('User not authenticated, redirecting to auth');
+                window.location.href = 'auth.html?redirect=profile.html';
+              }
+            });
+            
+            // Add enhanced accessibility
+            newProfileBtn.setAttribute('aria-label', 'Go to your profile page');
+            newProfileBtn.setAttribute('title', 'View and edit your profile information');
+          }
+          
+          // Quiz button functionality
+          if (quizBtn) {
+            // Remove any existing event listeners
+            quizBtn.replaceWith(quizBtn.cloneNode(true));
+            const newQuizBtn = document.querySelector('.welcome-actions a[href="quiz.html"]');
+            
+            newQuizBtn.addEventListener('click', function(e) {
+              console.log('Welcome Quiz button clicked');
+              ButtonManager.handleNavigation(this, 'quiz.html', '🎯 Loading Quiz...');
+            });
+            
+            // Add enhanced accessibility
+            newQuizBtn.setAttribute('aria-label', 'Take the career assessment quiz');
+            newQuizBtn.setAttribute('title', 'Continue your career assessment');
+          }
+          
+          // Add general enhancements to both buttons
+          document.querySelectorAll('.welcome-actions a').forEach(button => {
+            // Keyboard navigation
+            button.addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+              }
+            });
+            
+            // Visual feedback
+            button.addEventListener('click', function(e) {
+              this.style.transform = 'scale(0.95)';
+              setTimeout(() => {
+                this.style.transform = '';
+              }, 150);
+            });
+            
+            // Ensure proper tabindex
+            if (!button.getAttribute('tabindex')) {
+              button.setAttribute('tabindex', '0');
+            }
+            
+            // Add cache-busting
+            if (button.href && !button.href.includes('?') && !button.href.includes('#')) {
+              const url = new URL(button.href, window.location.origin);
+              url.searchParams.set('t', Date.now());
+              button.href = url.toString();
+            }
+          });
+          
+          console.log('Welcome banner buttons initialized successfully');
+        }
+        
+        // Add click tracking for CTAs with enhanced feedback
+        document.querySelectorAll('.btn-primary, .feature-cta, .btn-secondary, .btn-hero, .btn-large').forEach(button => {
+          button.addEventListener('click', (e) => {
+            // Visual feedback
+            button.style.transform = 'scale(0.95)';
+            button.style.transition = 'transform 0.1s ease';
+            
+            // Reset animation
+            setTimeout(() => {
+              button.style.transform = '';
+              button.style.transition = 'transform 0.3s ease';
+            }, 150);
+            
+            // Track click event
+            const href = button.getAttribute('href');
+            const text = button.textContent.trim();
+            console.log(`Button clicked: ${text} -> ${href}`);
+            
+            // Add loading state for external navigation
+            if (href && href !== '#' && !href.startsWith('javascript:')) {
+              button.style.opacity = '0.7';
+              button.style.pointerEvents = 'none';
+              
+              // Restore button state after navigation
+              setTimeout(() => {
+                button.style.opacity = '';
+                button.style.pointerEvents = '';
+              }, 2000);
+            }
+          });
+        });
+      
+      // Enhanced Button Functionality
+      function initializeButtonHandlers() {
+        console.log('Initializing enhanced button handlers');
+        
+        // Quiz buttons - enhanced with loading states
+        const quizButtons = document.querySelectorAll('a[href="quiz.html"], .btn-hero');
+        quizButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Quiz button clicked - navigating to quiz.html');
+            ButtonManager.handleNavigation(this, 'quiz.html', '⏳ Loading Quiz...');
+          });
+        });
+        
+        // Courses buttons
+        const courseButtons = document.querySelectorAll('a[href="courses.html"]');
+        courseButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Courses button clicked - navigating to courses.html');
+            ButtonManager.handleNavigation(this, 'courses.html', '📚 Loading Courses...');
+          });
+        });
+        
+        // Colleges buttons
+        const collegeButtons = document.querySelectorAll('a[href="colleges.html"]');
+        collegeButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Colleges button clicked - navigating to colleges.html');
+            ButtonManager.handleNavigation(this, 'colleges.html', '🏛️ Loading Colleges...');
+          });
+        });
+        
+        // Scholarships buttons
+        const scholarshipButtons = document.querySelectorAll('a[href="scholarships.html"]');
+        scholarshipButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Scholarships button clicked - navigating to scholarships.html');
+            ButtonManager.handleNavigation(this, 'scholarships.html', '💰 Loading Scholarships...');
+          });
+        });
+        
+        // Timeline buttons
+        const timelineButtons = document.querySelectorAll('a[href="timeline.html"]');
+        timelineButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Timeline button clicked - navigating to timeline.html');
+            ButtonManager.handleNavigation(this, 'timeline.html', '📅 Loading Timeline...');
+          });
+        });
+        
+        // Career Explorer buttons
+        const careerButtons = document.querySelectorAll('a[href="career.html"]');
+        careerButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Career button clicked - navigating to career.html');
+            ButtonManager.handleNavigation(this, 'career.html', '🛡️ Loading Career Explorer...');
+          });
+        });
+        
+        // Profile and Auth buttons
+        const profileButtons = document.querySelectorAll('a[href="profile.html"]');
+        profileButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            console.log('Profile button clicked - navigating to profile.html');
+            ButtonManager.handleNavigation(this, 'profile.html', '👤 Loading Profile...');
+          });
+        });
+        
+        // Welcome banner buttons (authenticated user buttons)
+        const welcomeProfileBtn = document.querySelector('.welcome-actions a[href="profile.html"]');
+        const welcomeQuizBtn = document.querySelector('.welcome-actions a[href="quiz.html"]');
+        
+        if (welcomeProfileBtn) {
+          welcomeProfileBtn.addEventListener('click', function(e) {
+            console.log('Welcome Profile button clicked - navigating to profile.html');
+            ButtonManager.handleNavigation(this, 'profile.html', '👤 Loading Profile...');
+          });
+        }
+        
+        if (welcomeQuizBtn) {
+          welcomeQuizBtn.addEventListener('click', function(e) {
+            console.log('Welcome Quiz button clicked - navigating to quiz.html');
+            ButtonManager.handleNavigation(this, 'quiz.html', '🎯 Loading Quiz...');
+          });
+        }
+        
+        // Add enhanced styling and functionality to welcome action buttons
+        document.querySelectorAll('.welcome-actions .btn-outline, .welcome-actions .btn-primary').forEach(button => {
+          // Add loading state support
+          button.addEventListener('click', function(e) {
+            // Add visual feedback
+            this.style.transform = 'scale(0.95)';
+            this.style.transition = 'transform 0.1s ease';
+            
+            setTimeout(() => {
+              this.style.transform = '';
+              this.style.transition = 'transform 0.3s ease';
+            }, 150);
+          });
+          
+          // Add keyboard support
+          button.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+          
+          // Ensure proper tabindex
+          if (!button.getAttribute('tabindex')) {
+            button.setAttribute('tabindex', '0');
+          }
+          
+          // Add cache-busting for reliability
+          if (button.href && !button.href.includes('?')) {
+            const url = new URL(button.href, window.location.origin);
+            url.searchParams.set('v', Date.now());
+            button.href = url.toString();
+          }
+        });
+        
+        // Add keyboard accessibility and reliability features
+        document.querySelectorAll('.btn-primary, .btn-secondary, .feature-cta').forEach(button => {
+          button.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+          
+          // Ensure buttons are focusable
+          if (!button.getAttribute('tabindex')) {
+            button.setAttribute('tabindex', '0');
+          }
+          
+          // Add cache-busting for navigation links
+          if (button.href && !button.href.includes('?')) {
+            const url = new URL(button.href, window.location.origin);
+            url.searchParams.set('v', Date.now());
+            button.href = url.toString();
+          }
+        });
+        
+        // Handle browser back/forward button
+        window.addEventListener('popstate', function(e) {
+          ButtonManager.restoreAll();
+        });
+        
+        // Handle page unload
+        window.addEventListener('beforeunload', function() {
+          ButtonManager.restoreAll();
+        });
+        
+        // Network status handling
+        window.addEventListener('online', function() {
+          console.log('Network connection restored');
+          document.querySelectorAll('.btn-loading').forEach(button => {
+            ButtonManager.restore(button);
+          });
+        });
+        
+        window.addEventListener('offline', function() {
+          console.log('Network connection lost');
+          ButtonManager.restoreAll();
+        });
+        
+        // Auth link handling with enhanced reliability
+        const authLinks = document.querySelectorAll('a[href="auth.html"], .auth-link');
+        authLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            console.log('Auth link clicked - navigating to auth.html');
+            
+            // Add visual feedback
+            this.style.color = '#4f46e5';
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'all 0.2s ease';
+            
+            // Use ButtonManager for consistent state handling
+            const href = this.getAttribute('href');
+            if (href && href.includes('auth.html')) {
+              ButtonManager.handleNavigation(this, href, '🔒 Loading Authentication...');
+            }
+            
+            // Fallback restoration
+            setTimeout(() => {
+              if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+                this.style.color = '';
+                this.style.transform = '';
+              }
+            }, 2000);
+          });
+          
+          // Add keyboard support
+          link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+          
+          // Ensure focusable
+          if (!link.getAttribute('tabindex')) {
+            link.setAttribute('tabindex', '0');
+          }
+        });
+        
+        // Add fallback authentication check
+        function checkAuthenticationStatus() {
+          try {
+            // Check if auth system is available
+            if (typeof window.eduPathAuth === 'undefined') {
+              console.log('Auth system not loaded, using fallback');
+              
+              // Show welcome banner for demo purposes if no auth system
+              const welcomeSection = document.getElementById('welcome-section');
+              if (welcomeSection) {
+                // Set demo user name
+                document.querySelectorAll('[data-user-name]').forEach(el => {
+                  el.textContent = 'Guest User';
+                });
+                
+                welcomeSection.classList.remove('hidden');
+                initializeWelcomeBannerButtons();
+              }
+            }
+          } catch (error) {
+            console.warn('Error checking authentication status:', error);
+          }
+        }
+        
+        // Call auth check as fallback
+        setTimeout(checkAuthenticationStatus, 1000);
+        
+        console.log('Enhanced button handlers initialized successfully');
+      }
+      });
+      
+      // Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

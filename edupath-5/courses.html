@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+    <link rel="stylesheet" href="assets/styles.css?v=noflash" />
+  </head>
+  <body class="bg-white text-gray-900">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link active" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link active" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Courses & Career Paths</h1>
+          <p id="page-description">Explore courses and see how they map to different career paths and opportunities.</p>
+          <div id="career-redirect-message" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="text-blue-600 mr-3">🎯</div>
+                <div>
+                  <h3 class="text-blue-800 font-medium">Education Paths for Your Career</h3>
+                  <p class="text-blue-700 text-sm">Here are the courses that can help you achieve your career goals. Use the filters below to narrow down your options.</p>
+                </div>
+              </div>
+              <a href="career.html" class="btn-secondary text-sm">← Back to Career Explorer</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="filters">
+          <div class="filter-group">
+            <label>Search courses</label>
+            <input type="text" id="search-input" class="select" placeholder="Search by course name or description..." />
+          </div>
+          <div class="filter-group">
+            <label>Filter by stream</label>
+          <select id="stream-filter" class="select">
+            <option value="all">All</option>
+            <option>Science</option>
+            <option>Science/Math</option>
+            <option>Commerce</option>
+            <option>Arts/Humanities</option>
+            <option>Arts/Language</option>
+          </select>
+        </div>
+          <div class="filter-group" id="level-filter-group" style="display: none;">
+            <label>Filter by education level</label>
+            <select id="level-filter" class="select">
+              <option value="all">All Levels</option>
+              <option value="Bachelor's Degree">Bachelor's Degree</option>
+              <option value="Master's Degree">Master's Degree</option>
+              <option value="PhD">PhD</option>
+              <option value="Diploma">Diploma</option>
+              <option value="Certificate">Certificate</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="courses-list" class="content-grid"></div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    <style>
+      /* Course card styles specific to courses page */
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      
+      .course-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .course-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        border-color: #667eea;
+      }
+      
+      .course-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+      }
+      
+      .course-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      
+      .course-level-badge {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .course-duration {
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      
+      .course-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+      }
+      
+      .course-description {
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+      
+      .course-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      
+      .course-actions .btn-primary {
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .course-actions .btn-secondary {
+        flex: 1;
+      }
+      
+      @media (max-width: 768px) {
+        .courses-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        
+        .course-card {
+          padding: 1.5rem;
+        }
+        
+        .course-actions {
+          flex-direction: column;
+        }
+        
+        .course-actions .btn-primary,
+        .course-actions .btn-secondary {
+          flex: none;
+        }
+      }
+    </style>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('courses');
+
+      const params = new URLSearchParams(location.search);
+      const preselect = params.get('stream');
+      const levelFilter = params.get('level');
+      const searchTerm = params.get('search');
+      const select = document.getElementById('stream-filter');
+      const searchInput = document.getElementById('search-input');
+      
+      console.log('=== COURSES PAGE DEBUG ===');
+      console.log('Full URL:', window.location.href);
+      console.log('URL Parameters:', { preselect, levelFilter, searchTerm });
+      console.log('Raw search param:', params.get('search'));
+      console.log('Decoded search term:', searchTerm ? decodeURIComponent(searchTerm) : null);
+      
+      // Handle career page redirection
+      if (preselect) {
+        select.value = preselect;
+        console.log('Set stream filter to:', preselect);
+      }
+      if (levelFilter) {
+        // Add level filter to the page
+        addLevelFilter(levelFilter);
+        // Show career redirect message
+        showCareerRedirectMessage(levelFilter);
+      }
+      if (searchTerm) {
+        // Pre-fill search with course name from career page
+        searchInput.value = searchTerm;
+        console.log('Set search term to:', searchTerm);
+      }
+
+      const data = [
+        // Science Stream - Expanded
+        { stream: 'Science', degree: 'B.Sc. Biology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Research Assistant', 'Lab Technician', 'Environmental Consultant', 'Higher Studies (M.Sc.)'], description: 'Study of living organisms and their interactions with the environment.' },
+        { stream: 'Science', degree: 'B.Sc. Physics', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Research Scientist', 'Data Analyst', 'Teaching', 'Higher Studies (M.Sc.)'], description: 'Understanding the fundamental laws of nature and matter.' },
+        { stream: 'Science', degree: 'B.Sc. Chemistry', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Chemical Analyst', 'Quality Control', 'Pharmaceutical Research', 'Higher Studies (M.Sc.)'], description: 'Study of matter, its properties, and chemical reactions.' },
+        { stream: 'Science', degree: 'B.Sc. Computer Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Software Developer', 'IT Support', 'Web Developer', 'Higher Studies (M.Sc./MCA)'], description: 'Programming, algorithms, and computer systems.' },
+        { stream: 'Science', degree: 'B.Sc. Mathematics', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Data Analyst', 'Actuary', 'Teaching (after B.Ed.)', 'Higher Studies'], description: 'Pure and applied mathematics, statistics, and mathematical modeling.' },
+        { stream: 'Science', degree: 'B.Sc. Statistics', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Statistician', 'Data Scientist', 'Research Analyst', 'Higher Studies'], description: 'Data analysis, probability, and statistical methods.' },
+        { stream: 'Science', degree: 'B.Sc. Environmental Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Environmental Consultant', 'Conservation Officer', 'Research Scientist', 'Higher Studies'], description: 'Study of environmental systems and sustainability.' },
+        { stream: 'Science', degree: 'B.Sc. Microbiology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Microbiologist', 'Lab Technician', 'Quality Control', 'Higher Studies'], description: 'Study of microorganisms and their applications.' },
+        { stream: 'Science', degree: 'B.Sc. Biotechnology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Biotech Engineer', 'Research Assistant', 'Lab Technician', 'Higher Studies'], description: 'Application of biological processes in technology.' },
+        { stream: 'Science', degree: 'B.Sc. Geology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Geologist', 'Mining Engineer', 'Environmental Consultant', 'Higher Studies'], description: 'Study of Earth\'s structure and processes.' },
+        { stream: 'Science', degree: 'B.Sc. Botany', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Botanist', 'Plant Scientist', 'Research Assistant', 'Higher Studies'], description: 'Study of plant life and their characteristics.' },
+        { stream: 'Science', degree: 'B.Sc. Zoology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Zoologist', 'Wildlife Biologist', 'Research Assistant', 'Higher Studies'], description: 'Study of animal life and behavior.' },
+        
+        // Science/Math Stream - Expanded
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Computer Science', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Software Engineer', 'Data Scientist', 'System Analyst', 'Higher Studies (M.Tech.)'], description: 'Computer science engineering with strong mathematical foundation.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Mechanical Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Mechanical Engineer', 'Design Engineer', 'Project Manager', 'Higher Studies (M.Tech.)'], description: 'Design and analysis of mechanical systems.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Civil Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Civil Engineer', 'Structural Engineer', 'Project Manager', 'Higher Studies (M.Tech.)'], description: 'Design and construction of infrastructure.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Electrical Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Electrical Engineer', 'Power Systems Engineer', 'Control Engineer', 'Higher Studies (M.Tech.)'], description: 'Electrical systems and power distribution.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Electronics & Communication', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Electronics Engineer', 'Communication Engineer', 'Hardware Engineer', 'Higher Studies (M.Tech.)'], description: 'Electronic systems and communication technology.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Information Technology', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['IT Engineer', 'Software Developer', 'System Administrator', 'Higher Studies (M.Tech.)'], description: 'Information technology and software systems.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Aerospace Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Aerospace Engineer', 'Aircraft Designer', 'Research Engineer', 'Higher Studies (M.Tech.)'], description: 'Aircraft and spacecraft design and development.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Chemical Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Chemical Engineer', 'Process Engineer', 'Production Manager', 'Higher Studies (M.Tech.)'], description: 'Chemical processes and industrial applications.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Biotechnology', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Biotech Engineer', 'Research Scientist', 'Process Engineer', 'Higher Studies (M.Tech.)'], description: 'Biotechnology applications in engineering.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Data Science', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Data Scientist', 'Analytics Engineer', 'Machine Learning Engineer', 'Higher Studies (M.Tech.)'], description: 'Data analysis and machine learning applications.' },
+        
+        // Commerce Stream - Expanded
+        { stream: 'Commerce', degree: 'B.Com.', duration: '3 years', paths: ['Accountant', 'Banking Exams', 'Tax Consultant', 'Entrepreneurship'], description: 'Accounting, finance, and business fundamentals.' },
+        { stream: 'Commerce', degree: 'B.Com. (Hons.)', duration: '3 years', paths: ['Chartered Accountant', 'Financial Analyst', 'Investment Banking', 'Higher Studies'], description: 'Advanced commerce with specialization options.' },
+        { stream: 'Commerce', degree: 'BBA (Bachelor of Business Administration)', duration: '3 years', paths: ['Business Analyst', 'Marketing Executive', 'Operations Manager', 'MBA'], description: 'Business management, marketing, and administration.' },
+        { stream: 'Commerce', degree: 'BBA in Finance', duration: '3 years', paths: ['Financial Analyst', 'Investment Banker', 'Risk Manager', 'MBA Finance'], description: 'Specialized business administration in finance.' },
+        { stream: 'Commerce', degree: 'BBA in Marketing', duration: '3 years', paths: ['Marketing Manager', 'Brand Manager', 'Digital Marketing Specialist', 'MBA Marketing'], description: 'Specialized business administration in marketing.' },
+        { stream: 'Commerce', degree: 'BBA in Human Resources', duration: '3 years', paths: ['HR Manager', 'Recruiter', 'Training Coordinator', 'MBA HR'], description: 'Specialized business administration in human resources.' },
+        { stream: 'Commerce', degree: 'BBA in International Business', duration: '3 years', paths: ['International Business Manager', 'Export Manager', 'Global Marketing', 'MBA International Business'], description: 'Global business and international trade.' },
+        { stream: 'Commerce', degree: 'B.Com. in Accounting & Finance', duration: '3 years', paths: ['Chartered Accountant', 'Financial Controller', 'Audit Manager', 'Higher Studies'], description: 'Specialized accounting and financial management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Banking & Insurance', duration: '3 years', paths: ['Banking Professional', 'Insurance Agent', 'Risk Analyst', 'Higher Studies'], description: 'Banking, insurance, and financial services.' },
+        { stream: 'Commerce', degree: 'B.Com. in E-Commerce', duration: '3 years', paths: ['E-Commerce Manager', 'Digital Marketing Specialist', 'Online Business Owner', 'Higher Studies'], description: 'Electronic commerce and digital business.' },
+        
+        // Arts/Humanities Stream - Expanded
+        { stream: 'Arts/Humanities', degree: 'B.A. History', duration: '3 years', paths: ['Civil Services Prep', 'Museum Curator', 'Researcher', 'Higher Studies'], description: 'Study of past events, cultures, and historical analysis.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Political Science', duration: '3 years', paths: ['Civil Services', 'Policy Analyst', 'Journalist', 'Higher Studies'], description: 'Government, politics, and public administration.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Psychology', duration: '3 years', paths: ['Counselor', 'HR Specialist', 'Social Worker', 'Higher Studies (M.A.)'], description: 'Human behavior, mental processes, and psychological research.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Sociology', duration: '3 years', paths: ['Social Worker', 'Community Development', 'Research', 'Higher Studies'], description: 'Society, social behavior, and human relationships.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Philosophy', duration: '3 years', paths: ['Philosopher', 'Ethics Consultant', 'Academic Researcher', 'Higher Studies'], description: 'Critical thinking and philosophical inquiry.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Geography', duration: '3 years', paths: ['Geographer', 'Urban Planner', 'Environmental Consultant', 'Higher Studies'], description: 'Study of Earth\'s physical and human features.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Economics', duration: '3 years', paths: ['Economist', 'Policy Analyst', 'Financial Analyst', 'Higher Studies'], description: 'Economic systems and financial markets.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Social Work', duration: '3 years', paths: ['Social Worker', 'Community Organizer', 'Counselor', 'Higher Studies'], description: 'Social welfare and community development.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Anthropology', duration: '3 years', paths: ['Anthropologist', 'Cultural Researcher', 'Museum Curator', 'Higher Studies'], description: 'Study of human cultures and societies.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Public Administration', duration: '3 years', paths: ['Public Administrator', 'Policy Analyst', 'Government Officer', 'Higher Studies'], description: 'Public sector management and administration.' },
+        
+        // Arts/Language Stream - Expanded
+        { stream: 'Arts/Language', degree: 'B.A. English', duration: '3 years', paths: ['Content Writer', 'Teacher (after B.Ed.)', 'Journalist', 'Higher Studies'], description: 'Literature, language skills, and communication.' },
+        { stream: 'Arts/Language', degree: 'B.A. Hindi', duration: '3 years', paths: ['Hindi Teacher', 'Translator', 'Content Writer', 'Higher Studies'], description: 'Hindi literature, language, and cultural studies.' },
+        { stream: 'Arts/Language', degree: 'B.A. Journalism', duration: '3 years', paths: ['Journalist', 'News Reporter', 'Content Creator', 'Media Professional'], description: 'News reporting, media, and communication skills.' },
+        { stream: 'Arts/Language', degree: 'B.A. Mass Communication', duration: '3 years', paths: ['Media Producer', 'Communication Specialist', 'Content Manager', 'Higher Studies'], description: 'Mass media and communication strategies.' },
+        { stream: 'Arts/Language', degree: 'B.A. Sanskrit', duration: '3 years', paths: ['Sanskrit Teacher', 'Researcher', 'Cultural Consultant', 'Higher Studies'], description: 'Classical Sanskrit literature and language.' },
+        { stream: 'Arts/Language', degree: 'B.A. French', duration: '3 years', paths: ['French Teacher', 'Translator', 'Cultural Attaché', 'Higher Studies'], description: 'French language, literature, and culture.' },
+        { stream: 'Arts/Language', degree: 'B.A. German', duration: '3 years', paths: ['German Teacher', 'Translator', 'Cultural Consultant', 'Higher Studies'], description: 'German language, literature, and culture.' },
+        { stream: 'Arts/Language', degree: 'B.A. Spanish', duration: '3 years', paths: ['Spanish Teacher', 'Translator', 'Cultural Specialist', 'Higher Studies'], description: 'Spanish language, literature, and culture.' },
+        { stream: 'Arts/Language', degree: 'B.A. Linguistics', duration: '3 years', paths: ['Linguist', 'Language Researcher', 'Speech Therapist', 'Higher Studies'], description: 'Scientific study of language and communication.' },
+        { stream: 'Arts/Language', degree: 'B.A. Comparative Literature', duration: '3 years', paths: ['Literary Critic', 'Researcher', 'Academic Writer', 'Higher Studies'], description: 'Comparative study of world literatures.' },
+        
+        // Professional Courses
+        { stream: 'Science', degree: 'B.Pharm (Pharmacy)', duration: '4 years', paths: ['Pharmacist', 'Drug Inspector', 'Pharmaceutical Sales', 'Higher Studies (M.Pharm)'], description: 'Pharmaceutical sciences and drug development.' },
+        { stream: 'Science', degree: 'B.Sc. Nursing', duration: '4 years', paths: ['Registered Nurse', 'Nursing Officer', 'Public Health Nurse', 'Higher Studies (M.Sc. Nursing)'], description: 'Nursing care and healthcare services.' },
+        { stream: 'Science', degree: 'B.Sc. Agriculture', duration: '4 years', paths: ['Agricultural Officer', 'Farm Manager', 'Research Scientist', 'Higher Studies (M.Sc. Agriculture)'], description: 'Agricultural sciences and farming techniques.' },
+        { stream: 'Science', degree: 'B.Sc. Food Technology', duration: '4 years', paths: ['Food Technologist', 'Quality Control Manager', 'Research Scientist', 'Higher Studies'], description: 'Food processing and preservation technology.' },
+        { stream: 'Science', degree: 'B.Sc. Forensic Science', duration: '3 years', paths: ['Forensic Scientist', 'Crime Scene Investigator', 'Lab Analyst', 'Higher Studies'], description: 'Scientific investigation of crimes and evidence.' },
+        { stream: 'Science', degree: 'B.Sc. Nutrition & Dietetics', duration: '3 years', paths: ['Nutritionist', 'Dietitian', 'Health Consultant', 'Higher Studies'], description: 'Nutritional science and dietary planning.' },
+        { stream: 'Science', degree: 'B.Sc. Fashion Technology', duration: '4 years', paths: ['Fashion Designer', 'Textile Technologist', 'Fashion Merchandiser', 'Higher Studies'], description: 'Fashion design and textile technology.' },
+        { stream: 'Science', degree: 'B.Sc. Interior Design', duration: '4 years', paths: ['Interior Designer', 'Space Planner', 'Design Consultant', 'Higher Studies'], description: 'Interior design and space planning.' },
+        { stream: 'Science', degree: 'B.Sc. Animation & Multimedia', duration: '3 years', paths: ['Animator', 'Multimedia Designer', 'Game Developer', 'Higher Studies'], description: 'Animation, multimedia, and digital design.' },
+        { stream: 'Science', degree: 'B.Sc. Hotel Management', duration: '3 years', paths: ['Hotel Manager', 'Event Planner', 'Restaurant Manager', 'Higher Studies'], description: 'Hospitality and hotel management.' },
+        
+        // Law and Legal Studies
+        { stream: 'Arts/Humanities', degree: 'B.A. LL.B (Integrated Law)', duration: '5 years', paths: ['Lawyer', 'Legal Advisor', 'Judge', 'Higher Studies (LL.M)'], description: 'Integrated law degree combining arts and legal studies.' },
+        { stream: 'Commerce', degree: 'B.Com. LL.B (Integrated Law)', duration: '5 years', paths: ['Corporate Lawyer', 'Tax Lawyer', 'Legal Consultant', 'Higher Studies (LL.M)'], description: 'Integrated law degree combining commerce and legal studies.' },
+        { stream: 'Science', degree: 'B.Sc. LL.B (Integrated Law)', duration: '5 years', paths: ['Patent Lawyer', 'IP Lawyer', 'Legal Consultant', 'Higher Studies (LL.M)'], description: 'Integrated law degree combining science and legal studies.' },
+        
+        // Education and Teaching
+        { stream: 'Arts/Humanities', degree: 'B.Ed. (Bachelor of Education)', duration: '2 years', paths: ['Teacher', 'Educational Consultant', 'Curriculum Developer', 'Higher Studies (M.Ed)'], description: 'Professional teaching qualification.' },
+        { stream: 'Science', degree: 'B.Sc. B.Ed (Integrated)', duration: '4 years', paths: ['Science Teacher', 'Educational Researcher', 'Curriculum Specialist', 'Higher Studies (M.Ed)'], description: 'Integrated science and education degree.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. B.Ed (Integrated)', duration: '4 years', paths: ['Arts Teacher', 'Educational Administrator', 'Curriculum Developer', 'Higher Studies (M.Ed)'], description: 'Integrated arts and education degree.' },
+        
+        // Fine Arts and Creative Fields
+        { stream: 'Arts/Humanities', degree: 'B.F.A. (Bachelor of Fine Arts)', duration: '4 years', paths: ['Artist', 'Art Teacher', 'Gallery Curator', 'Higher Studies (M.F.A)'], description: 'Fine arts and creative expression.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Music', duration: '3 years', paths: ['Musician', 'Music Teacher', 'Sound Engineer', 'Higher Studies'], description: 'Music theory, performance, and composition.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Dance', duration: '3 years', paths: ['Dancer', 'Dance Teacher', 'Choreographer', 'Higher Studies'], description: 'Dance performance, choreography, and teaching.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. Theatre Arts', duration: '3 years', paths: ['Actor', 'Theatre Director', 'Drama Teacher', 'Higher Studies'], description: 'Theatre performance, direction, and production.' },
+        
+        // Health and Allied Sciences
+        { stream: 'Science', degree: 'B.Sc. Physiotherapy', duration: '4 years', paths: ['Physiotherapist', 'Rehabilitation Specialist', 'Sports Therapist', 'Higher Studies'], description: 'Physical therapy and rehabilitation sciences.' },
+        { stream: 'Science', degree: 'B.Sc. Occupational Therapy', duration: '4 years', paths: ['Occupational Therapist', 'Rehabilitation Specialist', 'Community Health Worker', 'Higher Studies'], description: 'Occupational therapy and rehabilitation.' },
+        { stream: 'Science', degree: 'B.Sc. Medical Laboratory Technology', duration: '3 years', paths: ['Lab Technician', 'Medical Technologist', 'Research Assistant', 'Higher Studies'], description: 'Medical laboratory testing and analysis.' },
+        { stream: 'Science', degree: 'B.Sc. Radiography', duration: '3 years', paths: ['Radiographer', 'Medical Imaging Technologist', 'Radiation Safety Officer', 'Higher Studies'], description: 'Medical imaging and radiography technology.' },
+        
+        // Computer Applications
+        { stream: 'Science', degree: 'BCA (Bachelor of Computer Applications)', duration: '3 years', paths: ['Software Developer', 'System Analyst', 'Database Administrator', 'Higher Studies (MCA)'], description: 'Computer applications and software development.' },
+        { stream: 'Science', degree: 'MCA (Master of Computer Applications)', duration: '2 years', paths: ['Senior Software Developer', 'IT Manager', 'Systems Architect', 'Higher Studies (PhD)'], description: 'Advanced computer applications and software engineering.' },
+        
+        // Management and Business
+        { stream: 'Commerce', degree: 'MBA (Master of Business Administration)', duration: '2 years', level: 'Master\'s Degree', paths: ['Business Manager', 'Consultant', 'Entrepreneur', 'Higher Studies (PhD)'], description: 'Advanced business administration and management.' },
+        { stream: 'Commerce', degree: 'PGDM (Post Graduate Diploma in Management)', duration: '2 years', level: 'Diploma', paths: ['Business Manager', 'Strategy Consultant', 'Operations Manager', 'Higher Studies'], description: 'Post-graduate management diploma program.' },
+        
+        // Master's Degree Courses
+        { stream: 'Science', degree: 'M.Sc. Computer Science', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Software Engineer', 'Research Scientist', 'Technical Lead', 'Higher Studies (PhD)'], description: 'Advanced computer science and research.' },
+        { stream: 'Science', degree: 'M.Sc. Physics', duration: '2 years', level: 'Master\'s Degree', paths: ['Research Scientist', 'Physics Teacher', 'Technical Consultant', 'Higher Studies (PhD)'], description: 'Advanced physics and research methodology.' },
+        { stream: 'Science', degree: 'M.Sc. Chemistry', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Chemist', 'Research Scientist', 'Quality Manager', 'Higher Studies (PhD)'], description: 'Advanced chemistry and research applications.' },
+        { stream: 'Science', degree: 'M.Sc. Mathematics', duration: '2 years', level: 'Master\'s Degree', paths: ['Mathematical Modeler', 'Research Scientist', 'Data Scientist', 'Higher Studies (PhD)'], description: 'Advanced mathematics and statistical analysis.' },
+        { stream: 'Science', degree: 'M.Tech. Computer Science', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Software Engineer', 'Technical Architect', 'Research Engineer', 'Higher Studies (PhD)'], description: 'Advanced computer science engineering.' },
+        { stream: 'Science', degree: 'M.Tech. Mechanical Engineering', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Mechanical Engineer', 'Design Manager', 'Research Engineer', 'Higher Studies (PhD)'], description: 'Advanced mechanical engineering and design.' },
+        { stream: 'Science', degree: 'M.Tech. Civil Engineering', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Civil Engineer', 'Project Manager', 'Structural Consultant', 'Higher Studies (PhD)'], description: 'Advanced civil engineering and construction.' },
+        { stream: 'Science', degree: 'M.Tech. Electrical Engineering', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Electrical Engineer', 'Power Systems Manager', 'Research Engineer', 'Higher Studies (PhD)'], description: 'Advanced electrical engineering and power systems.' },
+        { stream: 'Science', degree: 'M.Pharm (Master of Pharmacy)', duration: '2 years', level: 'Master\'s Degree', paths: ['Senior Pharmacist', 'Pharmaceutical Researcher', 'Drug Development Manager', 'Higher Studies (PhD)'], description: 'Advanced pharmaceutical sciences and research.' },
+        { stream: 'Science', degree: 'M.Sc. Nursing', duration: '2 years', level: 'Master\'s Degree', paths: ['Nursing Supervisor', 'Clinical Specialist', 'Nursing Educator', 'Higher Studies (PhD)'], description: 'Advanced nursing practice and education.' },
+        
+        // PhD Programs
+        { stream: 'Science', degree: 'PhD in Computer Science', duration: '3-5 years', level: 'PhD', paths: ['Research Scientist', 'Professor', 'Chief Technology Officer', 'Research Director'], description: 'Doctoral research in computer science and technology.' },
+        { stream: 'Science', degree: 'PhD in Physics', duration: '3-5 years', level: 'PhD', paths: ['Research Physicist', 'Professor', 'Senior Scientist', 'Research Director'], description: 'Doctoral research in physics and theoretical studies.' },
+        { stream: 'Science', degree: 'PhD in Chemistry', duration: '3-5 years', level: 'PhD', paths: ['Research Chemist', 'Professor', 'Senior Scientist', 'Research Director'], description: 'Doctoral research in chemistry and materials science.' },
+        { stream: 'Science', degree: 'PhD in Mathematics', duration: '3-5 years', level: 'PhD', paths: ['Research Mathematician', 'Professor', 'Senior Analyst', 'Research Director'], description: 'Doctoral research in mathematics and applied sciences.' },
+        { stream: 'Science', degree: 'PhD in Engineering', duration: '3-5 years', level: 'PhD', paths: ['Research Engineer', 'Professor', 'Senior Engineer', 'Research Director'], description: 'Doctoral research in engineering and technology.' },
+        { stream: 'Commerce', degree: 'PhD in Management', duration: '3-5 years', level: 'PhD', paths: ['Management Professor', 'Research Director', 'Senior Consultant', 'Academic Administrator'], description: 'Doctoral research in management and business studies.' },
+        { stream: 'Arts/Humanities', degree: 'PhD in Psychology', duration: '3-5 years', level: 'PhD', paths: ['Research Psychologist', 'Professor', 'Senior Therapist', 'Research Director'], description: 'Doctoral research in psychology and behavioral sciences.' },
+        { stream: 'Arts/Humanities', degree: 'PhD in Literature', duration: '3-5 years', level: 'PhD', paths: ['Literature Professor', 'Research Scholar', 'Academic Writer', 'Research Director'], description: 'Doctoral research in literature and cultural studies.' },
+        
+        // Diploma and Certificate Programs
+        { stream: 'Science', degree: 'Diploma in Computer Applications', duration: '1 year', level: 'Diploma', paths: ['Computer Operator', 'Data Entry Operator', 'IT Support', 'Higher Studies'], description: 'Basic computer applications and software skills.' },
+        { stream: 'Science', degree: 'Diploma in Engineering', duration: '3 years', level: 'Diploma', paths: ['Junior Engineer', 'Technician', 'Technical Assistant', 'Higher Studies'], description: 'Technical engineering skills and applications.' },
+        { stream: 'Commerce', degree: 'Diploma in Business Management', duration: '1 year', level: 'Diploma', paths: ['Business Assistant', 'Office Manager', 'Administrative Assistant', 'Higher Studies'], description: 'Basic business management and administration skills.' },
+        { stream: 'Commerce', degree: 'Diploma in Accounting', duration: '1 year', level: 'Diploma', paths: ['Accounting Assistant', 'Bookkeeper', 'Financial Assistant', 'Higher Studies'], description: 'Basic accounting and bookkeeping skills.' },
+        { stream: 'Arts/Humanities', degree: 'Diploma in Journalism', duration: '1 year', level: 'Diploma', paths: ['Junior Journalist', 'Content Writer', 'Media Assistant', 'Higher Studies'], description: 'Basic journalism and media skills.' },
+        { stream: 'Science', degree: 'Certificate in Web Development', duration: '6 months', level: 'Certificate', paths: ['Web Developer', 'Frontend Developer', 'Freelancer', 'Higher Studies'], description: 'Web development and programming skills.' },
+        { stream: 'Science', degree: 'Certificate in Digital Marketing', duration: '6 months', level: 'Certificate', paths: ['Digital Marketing Specialist', 'Social Media Manager', 'Marketing Assistant', 'Higher Studies'], description: 'Digital marketing and online promotion skills.' },
+        { stream: 'Commerce', degree: 'Certificate in Financial Planning', duration: '6 months', level: 'Certificate', paths: ['Financial Planner', 'Investment Advisor', 'Financial Consultant', 'Higher Studies'], description: 'Financial planning and investment advisory skills.' },
+        
+        // Additional Commerce Courses
+        { stream: 'Commerce', degree: 'B.Com. (Hons.)', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Chartered Accountant', 'Financial Analyst', 'Investment Banking', 'Higher Studies'], description: 'Advanced commerce with specialization options.' },
+        { stream: 'Commerce', degree: 'B.Com. in Banking & Insurance', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Banking Professional', 'Insurance Agent', 'Financial Advisor', 'Higher Studies'], description: 'Specialized commerce in banking and insurance.' },
+        { stream: 'Commerce', degree: 'B.Com. in Taxation', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Tax Consultant', 'Tax Analyst', 'Tax Officer', 'Higher Studies'], description: 'Taxation laws and financial compliance.' },
+        { stream: 'Commerce', degree: 'B.Com. in E-Commerce', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['E-Commerce Manager', 'Digital Marketing Specialist', 'Online Business Owner', 'Higher Studies'], description: 'Electronic commerce and digital business.' },
+        { stream: 'Commerce', degree: 'B.Com. in Foreign Trade', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Export Manager', 'Import Specialist', 'Trade Analyst', 'Higher Studies'], description: 'International trade and commerce.' },
+        { stream: 'Commerce', degree: 'B.Com. in Computer Applications', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Business Analyst', 'IT Consultant', 'System Analyst', 'Higher Studies'], description: 'Commerce with computer applications.' },
+        { stream: 'Commerce', degree: 'B.Com. in Travel & Tourism', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Travel Agent', 'Tourism Manager', 'Event Planner', 'Higher Studies'], description: 'Travel and tourism management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Hotel Management', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Hotel Manager', 'Restaurant Manager', 'Hospitality Consultant', 'Higher Studies'], description: 'Hotel and hospitality management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Retail Management', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Retail Manager', 'Store Manager', 'Merchandiser', 'Higher Studies'], description: 'Retail business and store management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Supply Chain Management', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Supply Chain Manager', 'Logistics Coordinator', 'Procurement Officer', 'Higher Studies'], description: 'Supply chain and logistics management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Digital Marketing', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Digital Marketing Manager', 'Social Media Manager', 'Content Marketer', 'Higher Studies'], description: 'Digital marketing and online business.' },
+        { stream: 'Commerce', degree: 'B.Com. in Entrepreneurship', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Entrepreneur', 'Business Owner', 'Startup Founder', 'Higher Studies'], description: 'Entrepreneurship and business development.' },
+        { stream: 'Commerce', degree: 'B.Com. in Actuarial Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Actuary', 'Risk Analyst', 'Insurance Underwriter', 'Higher Studies'], description: 'Actuarial science and risk management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Cost Accounting', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Cost Accountant', 'Management Accountant', 'Financial Controller', 'Higher Studies'], description: 'Cost accounting and management accounting.' },
+        { stream: 'Commerce', degree: 'B.Com. in International Business', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['International Business Manager', 'Export-Import Manager', 'Global Trade Specialist', 'Higher Studies'], description: 'International business and global trade.' },
+        { stream: 'Commerce', degree: 'B.Com. in Financial Markets', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Stock Broker', 'Investment Analyst', 'Portfolio Manager', 'Higher Studies'], description: 'Financial markets and investment analysis.' },
+        { stream: 'Commerce', degree: 'B.Com. in Corporate Law', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Corporate Lawyer', 'Legal Advisor', 'Compliance Officer', 'Higher Studies'], description: 'Corporate law and business legal matters.' },
+        { stream: 'Commerce', degree: 'B.Com. in Real Estate', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Real Estate Agent', 'Property Manager', 'Real Estate Consultant', 'Higher Studies'], description: 'Real estate business and property management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Event Management', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Event Manager', 'Wedding Planner', 'Conference Organizer', 'Higher Studies'], description: 'Event planning and management.' },
+        { stream: 'Commerce', degree: 'B.Com. in Sports Management', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Sports Manager', 'Athlete Manager', 'Sports Marketing', 'Higher Studies'], description: 'Sports business and management.' },
+        
+        // Additional Arts/Humanities Courses
+        { stream: 'Arts/Humanities', degree: 'B.A. (Hons.)', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Academic Researcher', 'Policy Analyst', 'Social Worker', 'Higher Studies'], description: 'Advanced arts with specialization options.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Political Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Political Analyst', 'Policy Advisor', 'Government Officer', 'Higher Studies'], description: 'Political science and governance.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Sociology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Social Worker', 'Community Development Officer', 'Research Analyst', 'Higher Studies'], description: 'Sociology and social research.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Psychology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Counselor', 'HR Specialist', 'Research Assistant', 'Higher Studies'], description: 'Psychology and human behavior.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Philosophy', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Philosophy Teacher', 'Ethics Consultant', 'Research Scholar', 'Higher Studies'], description: 'Philosophy and critical thinking.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Geography', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Geographer', 'GIS Specialist', 'Urban Planner', 'Higher Studies'], description: 'Geography and spatial analysis.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Economics', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Economist', 'Policy Analyst', 'Financial Analyst', 'Higher Studies'], description: 'Economics and economic analysis.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Public Administration', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Administrative Officer', 'Policy Analyst', 'Government Officer', 'Higher Studies'], description: 'Public administration and governance.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Social Work', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Social Worker', 'Community Development Officer', 'NGO Worker', 'Higher Studies'], description: 'Social work and community service.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Anthropology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Anthropologist', 'Cultural Researcher', 'Museum Curator', 'Higher Studies'], description: 'Anthropology and cultural studies.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Archaeology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Archaeologist', 'Museum Curator', 'Cultural Heritage Manager', 'Higher Studies'], description: 'Archaeology and cultural heritage.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Linguistics', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Linguist', 'Language Teacher', 'Translator', 'Higher Studies'], description: 'Linguistics and language studies.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Fine Arts', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Artist', 'Art Teacher', 'Gallery Curator', 'Higher Studies'], description: 'Fine arts and visual arts.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Music', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Musician', 'Music Teacher', 'Composer', 'Higher Studies'], description: 'Music and performing arts.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Dance', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Dancer', 'Dance Teacher', 'Choreographer', 'Higher Studies'], description: 'Dance and performing arts.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Theatre Arts', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Actor', 'Theatre Director', 'Drama Teacher', 'Higher Studies'], description: 'Theatre and performing arts.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Fashion Design', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Fashion Designer', 'Stylist', 'Fashion Consultant', 'Higher Studies'], description: 'Fashion design and styling.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Interior Design', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Interior Designer', 'Space Planner', 'Design Consultant', 'Higher Studies'], description: 'Interior design and space planning.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Graphic Design', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Graphic Designer', 'UI/UX Designer', 'Creative Director', 'Higher Studies'], description: 'Graphic design and visual communication.' },
+        { stream: 'Arts/Humanities', degree: 'B.A. in Photography', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Photographer', 'Photojournalist', 'Visual Artist', 'Higher Studies'], description: 'Photography and visual arts.' },
+        { stream: 'Arts/Humanities', degree: 'Certificate in Creative Writing', duration: '6 months', level: 'Certificate', paths: ['Content Writer', 'Copywriter', 'Freelance Writer', 'Higher Studies'], description: 'Creative writing and content creation skills.' },
+        { stream: 'Science', degree: 'Certificate in Data Analysis', duration: '6 months', level: 'Certificate', paths: ['Data Analyst', 'Business Analyst', 'Research Assistant', 'Higher Studies'], description: 'Data analysis and statistical skills.' },
+        
+        // Specialized Professional Courses
+        { stream: 'Science', degree: 'B.Sc. Aviation', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Pilot', 'Air Traffic Controller', 'Aviation Manager', 'Higher Studies'], description: 'Aviation science and pilot training.' },
+        { stream: 'Science', degree: 'B.Sc. Marine Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Marine Biologist', 'Oceanographer', 'Environmental Consultant', 'Higher Studies'], description: 'Marine biology and oceanographic sciences.' },
+        { stream: 'Science', degree: 'B.Sc. Sports Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Sports Scientist', 'Fitness Trainer', 'Sports Manager', 'Higher Studies'], description: 'Sports science and physical fitness.' },
+        { stream: 'Science', degree: 'B.Sc. Forensic Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Forensic Scientist', 'Crime Scene Investigator', 'Forensic Analyst', 'Higher Studies'], description: 'Application of scientific methods to criminal investigations.' },
+        { stream: 'Science', degree: 'B.Sc. Food Technology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Food Technologist', 'Quality Control Manager', 'Food Safety Officer', 'Higher Studies'], description: 'Food processing, preservation, and quality control.' },
+        { stream: 'Science', degree: 'B.Sc. Agriculture', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Agricultural Scientist', 'Farm Manager', 'Agricultural Officer', 'Higher Studies'], description: 'Agricultural sciences and farming techniques.' },
+        { stream: 'Science', degree: 'B.Sc. Forestry', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Forest Officer', 'Wildlife Manager', 'Environmental Consultant', 'Higher Studies'], description: 'Forest management and conservation.' },
+        { stream: 'Science', degree: 'B.Sc. Nutrition & Dietetics', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Nutritionist', 'Dietitian', 'Health Consultant', 'Higher Studies'], description: 'Human nutrition and dietary planning.' },
+        { stream: 'Science', degree: 'B.Sc. Psychology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Counselor', 'Research Assistant', 'HR Specialist', 'Higher Studies'], description: 'Study of human behavior and mental processes.' },
+        { stream: 'Science', degree: 'B.Sc. Geography', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Geographer', 'GIS Specialist', 'Urban Planner', 'Higher Studies'], description: 'Study of Earth\'s physical and human features.' },
+        { stream: 'Science', degree: 'B.Sc. Geology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Geologist', 'Mining Engineer', 'Environmental Consultant', 'Higher Studies'], description: 'Study of Earth\'s structure and processes.' },
+        { stream: 'Science', degree: 'B.Sc. Astronomy', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Astronomer', 'Research Scientist', 'Planetarium Director', 'Higher Studies'], description: 'Study of celestial objects and space.' },
+        { stream: 'Science', degree: 'B.Sc. Meteorology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Meteorologist', 'Weather Forecaster', 'Climate Scientist', 'Higher Studies'], description: 'Study of weather and climate patterns.' },
+        { stream: 'Science', degree: 'B.Sc. Oceanography', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Oceanographer', 'Marine Scientist', 'Environmental Consultant', 'Higher Studies'], description: 'Study of oceans and marine environments.' },
+        { stream: 'Science', degree: 'B.Sc. Anthropology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Anthropologist', 'Cultural Researcher', 'Museum Curator', 'Higher Studies'], description: 'Study of human societies and cultures.' },
+        { stream: 'Science', degree: 'B.Sc. Archaeology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Archaeologist', 'Museum Curator', 'Cultural Heritage Manager', 'Higher Studies'], description: 'Study of human history through artifacts.' },
+        { stream: 'Science', degree: 'B.Sc. Home Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Home Economist', 'Textile Designer', 'Food Consultant', 'Higher Studies'], description: 'Applied sciences for home and family life.' },
+        { stream: 'Science', degree: 'B.Sc. Library Science', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Librarian', 'Information Specialist', 'Research Assistant', 'Higher Studies'], description: 'Library and information management.' },
+        { stream: 'Science', degree: 'B.Sc. Fashion Technology', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Fashion Designer', 'Textile Technologist', 'Merchandiser', 'Higher Studies'], description: 'Fashion design and textile technology.' },
+        { stream: 'Science', degree: 'B.Sc. Interior Design', duration: '3 years', level: 'Bachelor\'s Degree', paths: ['Interior Designer', 'Space Planner', 'Design Consultant', 'Higher Studies'], description: 'Interior space design and decoration.' },
+        
+        // Additional Engineering Courses
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Aerospace Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Aerospace Engineer', 'Aircraft Designer', 'Research Engineer', 'Higher Studies (M.Tech.)'], description: 'Aircraft and spacecraft design and development.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Chemical Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Chemical Engineer', 'Process Engineer', 'Production Manager', 'Higher Studies (M.Tech.)'], description: 'Chemical processes and industrial applications.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Biotechnology', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Biotech Engineer', 'Research Scientist', 'Process Engineer', 'Higher Studies (M.Tech.)'], description: 'Biotechnology applications in engineering.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Data Science', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Data Scientist', 'Analytics Engineer', 'Machine Learning Engineer', 'Higher Studies (M.Tech.)'], description: 'Data analysis and machine learning applications.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Petroleum Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Petroleum Engineer', 'Drilling Engineer', 'Production Engineer', 'Higher Studies (M.Tech.)'], description: 'Oil and gas exploration and production.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Mining Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Mining Engineer', 'Safety Engineer', 'Mine Manager', 'Higher Studies (M.Tech.)'], description: 'Mining operations and mineral extraction.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Metallurgical Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Metallurgist', 'Materials Engineer', 'Quality Engineer', 'Higher Studies (M.Tech.)'], description: 'Metal processing and materials science.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Textile Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Textile Engineer', 'Production Manager', 'Quality Controller', 'Higher Studies (M.Tech.)'], description: 'Textile manufacturing and processing.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Food Technology', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Food Technologist', 'Production Manager', 'Quality Assurance', 'Higher Studies (M.Tech.)'], description: 'Food processing and technology.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Agricultural Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Agricultural Engineer', 'Farm Equipment Designer', 'Irrigation Engineer', 'Higher Studies (M.Tech.)'], description: 'Agricultural machinery and irrigation systems.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Environmental Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Environmental Engineer', 'Pollution Control Officer', 'Sustainability Consultant', 'Higher Studies (M.Tech.)'], description: 'Environmental protection and sustainability.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Marine Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Marine Engineer', 'Ship Engineer', 'Offshore Engineer', 'Higher Studies (M.Tech.)'], description: 'Marine vessel design and maintenance.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Nuclear Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Nuclear Engineer', 'Radiation Safety Officer', 'Research Engineer', 'Higher Studies (M.Tech.)'], description: 'Nuclear power and radiation applications.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Robotics Engineering', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Robotics Engineer', 'Automation Engineer', 'AI Engineer', 'Higher Studies (M.Tech.)'], description: 'Robotics and automation systems.' },
+        { stream: 'Science/Math', degree: 'B.E./B.Tech. Nanotechnology', duration: '4 years', level: 'Bachelor\'s Degree', paths: ['Nanotechnologist', 'Research Scientist', 'Materials Engineer', 'Higher Studies (M.Tech.)'], description: 'Nanoscale materials and applications.' },
+        { stream: 'Science', degree: 'B.Sc. Library Science', duration: '3 years', paths: ['Librarian', 'Information Specialist', 'Research Assistant', 'Higher Studies'], description: 'Library and information science.' },
+        { stream: 'Science', degree: 'B.Sc. Home Science', duration: '3 years', paths: ['Home Economist', 'Nutritionist', 'Family Counselor', 'Higher Studies'], description: 'Home economics and family studies.' },
+        { stream: 'Science', degree: 'B.Sc. Textile Science', duration: '3 years', paths: ['Textile Technologist', 'Fashion Designer', 'Quality Control Manager', 'Higher Studies'], description: 'Textile technology and fashion design.' },
+        { stream: 'Science', degree: 'B.Sc. Polymer Science', duration: '3 years', paths: ['Polymer Scientist', 'Materials Engineer', 'Research Scientist', 'Higher Studies'], description: 'Polymer science and materials engineering.' },
+        { stream: 'Science', degree: 'B.Sc. Industrial Chemistry', duration: '3 years', paths: ['Industrial Chemist', 'Process Engineer', 'Quality Control Manager', 'Higher Studies'], description: 'Industrial chemistry and process engineering.' },
+        { stream: 'Science', degree: 'B.Sc. Applied Mathematics', duration: '3 years', paths: ['Mathematical Modeler', 'Data Analyst', 'Research Scientist', 'Higher Studies'], description: 'Applied mathematics and mathematical modeling.' },
+        { stream: 'Science', degree: 'B.Sc. Actuarial Science', duration: '3 years', paths: ['Actuary', 'Risk Analyst', 'Insurance Analyst', 'Higher Studies'], description: 'Actuarial science and risk management.' }
+      ];
+
+      function render(list) {
+        const container = document.getElementById('courses-list');
+        if (!list.length) {
+          container.innerHTML = '<div class="text-sm text-gray-600">No courses found for the selected stream.</div>';
+          return;
+        }
+        container.innerHTML = list.map(item => `
+          <div class="card">
+            <div class="text-xs text-gray-500 mb-1">${item.stream}</div>
+            <div class="font-medium mb-2">${item.degree}</div>
+            <div class="text-sm text-gray-600 mb-3">${item.description}</div>
+            <div class="flex justify-between items-center mb-2">
+              <div class="text-xs text-gray-500">Duration: ${item.duration}</div>
+              <div class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">${item.level}</div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${item.paths.map(p => `<span class="badge">${p}</span>`).join('')}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Add level property to all courses
+      data.forEach(course => {
+        if (!course.level) {
+          if (course.degree.includes('B.Sc.') || course.degree.includes('B.A.') || course.degree.includes('B.Com.') || course.degree.includes('BBA') || course.degree.includes('B.E.') || course.degree.includes('B.Tech.') || course.degree.includes('B.Pharm')) {
+            course.level = 'Bachelor\'s Degree';
+          } else if (course.degree.includes('M.Sc.') || course.degree.includes('M.A.') || course.degree.includes('M.Com.') || course.degree.includes('MBA') || course.degree.includes('M.Tech.') || course.degree.includes('M.Pharm') || course.degree.includes('M.Ed')) {
+            course.level = 'Master\'s Degree';
+          } else if (course.degree.includes('PhD') || course.degree.includes('Ph.D')) {
+            course.level = 'PhD';
+          } else if (course.degree.includes('Diploma') || course.degree.includes('PGDM')) {
+            course.level = 'Diploma';
+          } else if (course.degree.includes('Certificate') || course.degree.includes('Foundation')) {
+            course.level = 'Certificate';
+          } else {
+            course.level = 'Bachelor\'s Degree'; // Default
+          }
+        }
+      });
+
+      function addLevelFilter(level) {
+        const levelFilterGroup = document.getElementById('level-filter-group');
+        const levelFilterSelect = document.getElementById('level-filter');
+        
+        levelFilterGroup.style.display = 'block';
+        levelFilterSelect.value = level;
+        
+        // Add event listener for level filter
+        levelFilterSelect.addEventListener('change', applyFilter);
+      }
+
+      function showCareerRedirectMessage(level) {
+        const messageDiv = document.getElementById('career-redirect-message');
+        const descriptionP = document.getElementById('page-description');
+        
+        messageDiv.classList.remove('hidden');
+        descriptionP.textContent = `Showing ${level} courses that can help you achieve your career goals.`;
+      }
+
+      function applyFilter() {
+        const streamFilter = select.value;
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const levelFilter = document.getElementById('level-filter')?.value || 'all';
+        
+        console.log('Filter Debug:', { streamFilter, levelFilter, searchTerm, totalCourses: data.length });
+        
+        let list = data;
+        
+        // Apply stream filter with enhanced logic
+        if (streamFilter !== 'all') {
+          list = list.filter(d => {
+            const matches = d.stream === streamFilter;
+            if (!matches && streamFilter === 'Science/Math') {
+              // Also include Science courses for Science/Math filter
+              return d.stream === 'Science';
+            }
+            return matches;
+          });
+        }
+        
+        console.log('After stream filter:', list.length);
+        
+        // Apply level filter
+        if (levelFilter !== 'all') {
+          list = list.filter(d => d.level === levelFilter);
+        }
+        
+        console.log('After level filter:', list.length);
+        
+        // Enhanced search filter with multiple matching strategies
+        if (searchTerm) {
+          console.log('Searching for:', searchTerm);
+          console.log('Available courses:', list.map(d => d.degree));
+          
+          list = list.filter(d => {
+            const degree = d.degree.toLowerCase();
+            const description = d.description.toLowerCase();
+            const pathsText = d.paths.join(' ').toLowerCase();
+            const searchTermLower = searchTerm.toLowerCase();
+            
+            // Direct match
+            if (degree.includes(searchTermLower) || description.includes(searchTermLower) || pathsText.includes(searchTermLower)) {
+              console.log('Direct match found:', d.degree);
+              return true;
+            }
+            
+            // Enhanced matching for engineering terms
+            if (searchTermLower.includes('b.tech') || searchTermLower.includes('btech') || searchTermLower.includes('b.e.') || searchTermLower.includes('engineering')) {
+              // Normalize both search term and degree for comparison
+              const normalizedDegree = degree.replace(/[\/.]/g, ' ').replace(/\s+/g, ' ').trim();
+              const normalizedSearch = searchTermLower.replace(/[\/.]/g, ' ').replace(/\s+/g, ' ').trim();
+              
+              // Extract subject words (removing degree prefixes)
+              const degreeSubjects = normalizedDegree.replace(/b\s*[et]\s*tech|b\s*e|bachelor|engineering/gi, '').trim();
+              const searchSubjects = normalizedSearch.replace(/b\s*[et]\s*tech|b\s*e|bachelor|engineering/gi, '').trim();
+              
+              if (degreeSubjects && searchSubjects) {
+                const degreeWords = degreeSubjects.split(/\s+/);
+                const searchWords = searchSubjects.split(/\s+/);
+                
+                // Check if major search words are present in degree
+                const matchingWords = searchWords.filter(word => 
+                  word.length > 2 && degreeWords.some(dWord => dWord.includes(word) || word.includes(dWord))
+                );
+                
+                if (matchingWords.length >= Math.min(2, searchWords.length)) {
+                  console.log('Engineering match found:', d.degree, 'for search:', searchTerm);
+                  return true;
+                }
+              }
+            }
+            
+            // Word-based fuzzy matching for partial matches
+            const searchWords = searchTermLower.split(/\s+/).filter(word => word.length > 2);
+            if (searchWords.length > 0) {
+              const matchScore = searchWords.reduce((score, word) => {
+                if (degree.includes(word) || description.includes(word) || pathsText.includes(word)) {
+                  return score + 1;
+                }
+                // Check for partial word matches
+                const degreeWords = degree.split(/\s+/);
+                const partialMatch = degreeWords.some(dWord => 
+                  (dWord.length > 3 && word.length > 3) && 
+                  (dWord.includes(word) || word.includes(dWord))
+                );
+                return partialMatch ? score + 0.5 : score;
+              }, 0);
+              
+              if (matchScore >= Math.min(1.5, searchWords.length * 0.6)) {
+                console.log('Fuzzy match found:', d.degree, 'score:', matchScore);
+                return true;
+              }
+            }
+            
+            return false;
+          });
+          
+          console.log('Filtered courses:', list.map(d => d.degree));
+        }
+        
+        console.log('Final filtered list:', list.length);
+        render(list);
+      }
+
+      select.addEventListener('change', applyFilter);
+      searchInput.addEventListener('input', applyFilter);
+      applyFilter();
+    </script>
+    
+    <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+  </body>
+</html>

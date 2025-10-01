@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Scholarships</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body class="bg-white text-gray-900">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link active" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link active" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Scholarships</h1>
+        </div>
+        
+        <div class="filters">
+          <div class="filter-group">
+            <label>Search scholarships</label>
+            <input type="text" id="search-input" class="select" placeholder="Search by scholarship name..." />
+          </div>
+          <div class="filter-group">
+            <label>State</label>
+            <select id="f-state" class="select">
+              <option value="all">All</option>
+              <option>Delhi</option>
+              <option>Maharashtra</option>
+              <option>Tamil Nadu</option>
+              <option>Karnataka</option>
+              <option>West Bengal</option>
+              <option>Gujarat</option>
+              <option>Rajasthan</option>
+              <option>Uttar Pradesh</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Category</label>
+            <select id="f-cat" class="select">
+              <option value="all">All</option>
+              <option>Merit</option>
+              <option>Need</option>
+              <option>Government</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Class</label>
+            <select id="f-class" class="select">
+              <option value="all">All</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>graduate</option>
+            </select>
+          </div>
+          <button id="apply" class="btn-primary">Apply</button>
+        </div>
+
+        <div id="list" class="content-grid"></div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('scholarships');
+
+      const data = [
+        { name: 'National Merit Scholarship Scheme', state: 'All', category: 'Merit', class: '12', deadline: '2025-10-15', amount: '₹12,000/year', description: 'For students scoring 80%+ in Class 12', link: '#' },
+        { name: 'Central Sector Scholarship', state: 'All', category: 'Government', class: 'graduate', deadline: '2025-12-10', amount: '₹10,000/year', description: 'For undergraduate students from economically weaker sections', link: '#' },
+        { name: 'Post Matric Scholarship', state: 'All', category: 'Need', class: '11', deadline: '2025-11-01', amount: '₹5,000-15,000/year', description: 'For SC/ST/OBC students pursuing higher education', link: '#' },
+        { name: 'Prime Minister Scholarship Scheme', state: 'All', category: 'Merit', class: '12', deadline: '2025-09-30', amount: '₹25,000/year', description: 'For children of armed forces personnel', link: '#' },
+        { name: 'Delhi State Merit Scholarship', state: 'Delhi', category: 'Merit', class: '12', deadline: '2025-08-20', amount: '₹8,000/year', description: 'For Delhi residents with 90%+ in Class 12', link: '#' },
+        { name: 'Maharashtra State Scholarship', state: 'Maharashtra', category: 'Need', class: 'graduate', deadline: '2025-11-15', amount: '₹6,000/year', description: 'For Maharashtra students from low-income families', link: '#' },
+        { name: 'Tamil Nadu Educational Loan Scholarship', state: 'Tamil Nadu', category: 'Government', class: 'graduate', deadline: '2025-10-30', amount: '₹20,000/year', description: 'Interest-free loan for higher education', link: '#' },
+        { name: 'Karnataka State Scholarship', state: 'Karnataka', category: 'Merit', class: '12', deadline: '2025-09-15', amount: '₹10,000/year', description: 'For Karnataka students with 85%+ marks', link: '#' },
+        { name: 'West Bengal State Scholarship', state: 'West Bengal', category: 'Need', class: '11', deadline: '2025-12-05', amount: '₹7,000/year', description: 'For economically disadvantaged students', link: '#' },
+        { name: 'Gujarat State Merit Scholarship', state: 'Gujarat', category: 'Merit', class: '12', deadline: '2025-08-25', amount: '₹12,000/year', description: 'For Gujarat students with 95%+ in Class 12', link: '#' },
+        { name: 'Rajasthan State Scholarship', state: 'Rajasthan', category: 'Need', class: 'graduate', deadline: '2025-11-20', amount: '₹5,000/year', description: 'For Rajasthan students from rural areas', link: '#' },
+        { name: 'Uttar Pradesh State Scholarship', state: 'Uttar Pradesh', category: 'Government', class: '11', deadline: '2025-10-10', amount: '₹8,000/year', description: 'For UP students pursuing science/engineering', link: '#' }
+      ];
+
+      function render(list) {
+        const c = document.getElementById('list');
+        if (!list.length) { 
+          c.innerHTML = '<div class="text-sm text-gray-600">No scholarships found for the selected criteria.</div>'; 
+          return; 
+        }
+        c.innerHTML = list.map(s => `
+          <div class="card">
+            <div class="font-medium mb-2">${s.name}</div>
+            <div class="text-xs text-gray-500 mb-2">${s.state === 'All' ? 'National' : s.state} • ${s.category} • Class ${s.class}</div>
+            <div class="text-sm text-gray-600 mb-2">${s.description}</div>
+            <div class="text-sm font-medium text-green-600 mb-2">Amount: ${s.amount}</div>
+            <div class="text-xs text-gray-500 mb-3">Deadline: ${new Date(s.deadline).toLocaleDateString()}</div>
+            <div class="flex gap-2 text-xs" style="flex-wrap: wrap;">
+              <span class="btn-secondary">Class: ${s.class}</span>
+              <a href="${s.link}" class="btn-primary" target="_blank">Apply Now</a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function applyFilter() {
+        const fs = document.getElementById('f-state').value;
+        const fc = document.getElementById('f-cat').value;
+        const fcl = document.getElementById('f-class').value;
+        const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+        
+        let list = data;
+        
+        // Apply search filter
+        if (searchTerm) {
+          list = list.filter(s => 
+            s.name.toLowerCase().includes(searchTerm) ||
+            s.description.toLowerCase().includes(searchTerm)
+          );
+        }
+        
+        // Apply other filters
+        list = list
+          .filter(s => fs === 'all' || s.state === fs || (fs === 'All' && s.state === 'All'))
+          .filter(s => fc === 'all' || s.category === fc)
+          .filter(s => fcl === 'all' || s.class === fcl)
+          .sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
+        
+        render(list);
+      }
+
+      document.getElementById('search-input').addEventListener('input', applyFilter);
+      document.getElementById('apply').addEventListener('click', applyFilter);
+      applyFilter();
+    </script>
+    
+    <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+  </body>
+</html>

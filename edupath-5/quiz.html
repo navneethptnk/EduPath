@@ -1,0 +1,1491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Quiz (Direct Career Navigation)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/styles.css?v=lang-consistency" />
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link active" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link active" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <!-- Quiz Selection Section -->
+        <section id="quiz-selection" class="quiz-section">
+          <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Career Discovery Quizzes</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-4">Take our comprehensive quizzes to discover your strengths, interests, and ideal career paths. Choose from different assessment types below.</p>
+            <div class="quiz-guest-notice" data-guest-notice>
+              <div class="notice-content">
+                <span class="notice-icon">📝</span>
+                <span class="notice-text">You can take quizzes as a guest, but <strong>sign up to save results</strong> and get personalized recommendations!</span>
+                <a href="auth.html" class="notice-link">Sign up now</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-types-grid">
+            <div class="quiz-type-card" onclick="startQuiz('aptitude')">
+              <div class="quiz-icon">🧠</div>
+              <h3>Aptitude Assessment</h3>
+              <p>Discover your natural strengths and abilities across different subjects and skill areas.</p>
+              <div class="quiz-stats">
+                <span class="stat">📊 15 Questions</span>
+                <span class="stat">⏱️ 10 Minutes</span>
+              </div>
+              <button class="quiz-start-btn">Start Assessment</button>
+            </div>
+            
+            <div class="quiz-type-card" onclick="startQuiz('interests')">
+              <div class="quiz-icon">❤️</div>
+              <h3>Interest Explorer</h3>
+              <p>Identify your passions and interests to find career paths that align with what you love.</p>
+              <div class="quiz-stats">
+                <span class="stat">📊 20 Questions</span>
+                <span class="stat">⏱️ 12 Minutes</span>
+              </div>
+              <button class="quiz-start-btn">Start Explorer</button>
+            </div>
+            
+            <div class="quiz-type-card" onclick="startQuiz('personality')">
+              <div class="quiz-icon">🎭</div>
+              <h3>Personality Profile</h3>
+              <p>Understand your personality traits and how they relate to different work environments.</p>
+              <div class="quiz-stats">
+                <span class="stat">📊 25 Questions</span>
+                <span class="stat">⏱️ 15 Minutes</span>
+              </div>
+              <button class="quiz-start-btn">Start Profile</button>
+            </div>
+            
+            <div class="quiz-type-card" onclick="startQuiz('comprehensive')">
+              <div class="quiz-icon">🎯</div>
+              <h3>Complete Assessment</h3>
+              <p>Take all assessments in one comprehensive session for the most detailed career guidance.</p>
+              <div class="quiz-stats">
+                <span class="stat">📊 60 Questions</span>
+                <span class="stat">⏱️ 35 Minutes</span>
+              </div>
+              <button class="quiz-start-btn featured">Start Complete</button>
+            </div>
+          </div>
+          
+          <div class="quiz-history mt-12">
+            <h3 class="text-xl font-semibold mb-4">Previous Results</h3>
+            <div id="quiz-history-container" class="hidden">
+              <!-- Previous quiz results will be shown here -->
+            </div>
+            <div id="no-history" class="text-center text-gray-500 py-8">
+              <div class="text-4xl mb-2">📋</div>
+              <p>No previous quiz results found. Take your first assessment above!</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quiz Taking Section -->
+        <section id="quiz-taking" class="quiz-section hidden">
+          <div class="quiz-header">
+            <div class="flex justify-between items-center mb-6">
+              <button onclick="backToSelection()" class="btn-secondary text-sm">← Back to Quiz Selection</button>
+              <div class="quiz-progress-container">
+                <div class="quiz-progress-bar">
+                  <div id="progress-fill" class="quiz-progress-fill"></div>
+                </div>
+                <span id="progress-text" class="quiz-progress-text">Question 1 of 15</span>
+              </div>
+              <div class="quiz-timer" id="quiz-timer">
+                <span class="timer-icon">⏱️</span>
+                <span id="timer-display">10:00</span>
+              </div>
+            </div>
+            <h2 id="quiz-title" class="text-2xl font-bold text-center mb-2">Aptitude Assessment</h2>
+            <p id="quiz-description" class="text-gray-600 text-center mb-8">Answer honestly to get the most accurate results</p>
+          </div>
+          
+          <div class="quiz-content">
+            <div id="question-container" class="question-card">
+              <!-- Questions will be dynamically loaded here -->
+            </div>
+            
+            <div class="quiz-navigation">
+              <button id="prev-btn" class="btn-secondary" onclick="previousQuestion()" disabled>Previous</button>
+              <div class="question-indicator">
+                <div id="question-dots" class="flex gap-2"></div>
+              </div>
+              <button id="next-btn" class="btn-primary" onclick="nextQuestion()" disabled>Next</button>
+            </div>
+          </div>
+        </section>
+        <!-- Results Section -->
+        <section id="quiz-results" class="quiz-section hidden">
+          <div class="results-header text-center mb-8">
+            <div class="results-icon mb-4">🎉</div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Your Results</h2>
+            <p class="text-gray-600">Based on your responses, here are your personalized career recommendations</p>
+          </div>
+          
+          <div id="results-content" class="results-grid">
+            <!-- Results will be dynamically generated here -->
+          </div>
+          
+          <div class="results-actions text-center mt-8">
+            <button onclick="retakeQuiz()" class="btn-secondary mr-4">Retake Quiz</button>
+            <button onclick="exploreRecommendations()" class="btn-primary">Explore Recommendations</button>
+            <button onclick="backToSelection()" class="btn-secondary ml-4">Take Another Quiz</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    
+    <script src="assets/main.js"></script>
+    
+    <!-- Transparent AI insights (local heuristic + optional external provider) -->
+    <script src="assets/ai-insights.js"></script>
+    <!-- To enable external AI, copy assets/ai-config.example.js to assets/ai-config.js and set endpoint/apiKey -->
+    <!-- <script src="assets/ai-config.js"></script> -->
+    
+    <style>
+      /* Quiz Styles - Updated 2025-01-21 */
+      /* Force browser refresh with improved visibility */
+      .quiz-section {
+        min-height: calc(100vh - 200px);
+        padding: 2rem 0;
+      }
+      
+      /* Guest Notice Styles */
+      .quiz-guest-notice {
+        margin: 1.5rem auto 0;
+        max-width: 600px;
+      }
+      
+      .notice-content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 1.5rem;
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border: 1px solid #f59e0b;
+        border-radius: 0.75rem;
+        text-align: left;
+      }
+      
+      .notice-icon {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+      
+      .notice-text {
+        color: #92400e;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        flex: 1;
+      }
+      
+      .notice-link {
+        color: #d97706;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        font-size: 0.875rem;
+      }
+      
+      .notice-link:hover {
+        background: white;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .quiz-types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+      
+      .quiz-type-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .quiz-type-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+      }
+      
+      .quiz-type-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        pointer-events: none;
+      }
+      
+      .quiz-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      }
+      
+      .quiz-type-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      
+      .quiz-type-card p {
+        opacity: 1;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        font-weight: 500;
+        color: rgba(255,255,255,0.98);
+      }
+      
+      .quiz-stats {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .stat {
+        background: rgba(255,255,255,0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+      
+      .quiz-start-btn {
+        background: rgba(255,255,255,0.2);
+        border: 2px solid rgba(255,255,255,0.3);
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+      
+      .quiz-start-btn:hover {
+        background: rgba(255,255,255,0.3);
+        border-color: rgba(255,255,255,0.5);
+        transform: scale(1.05);
+      }
+      
+      .quiz-start-btn.featured {
+        background: linear-gradient(135deg, #ffd700, #ffb347);
+        color: #333;
+        border-color: #ffd700;
+      }
+      
+      /* Quiz Taking Styles */
+      .quiz-header {
+        background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .quiz-progress-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .quiz-progress-bar {
+        width: 200px;
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      
+      .quiz-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transition: width 0.3s ease;
+        border-radius: 4px;
+      }
+      
+      .quiz-progress-text {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #64748b;
+      }
+      
+      .quiz-timer {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #fef3c7;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        color: #92400e;
+      }
+      
+      .question-card {
+        background: white;
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .question-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 2rem;
+        text-align: center;
+        line-height: 1.4;
+      }
+      
+      .question-options {
+        display: grid;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      
+      .option-button {
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: left;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .option-button:hover {
+        border-color: #667eea;
+        background: #f0f9ff;
+        transform: translateY(-2px);
+      }
+      
+      .option-button.selected {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-color: #667eea;
+        color: white;
+      }
+      
+      .option-text {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      .option-description {
+        font-size: 0.875rem;
+        opacity: 0.8;
+      }
+      
+      .quiz-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        background: #f8fafc;
+        border-radius: 1rem;
+      }
+      
+      .question-indicator {
+        display: flex;
+        gap: 0.5rem;
+      }
+      
+      .question-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        transition: all 0.3s ease;
+      }
+      
+      .question-dot.completed {
+        background: #10b981;
+      }
+      
+      .question-dot.current {
+        background: #667eea;
+        transform: scale(1.2);
+      }
+      
+      /* Results Styles */
+      .results-icon {
+        font-size: 4rem;
+      }
+      
+      .results-grid {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .result-section {
+        background: white;
+        border-radius: 1.5rem;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      
+      .result-score {
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 1rem;
+        color: white;
+        margin-bottom: 2rem;
+      }
+      
+      .score-value {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      
+      .score-label {
+        opacity: 0.9;
+        font-size: 1.125rem;
+      }
+      
+      .recommendations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      
+      .recommendation-card {
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+      
+      .recommendation-card:hover {
+        transform: translateY(-4px);
+        border-color: #0ea5e9;
+        box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+      }
+      
+      .recommendation-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        // Add interactive AI Q&A for career advice
+        setTimeout(() => {
+          const askBtn = document.getElementById('ai-career-ask-btn');
+          if (askBtn) {
+            askBtn.onclick = async function() {
+              const question = document.getElementById('ai-career-question').value.trim();
+              const answerDiv = document.getElementById('ai-career-answer');
+              if (!question) {
+                answerDiv.textContent = 'Please enter a question.';
+                return;
+              }
+              answerDiv.textContent = 'Thinking...';
+              // Use local AI-insights for demo; if external AI is configured, use that
+              if (window.AIInsights && window.AIInsights.render) {
+                // Simulate a personalized answer using local signals
+                const signals = (window.AIInsights.computeSignals ? window.AIInsights.computeSignals(userAnswers, careerMapping) : null);
+                let response = '';
+                if (signals) {
+                  // Example: If user asks about skills, show top skills from matched careers
+                  if (/skill|focus|improve|learn/i.test(question)) {
+                    const topCareer = results.careerMatches[0];
+                    if (topCareer && topCareer.careers && topCareer.careers[0]) {
+                      // Try to get skills from career-data.js if available
+                      response = 'Based on your top match (' + topCareer.title + '), key skills to focus on include: problem solving, analytical thinking, and relevant technical skills.';
+                    } else {
+                      response = 'Focus on building strong analytical and communication skills for your career path.';
+                    }
+                  } else if (/course|degree|study|education/i.test(question)) {
+                    response = 'Consider pursuing courses or degrees related to your top career match, such as specialized bachelor’s or master’s programs.';
+                  } else {
+                    response = 'Your question is important! For personalized advice, consider your top career matches and explore recommended skills and education paths.';
+                  }
+                } else {
+                  response = 'AI insights are not available at the moment.';
+                }
+                answerDiv.textContent = response;
+              }
+            };
+          }
+        }, 500);
+      }
+      
+      .recommendation-title {
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+      }
+      
+      .recommendation-match {
+        background: #10b981;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .quiz-types-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .quiz-progress-container {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .quiz-progress-bar {
+          width: 150px;
+        }
+        
+        .question-card {
+          padding: 2rem;
+          min-height: 300px;
+        }
+        
+        .quiz-navigation {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .results-actions {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .results-actions button {
+          margin: 0 !important;
+        }
+      }
+    </style>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('quiz');
+
+      // Quiz System State
+      let currentQuizType = null;
+      let currentQuestionIndex = 0;
+      let userAnswers = [];
+      let quizData = {};
+      let timerInterval = null;
+      let timeRemaining = 0;
+      
+      // Quiz Questions Database
+      const quizQuestions = {
+        aptitude: [
+          {
+            id: 1,
+            question: "Which of these mathematical concepts do you find most interesting?",
+            options: [
+              { text: "Algebra & Equations", value: "math_algebra", description: "Working with variables and solving equations" },
+              { text: "Geometry & Shapes", value: "math_geometry", description: "Understanding spatial relationships and measurements" },
+              { text: "Statistics & Data", value: "math_statistics", description: "Analyzing patterns and interpreting data" },
+              { text: "Calculus & Functions", value: "math_advanced", description: "Advanced mathematical concepts and relationships" }
+            ],
+            category: "mathematical"
+          },
+          {
+            id: 2,
+            question: "When working on science projects, what aspect excites you most?",
+            options: [
+              { text: "Conducting Experiments", value: "science_experimental", description: "Hands-on testing and discovery" },
+              { text: "Understanding Theory", value: "science_theoretical", description: "Learning the 'why' behind phenomena" },
+              { text: "Making Observations", value: "science_observational", description: "Careful watching and recording" },
+              { text: "Building Models", value: "science_applied", description: "Creating representations and solutions" }
+            ],
+            category: "scientific"
+          },
+          {
+            id: 3,
+            question: "How do you prefer to solve complex problems?",
+            options: [
+              { text: "Break it into steps", value: "analytical_systematic", description: "Methodical, step-by-step approach" },
+              { text: "Look for patterns", value: "analytical_pattern", description: "Finding connections and similarities" },
+              { text: "Try different approaches", value: "analytical_creative", description: "Experimental and flexible thinking" },
+              { text: "Research thoroughly first", value: "analytical_research", description: "Gathering information before acting" }
+            ],
+            category: "analytical"
+          },
+          {
+            id: 4,
+            question: "Which type of logical reasoning appeals to you most?",
+            options: [
+              { text: "Deductive (general to specific)", value: "logic_deductive", description: "Using rules to reach conclusions" },
+              { text: "Inductive (specific to general)", value: "logic_inductive", description: "Finding patterns from examples" },
+              { text: "Analogical (comparing similarities)", value: "logic_analogical", description: "Drawing parallels between situations" },
+              { text: "Critical analysis", value: "logic_critical", description: "Evaluating arguments and evidence" }
+            ],
+            category: "logical"
+          },
+          {
+            id: 5,
+            question: "In group projects, what role do you naturally take?",
+            options: [
+              { text: "Project Manager", value: "leadership_manager", description: "Organizing tasks and timelines" },
+              { text: "Technical Expert", value: "leadership_technical", description: "Providing specialized knowledge" },
+              { text: "Creative Contributor", value: "leadership_creative", description: "Generating ideas and solutions" },
+              { text: "Quality Controller", value: "leadership_quality", description: "Ensuring accuracy and standards" }
+            ],
+            category: "leadership"
+          },
+          {
+            id: 6,
+            question: "What type of memory serves you best in learning?",
+            options: [
+              { text: "Visual (charts, diagrams)", value: "memory_visual", description: "Learning through images and spatial relationships" },
+              { text: "Auditory (lectures, discussions)", value: "memory_auditory", description: "Learning through listening and verbal information" },
+              { text: "Kinesthetic (hands-on)", value: "memory_kinesthetic", description: "Learning through physical activity and practice" },
+              { text: "Reading/Writing", value: "memory_textual", description: "Learning through written information and note-taking" }
+            ],
+            category: "learning_style"
+          },
+          {
+            id: 7,
+            question: "Which cognitive skill do you rely on most?",
+            options: [
+              { text: "Spatial reasoning", value: "cognitive_spatial", description: "Understanding 3D relationships and navigation" },
+              { text: "Verbal reasoning", value: "cognitive_verbal", description: "Language comprehension and communication" },
+              { text: "Numerical reasoning", value: "cognitive_numerical", description: "Working with numbers and calculations" },
+              { text: "Abstract reasoning", value: "cognitive_abstract", description: "Conceptual thinking and pattern recognition" }
+            ],
+            category: "cognitive"
+          },
+          {
+            id: 8,
+            question: "How do you approach learning new concepts?",
+            options: [
+              { text: "Start with fundamentals", value: "learning_fundamental", description: "Build from basic principles upward" },
+              { text: "Learn by examples", value: "learning_examples", description: "Understand through practical cases" },
+              { text: "Connect to prior knowledge", value: "learning_connections", description: "Link new information to what you know" },
+              { text: "Explore applications first", value: "learning_applications", description: "See how it's used, then understand why" }
+            ],
+            category: "learning_approach"
+          },
+          {
+            id: 9,
+            question: "What motivates you most in academic challenges?",
+            options: [
+              { text: "Mastering difficult concepts", value: "motivation_mastery", description: "The satisfaction of deep understanding" },
+              { text: "Competing with others", value: "motivation_competition", description: "Measuring progress against peers" },
+              { text: "Achieving personal goals", value: "motivation_personal", description: "Meeting self-set standards and targets" },
+              { text: "Making practical impact", value: "motivation_impact", description: "Seeing real-world applications of learning" }
+            ],
+            category: "motivation"
+          },
+          {
+            id: 10,
+            question: "Which intellectual activity energizes you most?",
+            options: [
+              { text: "Analyzing complex data", value: "intellectual_analysis", description: "Breaking down information to find insights" },
+              { text: "Synthesizing ideas", value: "intellectual_synthesis", description: "Combining concepts to create new understanding" },
+              { text: "Evaluating arguments", value: "intellectual_evaluation", description: "Assessing validity and strength of reasoning" },
+              { text: "Creating original solutions", value: "intellectual_creation", description: "Developing novel approaches to problems" }
+            ],
+            category: "intellectual"
+          },
+          {
+            id: 11,
+            question: "How do you handle information overload?",
+            options: [
+              { text: "Organize and categorize", value: "information_organize", description: "Create systems and structures" },
+              { text: "Focus on key points", value: "information_filter", description: "Identify and prioritize essentials" },
+              { text: "Take breaks and process gradually", value: "information_gradual", description: "Manage cognitive load through pacing" },
+              { text: "Seek patterns and connections", value: "information_connect", description: "Find relationships to simplify complexity" }
+            ],
+            category: "information_processing"
+          },
+          {
+            id: 12,
+            question: "What type of mental challenge do you enjoy most?",
+            options: [
+              { text: "Logic puzzles and brain teasers", value: "challenge_logic", description: "Structured problem-solving with clear rules" },
+              { text: "Creative problem-solving", value: "challenge_creative", description: "Open-ended challenges requiring innovation" },
+              { text: "Strategic planning", value: "challenge_strategic", description: "Long-term thinking and decision-making" },
+              { text: "Technical optimization", value: "challenge_technical", description: "Improving efficiency and performance" }
+            ],
+            category: "mental_challenge"
+          },
+          {
+            id: 13,
+            question: "Which aspect of communication do you excel at?",
+            options: [
+              { text: "Explaining complex ideas simply", value: "communication_explanation", description: "Making difficult concepts accessible" },
+              { text: "Persuading and influencing", value: "communication_persuasion", description: "Convincing others of your viewpoint" },
+              { text: "Active listening and understanding", value: "communication_listening", description: "Truly hearing and comprehending others" },
+              { text: "Visual presentation", value: "communication_visual", description: "Using graphics and demonstrations effectively" }
+            ],
+            category: "communication"
+          },
+          {
+            id: 14,
+            question: "How do you prefer to demonstrate your knowledge?",
+            options: [
+              { text: "Written reports and essays", value: "demonstration_written", description: "Detailed, structured documentation" },
+              { text: "Oral presentations", value: "demonstration_oral", description: "Speaking to groups and explaining concepts" },
+              { text: "Practical demonstrations", value: "demonstration_practical", description: "Showing through action and examples" },
+              { text: "Creative projects", value: "demonstration_creative", description: "Unique, innovative expressions of understanding" }
+            ],
+            category: "demonstration"
+          },
+          {
+            id: 15,
+            question: "What drives your curiosity most?",
+            options: [
+              { text: "Understanding how things work", value: "curiosity_mechanical", description: "The mechanisms and processes behind phenomena" },
+              { text: "Exploring human behavior", value: "curiosity_behavioral", description: "Why people think, feel, and act as they do" },
+              { text: "Discovering patterns in nature", value: "curiosity_natural", description: "The underlying order and systems in the world" },
+              { text: "Imagining future possibilities", value: "curiosity_futuristic", description: "What could be and how to make it happen" }
+            ],
+            category: "curiosity"
+          }
+        ],
+        
+        interests: [
+          {
+            id: 1,
+            question: "Which activity would you choose for a free weekend?",
+            options: [
+              { text: "Building or fixing something", value: "interest_building", description: "Working with your hands to create or repair" },
+              { text: "Reading about new discoveries", value: "interest_research", description: "Learning about cutting-edge developments" },
+              { text: "Organizing a social event", value: "interest_social", description: "Bringing people together for fun" },
+              { text: "Creating art or music", value: "interest_creative", description: "Expressing yourself through artistic mediums" }
+            ],
+            category: "leisure_preference"
+          },
+          {
+            id: 2,
+            question: "What type of environment energizes you most?",
+            options: [
+              { text: "Quiet library or study space", value: "environment_quiet", description: "Peaceful, focused atmosphere" },
+              { text: "Bustling marketplace or city", value: "environment_dynamic", description: "Active, ever-changing surroundings" },
+              { text: "Natural outdoor settings", value: "environment_natural", description: "Fresh air and natural beauty" },
+              { text: "Modern tech-filled workspace", value: "environment_tech", description: "Cutting-edge tools and innovation" }
+            ],
+            category: "environment"
+          },
+          {
+            id: 3,
+            question: "Which type of challenge excites you most?",
+            options: [
+              { text: "Solving technical problems", value: "challenge_technical", description: "Debugging, troubleshooting, optimizing systems" },
+              { text: "Understanding people's needs", value: "challenge_human", description: "Empathy, communication, relationship building" },
+              { text: "Creating something beautiful", value: "challenge_aesthetic", description: "Design, artistry, visual appeal" },
+              { text: "Making strategic decisions", value: "challenge_strategic", description: "Planning, analysis, long-term thinking" }
+            ],
+            category: "challenge_type"
+          }
+          // Add more interest questions here...
+        ],
+        
+        personality: [
+          {
+            id: 1,
+            question: "In social situations, you typically:",
+            options: [
+              { text: "Seek out new people to meet", value: "personality_extrovert", description: "Energized by social interaction" },
+              { text: "Stick with familiar faces", value: "personality_selective", description: "Prefer deeper connections with fewer people" },
+              { text: "Observe before participating", value: "personality_cautious", description: "Thoughtful and measured in social engagement" },
+              { text: "Take charge of group activities", value: "personality_leader", description: "Natural tendency to organize and direct" }
+            ],
+            category: "social_style"
+          },
+          {
+            id: 2,
+            question: "When making decisions, you rely most on:",
+            options: [
+              { text: "Logical analysis of facts", value: "decision_logical", description: "Data-driven, rational approach" },
+              { text: "Gut feelings and intuition", value: "decision_intuitive", description: "Trusting inner wisdom and instincts" },
+              { text: "Input from trusted advisors", value: "decision_collaborative", description: "Seeking wisdom from others" },
+              { text: "Past experience and patterns", value: "decision_experiential", description: "Learning from history and precedent" }
+            ],
+            category: "decision_making"
+          }
+          // Add more personality questions here...
+        ]
+      };
+      
+      // Career Mapping
+      const careerMapping = {
+        // Engineering & Technical
+        engineering: {
+          keywords: ["math_advanced", "science_experimental", "analytical_systematic", "logic_deductive", "cognitive_spatial", "challenge_technical"],
+          stream: "Science/Math",
+          careers: ["computer-engineering", "mechanical-engineering", "civil-engineering", "electrical-engineering"],
+          icon: "⚙️",
+          title: "Engineering & Technology",
+          description: "Design, build, and innovate technical solutions"
+        },
+        // Science & Research
+        science: {
+          keywords: ["science_theoretical", "analytical_research", "logic_inductive", "curiosity_natural", "intellectual_analysis"],
+          stream: "Science",
+          careers: ["physics", "chemistry", "biology", "research"],
+          icon: "🔬",
+          title: "Science & Research",
+          description: "Discover, analyze, and understand the natural world"
+        },
+        // Business & Management
+        business: {
+          keywords: ["leadership_manager", "challenge_strategic", "communication_persuasion", "motivation_competition"],
+          stream: "Commerce",
+          careers: ["business-administration", "marketing", "finance"],
+          icon: "💼",
+          title: "Business & Management",
+          description: "Lead organizations and drive business success"
+        },
+        // Creative & Arts
+        creative: {
+          keywords: ["interest_creative", "challenge_aesthetic", "intellectual_creation", "curiosity_futuristic"],
+          stream: "Arts/Humanities",
+          careers: ["design", "arts", "media"],
+          icon: "🎨",
+          title: "Creative & Arts",
+          description: "Express ideas and create meaningful experiences"
+        },
+        // Communication & Language
+        communication: {
+          keywords: ["communication_explanation", "memory_auditory", "demonstration_oral", "interest_social"],
+          stream: "Arts/Language",
+          careers: ["journalism", "teaching", "writing"],
+          icon: "📢",
+          title: "Communication & Language",
+          description: "Connect people through words and ideas"
+        },
+        // Healthcare & Medicine
+        healthcare: {
+          keywords: ["curiosity_behavioral", "challenge_human", "motivation_impact", "science_applied"],
+          stream: "Science",
+          careers: ["mbbs", "dentistry", "pharmacy", "nursing"],
+          icon: "🏥",
+          title: "Healthcare & Medicine",
+          description: "Help people live healthier, better lives"
+        }
+      };
+      
+      // Quiz Functions
+      function startQuiz(type) {
+        // Check if user wants to save results and prompt for auth if needed
+        if (window.eduPathAuth && !window.eduPathAuth.isLoggedIn()) {
+          window.pendingQuizStart = () => startQuizActual(type);
+          window.eduPathAuth.promptAuthIfNeeded('save your quiz results and get personalized recommendations', window.pendingQuizStart);
+          return;
+        }
+        
+        startQuizActual(type);
+      }
+      
+      function startQuizActual(type) {
+        currentQuizType = type;
+        currentQuestionIndex = 0;
+        userAnswers = [];
+        
+        // Set quiz configuration
+        const configs = {
+          aptitude: { title: "Aptitude Assessment", description: "Discover your natural strengths and abilities", time: 10 },
+          interests: { title: "Interest Explorer", description: "Identify your passions and interests", time: 12 },
+          personality: { title: "Personality Profile", description: "Understand your personality traits", time: 15 },
+          comprehensive: { title: "Complete Assessment", description: "Comprehensive career guidance assessment", time: 35 }
+        };
+        
+        const config = configs[type];
+        timeRemaining = config.time * 60; // Convert to seconds
+        
+        // Get questions for this quiz type
+        if (type === 'comprehensive') {
+          quizData.questions = [...quizQuestions.aptitude, ...quizQuestions.interests, ...quizQuestions.personality];
+        } else {
+          quizData.questions = quizQuestions[type] || [];
+        }
+        
+        // Initialize UI
+        document.getElementById('quiz-title').textContent = config.title;
+        document.getElementById('quiz-description').textContent = config.description;
+        
+        // Show quiz taking section
+        document.getElementById('quiz-selection').classList.add('hidden');
+        document.getElementById('quiz-taking').classList.remove('hidden');
+        
+        // Start timer
+        startTimer();
+        
+        // Load first question
+        loadQuestion();
+        
+        // Initialize progress indicators
+        initializeProgressIndicators();
+      }
+      
+      function loadQuestion() {
+        const question = quizData.questions[currentQuestionIndex];
+        if (!question) return;
+        
+        const container = document.getElementById('question-container');
+        container.innerHTML = `
+          <div class="question-title">${question.question}</div>
+          <div class="question-options">
+            ${question.options.map((option, index) => `
+              <button class="option-button" onclick="selectOption('${option.value}', ${index})">
+                <div class="option-text">${option.text}</div>
+                <div class="option-description">${option.description}</div>
+              </button>
+            `).join('')}
+          </div>
+        `;
+        
+        // Update progress
+        updateProgress();
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+      }
+      
+      function selectOption(value, optionIndex) {
+        // Store answer
+        userAnswers[currentQuestionIndex] = {
+          questionId: quizData.questions[currentQuestionIndex].id,
+          answer: value,
+          category: quizData.questions[currentQuestionIndex].category
+        };
+        
+        // Update UI
+        const buttons = document.querySelectorAll('.option-button');
+        buttons.forEach((btn, index) => {
+          btn.classList.toggle('selected', index === optionIndex);
+        });
+        
+        // Enable next button
+        document.getElementById('next-btn').disabled = false;
+        
+        // Auto-advance after a short delay for better UX
+        setTimeout(() => {
+          if (currentQuestionIndex < quizData.questions.length - 1) {
+            nextQuestion();
+          }
+        }, 800);
+      }
+      
+      function nextQuestion() {
+        if (currentQuestionIndex < quizData.questions.length - 1) {
+          currentQuestionIndex++;
+          loadQuestion();
+        } else {
+          finishQuiz();
+        }
+      }
+      
+      function previousQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          loadQuestion();
+        }
+      }
+      
+      function updateProgress() {
+        const progress = ((currentQuestionIndex + 1) / quizData.questions.length) * 100;
+        document.getElementById('progress-fill').style.width = `${progress}%`;
+        document.getElementById('progress-text').textContent = `Question ${currentQuestionIndex + 1} of ${quizData.questions.length}`;
+        
+        // Update question dots
+        const dots = document.querySelectorAll('.question-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.remove('current', 'completed');
+          if (index < currentQuestionIndex) {
+            dot.classList.add('completed');
+          } else if (index === currentQuestionIndex) {
+            dot.classList.add('current');
+          }
+        });
+      }
+      
+      function updateNavigationButtons() {
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        prevBtn.disabled = currentQuestionIndex === 0;
+        nextBtn.disabled = !userAnswers[currentQuestionIndex];
+        
+        if (currentQuestionIndex === quizData.questions.length - 1) {
+          nextBtn.textContent = 'Finish Quiz';
+        } else {
+          nextBtn.textContent = 'Next';
+        }
+      }
+      
+      function initializeProgressIndicators() {
+        const dotsContainer = document.getElementById('question-dots');
+        dotsContainer.innerHTML = '';
+        
+        for (let i = 0; i < quizData.questions.length; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'question-dot';
+          if (i === 0) dot.classList.add('current');
+          dotsContainer.appendChild(dot);
+        }
+      }
+      
+      function startTimer() {
+        updateTimerDisplay();
+        timerInterval = setInterval(() => {
+          timeRemaining--;
+          updateTimerDisplay();
+          
+          if (timeRemaining <= 0) {
+            finishQuiz();
+          }
+        }, 1000);
+      }
+      
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        document.getElementById('timer-display').textContent = 
+          `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+      
+      function finishQuiz() {
+        // Stop timer
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        
+        // Calculate results
+        const results = calculateResults();
+        
+        // Save results
+        saveQuizResults(results);
+        
+        // Show results
+        showResults(results);
+      }
+      
+      function calculateResults() {
+        // Count answers by category and value
+        const categoryScores = {};
+        const valueFrequency = {};
+        
+        userAnswers.forEach(answer => {
+          if (answer) {
+            // Count by category
+            categoryScores[answer.category] = (categoryScores[answer.category] || 0) + 1;
+            
+            // Count by value
+            valueFrequency[answer.answer] = (valueFrequency[answer.answer] || 0) + 1;
+          }
+        });
+        
+        // Calculate career matches
+        const careerScores = {};
+        Object.keys(careerMapping).forEach(careerKey => {
+          const career = careerMapping[careerKey];
+          let score = 0;
+          
+          career.keywords.forEach(keyword => {
+            score += valueFrequency[keyword] || 0;
+          });
+          
+          if (score > 0) {
+            careerScores[careerKey] = {
+              score: score,
+              percentage: Math.round((score / userAnswers.length) * 100),
+              ...career
+            };
+          }
+        });
+        
+        // Sort by score
+        const sortedCareers = Object.values(careerScores)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 6); // Top 6 matches
+        
+        return {
+          type: currentQuizType,
+          totalQuestions: quizData.questions.length,
+          answeredQuestions: userAnswers.filter(a => a).length,
+          categoryScores: categoryScores,
+          careerMatches: sortedCareers,
+          timestamp: new Date().toISOString(),
+          completionRate: Math.round((userAnswers.filter(a => a).length / quizData.questions.length) * 100)
+        };
+      }
+      
+      function showResults(results) {
+        // Store current results globally for exploreRecommendations function
+        window.currentQuizResults = results;
+        
+        // Hide quiz taking section
+        document.getElementById('quiz-taking').classList.add('hidden');
+        
+        // Show results section
+        document.getElementById('quiz-results').classList.remove('hidden');
+        
+        // Populate results
+        const resultsContent = document.getElementById('results-content');
+        resultsContent.innerHTML = `
+          <div class="result-section">
+            <div class="result-score">
+              <div class="score-value">${results.completionRate}%</div>
+              <div class="score-label">Completion Rate</div>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-4 text-center">Your Top Career Matches</h3>
+            <div class="recommendations-grid">
+              ${results.careerMatches.map(career => `
+                <div class="recommendation-card" onclick="exploreCareer('${career.stream}', '${career.careers[0]}')">
+                  <div class="recommendation-icon">${career.icon}</div>
+                  <div class="recommendation-title">${career.title}</div>
+                  <div class="recommendation-match">${career.percentage}% Match</div>
+                  <p class="text-sm text-gray-600">${career.description}</p>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+              <h4 class="font-bold mb-2">Quiz Summary</h4>
+              <div class="grid md:grid-cols-3 gap-4 text-sm">
+                <div class="text-center">
+                  <div class="font-bold text-2xl text-blue-600">${results.answeredQuestions}</div>
+                  <div class="text-gray-600">Questions Answered</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-bold text-2xl text-green-600">${results.careerMatches.length}</div>
+                  <div class="text-gray-600">Career Matches</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-bold text-2xl text-purple-600">${Object.keys(results.categoryScores).length}</div>
+                  <div class="text-gray-600">Areas Assessed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class=\"result-section\" id=\"ai-insights-container\">
+            <div class=\"flex items-center gap-2 mb-2\">
+              <span class=\"px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800\">AI</span>
+              <h3 class=\"text-lg font-bold\">AI-assisted insights</h3>
+            </div>
+            <p class=\"text-sm text-gray-600\">Objective, transparent analysis of your answers. No personal data leaves your browser unless you configure an external AI provider.</p>
+            <div id=\"ai-insights-content\" class=\"mt-4 text-sm text-gray-800\">Preparing insights…</div>
+          </div>
+        `;
+
+        // Render transparent AI insights (local heuristic first; optional external provider if configured)
+        if (window.AIInsights) {
+          try {
+            window.AIInsights.render('ai-insights-content', results, { answers: userAnswers, careerMapping });
+          } catch (e) {
+            console.warn('AI insights render failed:', e);
+          }
+        }
+      }
+      
+      function saveQuizResults(results) {
+        const allResults = window.__storage?.get('quiz-results', []) || [];
+        allResults.unshift(results); // Add to beginning
+        
+        // Keep only last 10 results
+        if (allResults.length > 10) {
+          allResults.splice(10);
+        }
+        
+        if (window.__storage) {
+          window.__storage.set('quiz-results', allResults);
+        }
+        
+        // Show notification
+        if (window.__showNotification) {
+          window.__showNotification('Quiz results saved to your profile!', 'success');
+        }
+      }
+      
+      function backToSelection() {
+        // Stop timer if running
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        
+        // Reset state
+        currentQuizType = null;
+        currentQuestionIndex = 0;
+        userAnswers = [];
+        
+        // Show selection section
+        document.getElementById('quiz-selection').classList.remove('hidden');
+        document.getElementById('quiz-taking').classList.add('hidden');
+        document.getElementById('quiz-results').classList.add('hidden');
+        
+        // Load quiz history
+        loadQuizHistory();
+      }
+      
+      function retakeQuiz() {
+        // Reset current quiz
+        currentQuestionIndex = 0;
+        userAnswers = [];
+        
+        // Restart timer
+        const configs = {
+          aptitude: { time: 10 },
+          interests: { time: 12 },
+          personality: { time: 15 },
+          comprehensive: { time: 35 }
+        };
+        
+        timeRemaining = configs[currentQuizType].time * 60;
+        startTimer();
+        
+        // Show quiz taking section
+        document.getElementById('quiz-results').classList.add('hidden');
+        document.getElementById('quiz-taking').classList.remove('hidden');
+        
+        // Load first question
+        loadQuestion();
+        initializeProgressIndicators();
+      }
+      
+      function exploreRecommendations() {
+        // First try to get current quiz results from global variable
+        let resultsToUse = window.currentQuizResults;
+        
+        // If no current results, get the latest from storage
+        if (!resultsToUse) {
+          const allResults = window.__storage?.get('quiz-results', []) || [];
+          if (allResults.length > 0) {
+            resultsToUse = allResults[0];
+          }
+        }
+        
+        // If we have results with career matches, redirect to the top career
+        if (resultsToUse && resultsToUse.careerMatches && resultsToUse.careerMatches.length > 0) {
+          const topCareer = resultsToUse.careerMatches[0];
+          exploreCareer(topCareer.stream, topCareer.careers[0]);
+          return;
+        }
+        
+        // Fallback: redirect to general career page if no results found
+        window.location.href = 'career.html';
+      }
+      
+      function exploreCareer(stream, career) {
+        console.log('exploreCareer called with:', stream, career);
+        
+        const streamMapping = {
+          'Science/Math': 'MPC',
+          'Science': 'BiPC',
+          'Commerce': 'Commerce',
+          'Arts/Humanities': 'Arts',
+          'Arts/Language': 'Arts'
+        };
+        
+        // Enhanced career name mapping to match career-data.js structure
+        const careerNameMapping = {
+          // Engineering careers (MPC stream)
+          'Engineering': 'computer-engineering',
+          'Technology': 'computer-engineering',
+          'Computer': 'computer-engineering',
+          'Software': 'computer-engineering',
+          
+          // Science careers (BiPC stream) 
+          'Medicine': 'mbbs',
+          'Healthcare': 'mbbs',
+          'Medical': 'mbbs',
+          'physics': 'physics',
+          'chemistry': 'chemistry', 
+          'biology': 'botany', // Map to available career
+          'research': 'physics', // Map to physics as research example
+          
+          // Commerce careers
+          'Business': 'business-administration',
+          'Management': 'business-administration',
+          'Finance': 'chartered-accountancy',
+          'marketing': 'marketing',
+          
+          // Arts careers - map to existing ones
+          'Arts': 'psychology', // Map to available arts career
+          'Creative': 'psychology',
+          'design': 'psychology', // Map to available career
+          'arts': 'psychology',
+          'media': 'journalism', // Map to existing journalism
+          'Psychology': 'psychology',
+          'Teaching': 'psychology', // Map to available career
+          'Education': 'psychology',
+          'journalism': 'journalism',
+          'writing': 'literature', // Map to existing literature
+          
+          // Healthcare careers (BiPC stream)
+          'nursing': 'mbbs', // Map to medical career
+          'dentistry': 'dentistry',
+          'pharmacy': 'pharmacy'
+        };
+        
+        const mappedStream = streamMapping[stream] || 'MPC';
+        
+        // Try to map the career name to a specific specialization
+        let mappedCareer = career;
+        for (const [key, value] of Object.entries(careerNameMapping)) {
+          if (career.toLowerCase().includes(key.toLowerCase()) || career.toLowerCase() === key.toLowerCase()) {
+            mappedCareer = value;
+            break;
+          }
+        }
+        
+        const redirectUrl = `career.html?stream=${mappedStream}&career=${mappedCareer}`;
+        console.log('Redirecting to:', redirectUrl);
+        window.location.href = redirectUrl;
+      }
+      
+      function loadQuizHistory() {
+        const results = window.__storage?.get('quiz-results', []) || [];
+        const historyContainer = document.getElementById('quiz-history-container');
+        const noHistory = document.getElementById('no-history');
+        
+        if (results.length === 0) {
+          historyContainer.classList.add('hidden');
+          noHistory.classList.remove('hidden');
+          return;
+        }
+        
+        noHistory.classList.add('hidden');
+        historyContainer.classList.remove('hidden');
+        
+        historyContainer.innerHTML = `
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${results.slice(0, 6).map(result => `
+              <div class="bg-white rounded-lg p-4 shadow-md border">
+                <div class="flex justify-between items-start mb-2">
+                  <h4 class="font-semibold capitalize">${result.type} Quiz</h4>
+                  <span class="text-xs text-gray-500">${new Date(result.timestamp).toLocaleDateString()}</span>
+                </div>
+                <div class="text-sm text-gray-600 mb-3">
+                  ${result.completionRate}% completed • ${result.careerMatches.length} matches
+                </div>
+                <div class="flex gap-2">
+                  <button onclick="viewQuizResult('${result.timestamp}')" class="btn-secondary text-xs flex-1">View Details</button>
+                  <button onclick="startQuiz('${result.type}')" class="btn-primary text-xs flex-1">Retake</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      function viewQuizResult(timestamp) {
+        const results = window.__storage?.get('quiz-results', []) || [];
+        const result = results.find(r => r.timestamp === timestamp);
+        
+        if (result) {
+          showResults(result);
+        }
+      }
+      
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', () => {
+        loadQuizHistory();
+        
+        // Hide guest notice for logged-in users
+        setTimeout(() => {
+          if (window.eduPathAuth && window.eduPathAuth.isLoggedIn()) {
+            const guestNotice = document.querySelector('[data-guest-notice]');
+            if (guestNotice) {
+              guestNotice.style.display = 'none';
+            }
+          }
+        }, 500);
+      });
+    </script>
+      <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+</body>
+</html>

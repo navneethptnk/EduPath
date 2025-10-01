@@ -1,0 +1,2480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Colleges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+    <link rel="stylesheet" href="assets/styles.css?v=noflash" />
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzUvZlT5xR5h0lEnOAcjVKZvSjeU_-UZg&callback=initMap&libraries=places"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link active" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link active" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <div id="career-redirect-message" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="text-blue-600 mr-3">🎯</div>
+              <div>
+                <h3 class="text-blue-800 font-medium">Recommended Colleges for Your Career</h3>
+                <p class="text-blue-700 text-sm">Here are the best colleges that offer programs for your selected career path.</p>
+              </div>
+            </div>
+            <a href="career.html" class="btn-secondary text-sm">← Back to Career Explorer</a>
+          </div>
+        </div>
+        
+        <div class="modern-filters">
+          <!-- Enhanced Filter Header -->
+          <div class="filter-header">
+            <div class="filter-title">
+              <h2 class="filter-heading">🔍 Smart College Finder</h2>
+              <p class="filter-subtitle">Use our intelligent filters to find your perfect college match</p>
+            </div>
+            <div class="filter-actions">
+              <div class="results-badge" id="results-info">
+                <span id="results-count">Loading colleges...</span>
+              </div>
+              <button id="btn-clear-filters" class="clear-btn hidden">🗑️ Clear All</button>
+              <button id="btn-show-map" class="map-toggle-btn">📍 Interactive Map</button>
+            </div>
+          </div>
+          
+          <!-- Enhanced Filter Controls -->
+          <div class="filter-controls">
+            <div class="search-section">
+              <div class="search-wrapper">
+                <div class="search-icon">🔍</div>
+                <input type="text" id="search-input" 
+                       class="smart-search" 
+                       placeholder="Search by college name, location, or courses..." />
+                <div class="search-clear" id="search-clear">&times;</div>
+              </div>
+            </div>
+            
+            <div class="filter-selectors">
+              <div class="filter-group">
+                <label class="filter-label">📍 State/Region</label>
+                <select id="q-state" class="modern-select">
+                  <option value="all">All States & Regions</option>
+                </select>
+              </div>
+              
+              <div class="filter-group">
+                <label class="filter-label">🏢 Institution Type</label>
+                <select id="q-type" class="modern-select">
+                  <option value="all">All Institution Types</option>
+                  <option value="IIT">IIT - Indian Institute of Technology</option>
+                  <option value="NIT">NIT - National Institute of Technology</option>
+                  <option value="Central University">Central Universities</option>
+                  <option value="State University">State Universities</option>
+                  <option value="Medical College">Medical Colleges</option>
+                  <option value="Government College">Government Colleges</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Premium Quick Filters -->
+          <div class="quick-filters-section">
+            <div class="quick-filters-label">Popular Choices:</div>
+            <div class="quick-filters-grid">
+              <button class="premium-chip" data-type="type" data-value="IIT">
+                <span class="chip-icon">🏆</span>
+                <span class="chip-text">IIT Colleges</span>
+              </button>
+              <button class="premium-chip" data-type="type" data-value="NIT">
+                <span class="chip-icon">⭐</span>
+                <span class="chip-text">NIT Colleges</span>
+              </button>
+              <button class="premium-chip" data-type="type" data-value="Medical College">
+                <span class="chip-icon">🏥</span>
+                <span class="chip-text">Medical Colleges</span>
+              </button>
+              <button class="premium-chip" data-type="state" data-value="Jammu & Kashmir">
+                <span class="chip-icon">🏔️</span>
+                <span class="chip-text">J&K Colleges</span>
+              </button>
+              <button class="premium-chip" data-type="state" data-value="Delhi">
+                <span class="chip-icon">🏢</span>
+                <span class="chip-text">Delhi Colleges</span>
+              </button>
+              <button class="premium-chip" data-type="state" data-value="Punjab">
+                <span class="chip-icon">🌾</span>
+                <span class="chip-text">Punjab Colleges</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="college-list" class="content-grid"></div>
+        
+        <!-- Google Maps Component -->
+        <div id="map-container" class="hidden mt-8">
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-4 bg-gray-50 border-b">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-900">College Locations</h3>
+                <button id="btn-hide-map" class="btn-secondary text-sm">Hide Map</button>
+              </div>
+              <p class="text-sm text-gray-600 mt-1">Click on markers to view college details</p>
+            </div>
+            <div id="map" style="height: 500px; width: 100%;"></div>
+          </div>
+        </div>
+        
+        <!-- College Details Modal -->
+        <div id="college-details-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div id="college-details-content" class="p-6">
+              <!-- College details will be populated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    
+    <style>
+      /* Modern Filter Styles */
+      .modern-filters {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border: 2px solid rgba(102, 126, 234, 0.1);
+        border-radius: 2rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .modern-filters::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+        background-size: 200% 100%;
+        animation: gradientShift 3s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { background-position: 0% 0%; }
+        50% { background-position: 100% 0%; }
+      }
+      
+      .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        gap: 2rem;
+      }
+      
+      .filter-title {
+        flex: 1;
+      }
+      
+      .filter-heading {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+      }
+      
+      .filter-subtitle {
+        color: #64748b;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      .filter-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      
+      .results-badge {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+      
+      .clear-btn {
+        background: rgba(239, 68, 68, 0.1);
+        color: #dc2626;
+        border: 2px solid rgba(239, 68, 68, 0.2);
+        padding: 0.75rem 1.5rem;
+        border-radius: 1.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .clear-btn:hover {
+        background: #dc2626;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+      }
+      
+      .map-toggle-btn {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 1.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+      
+      .map-toggle-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+      
+      /* Enhanced Search Section */
+      .search-section {
+        margin-bottom: 1.5rem;
+      }
+      
+      .search-wrapper {
+        position: relative;
+        max-width: 100%;
+      }
+      
+      .smart-search {
+        width: 100%;
+        padding: 1rem 3rem 1rem 3rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 1.5rem;
+        font-size: 1rem;
+        background: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      
+      .smart-search:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+      
+      .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: #9ca3af;
+      }
+      
+      .search-clear {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #ef4444;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      
+      .search-clear.visible {
+        opacity: 1;
+      }
+      
+      .search-clear:hover {
+        background: #dc2626;
+        transform: translateY(-50%) scale(1.1);
+      }
+      
+      /* Filter Controls */
+      .filter-controls {
+        margin-bottom: 2rem;
+      }
+      
+      .filter-selectors {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .filter-label {
+        font-weight: 600;
+        color: #374151;
+        font-size: 0.875rem;
+        letter-spacing: 0.025em;
+      }
+      
+      .modern-select {
+        padding: 0.875rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 1rem;
+        background: white;
+        font-size: 0.875rem;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+      }
+      
+      .modern-select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Premium Quick Filters */
+      .quick-filters-section {
+        padding-top: 1.5rem;
+        border-top: 1px solid #e2e8f0;
+      }
+      
+      .quick-filters-label {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+      }
+      
+      .quick-filters-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      
+      .premium-chip {
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 2rem;
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: #374151;
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+      }
+      
+      .premium-chip:hover {
+        transform: translateY(-2px);
+        border-color: #667eea;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+      }
+      
+      .premium-chip.active {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      }
+      
+      .chip-icon {
+        font-size: 1rem;
+      }
+      
+      .chip-text {
+        white-space: nowrap;
+      }
+      /* Enhanced College Card Styles */
+      .college-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border-radius: 1.2rem;
+        padding: 1.5rem;
+        box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1), 0 6px 8px -6px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+      
+      .college-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+        background-size: 300% 100%;
+        animation: gradientShift 6s ease-in-out infinite;
+      }
+      
+      .college-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at top right, rgba(102, 126, 234, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      
+      .college-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 25px -8px rgba(0, 0, 0, 0.15), 0 12px 15px -5px rgba(102, 126, 234, 0.1);
+        border-color: rgba(102, 126, 234, 0.3);
+      }
+      
+      .college-card:hover::before {
+        height: 6px;
+        animation-duration: 3s;
+      }
+      
+      .college-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.25rem;
+        gap: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .college-info {
+        flex: 1;
+      }
+      
+      .college-name {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+        letter-spacing: -0.025em;
+      }
+      
+      .college-type-badge {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.4rem 1rem;
+        border-radius: 1.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 3px 8px rgba(102, 126, 234, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .college-location {
+        color: #64748b;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+      
+      .college-meta {
+        color: #6b7280;
+        font-size: 0.8rem;
+        margin-bottom: 1.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-weight: 500;
+      }
+      
+      .college-details {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        border: 1px solid #e2e8f0;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .detail-section {
+        margin-bottom: 1rem;
+      }
+      
+      .detail-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .detail-label {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .detail-content {
+        color: #4b5563;
+        line-height: 1.5;
+        font-weight: 500;
+        font-size: 0.85rem;
+      }
+      
+      .stream-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      
+      .stream-tag {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.3rem 0.75rem;
+        border-radius: 1.2rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+        transition: all 0.3s ease;
+      }
+      
+      .stream-tag:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4);
+      }
+      
+      .college-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+        flex-wrap: wrap;
+      }
+      
+      .action-btn {
+        flex: 1;
+        min-width: 130px;
+        padding: 0.65rem 1.25rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+      }
+      
+      .action-btn.primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+      }
+      
+      .action-btn.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px rgba(102, 126, 234, 0.4);
+      }
+      
+      .action-btn.secondary {
+        background: white;
+        color: #667eea;
+        border: 2px solid #667eea;
+        box-shadow: 0 3px 8px rgba(102, 126, 234, 0.15);
+      }
+      
+      .action-btn.secondary:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+      }
+      
+      .action-btn.map {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+      }
+      
+      .action-btn.map:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px rgba(102, 126, 234, 0.4);
+      }
+      
+      /* Map Container Styles */
+      #map-container {
+        animation: slideDown 0.3s ease-out;
+      }
+      
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Simplified Filter Styles */
+      .filters {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .quick-filter-chip {
+        background: white;
+        border: 1px solid #d1d5db;
+        color: #6b7280;
+        padding: 0.5rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      
+      .quick-filter-chip:hover {
+        background: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+      }
+      
+      .quick-filter-chip.active {
+        background: #3b82f6;
+        color: white;
+        border-color: #2563eb;
+      }
+      
+      /* Responsive Design Enhancements */
+      @media (max-width: 768px) {
+        .modern-filters {
+          padding: 1.5rem;
+          margin: 2rem 1rem 2rem 1rem;
+        }
+        
+        .filter-header {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .filter-actions {
+          width: 100%;
+          justify-content: center;
+        }
+        
+        .filter-selectors {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        
+        .quick-filters-grid {
+          justify-content: center;
+        }
+        
+        .premium-chip {
+          font-size: 0.75rem;
+          padding: 0.6rem 1rem;
+        }
+        
+        .college-card {
+          margin: 0 1rem 2rem 1rem;
+          padding: 1.5rem;
+        }
+        
+        .college-header {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .college-actions {
+          flex-direction: column;
+        }
+        
+        .action-btn {
+          min-width: auto;
+          width: 100%;
+        }
+        
+        #map {
+          height: 300px !important;
+        }
+        
+        .modal-stat-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        
+        .modal-facility-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .modal-action-buttons {
+          flex-direction: column;
+        }
+        
+        .modal-btn {
+          min-width: auto;
+          width: 100%;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .modern-filters {
+          margin: 1.5rem 0.5rem 1.5rem 0.5rem;
+          padding: 1rem;
+        }
+        
+        .college-card {
+          margin: 0 0.5rem 1.5rem 0.5rem;
+          padding: 1rem;
+        }
+        
+        .college-name {
+          font-size: 1.25rem;
+        }
+        
+        .stream-tag {
+          font-size: 0.7rem;
+          padding: 0.3rem 0.6rem;
+        }
+      }
+      
+      /* Loading and Animation States */
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+        padding: 0 1rem;
+      }
+      
+      @media (max-width: 768px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+      }
+      
+      .loading-shimmer {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite;
+      }
+      
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.6s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Enhanced Accessibility */
+      .premium-chip:focus,
+      .action-btn:focus,
+      .modal-btn:focus {
+        outline: 3px solid rgba(102, 126, 234, 0.5);
+        outline-offset: 2px;
+      }
+      
+      .search-wrapper:focus-within {
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      }
+      
+      /* Print Styles */
+      @media print {
+        .modern-filters,
+        .college-actions,
+        #map-container {
+          display: none !important;
+        }
+        
+        .college-card {
+          break-inside: avoid;
+          box-shadow: none;
+          border: 1px solid #e2e8f0;
+        }
+      }
+      
+      /* College Type Badges */
+      .college-card [class*="bg-blue-50"] {
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+        border: 1px solid #93c5fd;
+        font-weight: 600;
+      }
+      
+      /* Map Legend */
+      .map-legend {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        font-size: 12px;
+        z-index: 1000;
+      }
+      
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      
+      .legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+      
+      /* Enhanced Modal Styles */
+      #college-details-modal {
+        backdrop-filter: blur(8px);
+        animation: modalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(0, 0, 0, 0.6);
+      }
+      
+      #college-details-modal .bg-white {
+        animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        max-height: 90vh;
+        overflow-y: auto;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      
+      @keyframes modalSlideIn {
+        from {
+          transform: translateY(-60px) scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      
+      /* Enhanced scrollbar styling for modal */
+      #college-details-modal .bg-white::-webkit-scrollbar {
+        width: 12px;
+      }
+      
+      #college-details-modal .bg-white::-webkit-scrollbar-track {
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        border-radius: 6px;
+      }
+      
+      #college-details-modal .bg-white::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+        border-radius: 6px;
+        border: 2px solid #f1f5f9;
+      }
+      
+      #college-details-modal .bg-white::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #94a3b8, #64748b);
+      }
+      
+      /* Enhanced gradient cards in modal */
+      .college-details-header {
+        border-bottom: 3px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+                    linear-gradient(90deg, #667eea, #764ba2) border-box;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+      }
+      
+      .modal-info-card {
+        background: linear-gradient(135deg, var(--card-from), var(--card-to));
+        border-radius: 1.25rem;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .modal-info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .modal-info-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      
+      .modal-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        text-align: center;
+      }
+      
+      .modal-stat-item {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .modal-stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .modal-stat-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .modal-tag {
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--tag-color);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin: 0.25rem;
+        display: inline-block;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .modal-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      
+      .modal-facility-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      
+      .modal-facility-item {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .modal-facility-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      
+      .modal-facility-icon {
+        width: 8px;
+        height: 8px;
+        background: var(--icon-color, #f59e0b);
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+      }
+      
+      .modal-location-info {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .modal-action-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      
+      .modal-btn {
+        flex: 1;
+        min-width: 150px;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+      }
+      
+      .modal-btn.primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+      }
+      
+      .modal-btn.primary:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px rgba(102, 126, 234, 0.4);
+      }
+      
+      .modal-btn.secondary {
+        background: linear-gradient(135deg, #6b7280, #4b5563);
+        color: white;
+        box-shadow: 0 8px 16px rgba(107, 114, 128, 0.3);
+      }
+      
+      .modal-btn.secondary:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px rgba(107, 114, 128, 0.4);
+      }
+      
+      /* Responsive modal */
+      @media (max-width: 768px) {
+        #college-details-modal .max-w-4xl {
+          max-width: 95vw;
+          margin: 1rem;
+        }
+        
+        #college-details-modal .grid-cols-2 {
+          grid-template-columns: 1fr !important;
+        }
+        
+        #college-details-modal .text-3xl {
+          font-size: 1.5rem !important;
+        }
+      }
+    </style>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('colleges');
+
+      // Enhanced College Database with J&K and nearby states focus
+      const data = [
+        // Jammu & Kashmir
+        { 
+          name: 'University of Kashmir', 
+          state: 'Jammu & Kashmir', 
+          district: 'Srinagar', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center','Medical Center'], 
+          established: '1948', 
+          courses: '85+', 
+          students: '25000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medical','Engineering'],
+          lat: 34.0837, 
+          lng: 74.7973,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics', 'chemistry']
+        },
+        { 
+          name: 'University of Jammu', 
+          state: 'Jammu & Kashmir', 
+          district: 'Jammu', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center'], 
+          established: '1969', 
+          courses: '70+', 
+          students: '20000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','B.Ed','Law'],
+          lat: 32.7266, 
+          lng: 74.8570,
+          careerRelevant: ['business-administration', 'mechanical-engineering', 'civil-engineering']
+        },
+        { 
+          name: 'Central University of Kashmir', 
+          state: 'Jammu & Kashmir', 
+          district: 'Ganderbal', 
+          type: 'Central University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities'], 
+          facilities: ['Library','Hostel','Research Center','Computer Lab','Digital Library'], 
+          established: '2009', 
+          courses: '40+', 
+          students: '5000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Applied Sciences'],
+          lat: 34.2268, 
+          lng: 74.7710,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics']
+        },
+        { 
+          name: 'Government Medical College Srinagar', 
+          state: 'Jammu & Kashmir', 
+          district: 'Srinagar', 
+          type: 'Medical College',
+          streams: ['Science'], 
+          facilities: ['Library','Hostel','Hospital','Research Lab','Medical Equipment'], 
+          established: '1959', 
+          courses: '15+', 
+          students: '800+',
+          specialCourses: ['MBBS','MD','MS','Nursing'],
+          lat: 34.0479, 
+          lng: 74.7898,
+          careerRelevant: ['mbbs', 'dentistry', 'pharmacy']
+        },
+        { 
+          name: 'Government Medical College Jammu', 
+          state: 'Jammu & Kashmir', 
+          district: 'Jammu', 
+          type: 'Medical College',
+          streams: ['Science'], 
+          facilities: ['Library','Hostel','Hospital','Research Lab','Trauma Center'], 
+          established: '1973', 
+          courses: '18+', 
+          students: '1000+',
+          specialCourses: ['MBBS','MD','MS','Dental','Nursing'],
+          lat: 32.7300, 
+          lng: 74.8622,
+          careerRelevant: ['mbbs', 'dentistry', 'pharmacy']
+        },
+        { 
+          name: 'NIT Srinagar', 
+          state: 'Jammu & Kashmir', 
+          district: 'Srinagar', 
+          type: 'NIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center','Innovation Lab'], 
+          established: '1960', 
+          courses: '25+', 
+          students: '3500+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Research'],
+          lat: 34.1260, 
+          lng: 74.8234,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'civil-engineering', 'electrical-engineering']
+        },
+        
+        // Punjab
+        { 
+          name: 'Panjab University', 
+          state: 'Punjab', 
+          district: 'Chandigarh', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center'], 
+          established: '1882', 
+          courses: '180+', 
+          students: '60000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medical','Law'],
+          lat: 30.7595, 
+          lng: 76.7821,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics', 'chemistry']
+        },
+        { 
+          name: 'Guru Nanak Dev University', 
+          state: 'Punjab', 
+          district: 'Amritsar', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Cultural Center'], 
+          established: '1969', 
+          courses: '120+', 
+          students: '25000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Agriculture','Pharmacy'],
+          lat: 31.6340, 
+          lng: 74.8723,
+          careerRelevant: ['computer-engineering', 'business-administration', 'pharmacy']
+        },
+        { 
+          name: 'IIT Ropar', 
+          state: 'Punjab', 
+          district: 'Rupnagar', 
+          type: 'IIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Innovation Center','Startup Incubator'], 
+          established: '2008', 
+          courses: '30+', 
+          students: '2500+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Research Programs'],
+          lat: 30.9685, 
+          lng: 76.4754,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'electrical-engineering', 'civil-engineering']
+        },
+        
+        // Himachal Pradesh
+        { 
+          name: 'Himachal Pradesh University', 
+          state: 'Himachal Pradesh', 
+          district: 'Shimla', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center'], 
+          established: '1970', 
+          courses: '150+', 
+          students: '35000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Agriculture','Forestry'],
+          lat: 31.1048, 
+          lng: 77.1734,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics']
+        },
+        { 
+          name: 'IIT Mandi', 
+          state: 'Himachal Pradesh', 
+          district: 'Mandi', 
+          type: 'IIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Fab Lab','Innovation Hub'], 
+          established: '2009', 
+          courses: '20+', 
+          students: '1800+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Data Science','AI/ML'],
+          lat: 31.7754, 
+          lng: 76.9861,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'electrical-engineering']
+        },
+        { 
+          name: 'Dr. Y.S. Parmar University of Horticulture and Forestry', 
+          state: 'Himachal Pradesh', 
+          district: 'Solan', 
+          type: 'State University',
+          streams: ['Science'], 
+          facilities: ['Library','Hostel','Research Farms','Labs','Botanical Garden'], 
+          established: '1985', 
+          courses: '40+', 
+          students: '3000+',
+          specialCourses: ['Agriculture','Horticulture','Forestry','Food Technology'],
+          lat: 30.9045, 
+          lng: 77.0967,
+          careerRelevant: ['physics', 'chemistry', 'botany']
+        },
+        
+        // Haryana
+        { 
+          name: 'Kurukshetra University', 
+          state: 'Haryana', 
+          district: 'Kurukshetra', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center'], 
+          established: '1956', 
+          courses: '200+', 
+          students: '80000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medicine','Law'],
+          lat: 29.9647, 
+          lng: 76.8786,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics', 'chemistry']
+        },
+        { 
+          name: 'National Institute of Technology Kurukshetra', 
+          state: 'Haryana', 
+          district: 'Kurukshetra', 
+          type: 'NIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Innovation Center'], 
+          established: '1963', 
+          courses: '30+', 
+          students: '5000+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Engineering Research'],
+          lat: 29.9542, 
+          lng: 76.8131,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'civil-engineering', 'electrical-engineering']
+        },
+        { 
+          name: 'Maharshi Dayanand University', 
+          state: 'Haryana', 
+          district: 'Rohtak', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Digital Library'], 
+          established: '1976', 
+          courses: '160+', 
+          students: '45000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Law','Agriculture'],
+          lat: 28.8955, 
+          lng: 76.6066,
+          careerRelevant: ['computer-engineering', 'business-administration', 'mechanical-engineering']
+        },
+        
+        // Rajasthan
+        { 
+          name: 'University of Rajasthan', 
+          state: 'Rajasthan', 
+          district: 'Jaipur', 
+          type: 'State University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center'], 
+          established: '1947', 
+          courses: '300+', 
+          students: '300000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medicine','Law'],
+          lat: 26.9124, 
+          lng: 75.7873,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics', 'chemistry']
+        },
+        { 
+          name: 'IIT Jodhpur', 
+          state: 'Rajasthan', 
+          district: 'Jodhpur', 
+          type: 'IIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Desert Research Center'], 
+          established: '2008', 
+          courses: '25+', 
+          students: '2000+',
+          specialCourses: ['B.Tech','M.Tech','PhD','AI/ML','Robotics'],
+          lat: 26.2389, 
+          lng: 73.0243,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'electrical-engineering']
+        },
+        { 
+          name: 'MNIT Jaipur', 
+          state: 'Rajasthan', 
+          district: 'Jaipur', 
+          type: 'NIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Innovation Hub'], 
+          established: '1963', 
+          courses: '40+', 
+          students: '6000+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Engineering Management'],
+          lat: 26.8627, 
+          lng: 75.8127,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'civil-engineering', 'electrical-engineering']
+        },
+        
+        // Delhi
+        { 
+          name: 'Delhi University - North Campus', 
+          state: 'Delhi', 
+          district: 'North Delhi', 
+          type: 'Central University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center','Cultural Center'], 
+          established: '1922', 
+          courses: '500+', 
+          students: '400000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medicine','Law','Journalism'],
+          lat: 28.6969, 
+          lng: 77.2087,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics', 'chemistry', 'journalism']
+        },
+        { 
+          name: 'Jawaharlal Nehru University', 
+          state: 'Delhi', 
+          district: 'South Delhi', 
+          type: 'Central University',
+          streams: ['Science','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Research Center','Computer Lab','International Studies'], 
+          established: '1969', 
+          courses: '200+', 
+          students: '8500+',
+          specialCourses: ['International Relations','Languages','Social Sciences','Science'],
+          lat: 28.5390, 
+          lng: 77.1667,
+          careerRelevant: ['physics', 'chemistry', 'political-science', 'journalism']
+        },
+        { 
+          name: 'IIT Delhi', 
+          state: 'Delhi', 
+          district: 'South Delhi', 
+          type: 'IIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Innovation Center','Startup Incubator'], 
+          established: '1961', 
+          courses: '50+', 
+          students: '8000+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Dual Degree','Research'],
+          lat: 28.5449, 
+          lng: 77.1929,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'electrical-engineering', 'civil-engineering']
+        },
+        
+        // Uttar Pradesh
+        { 
+          name: 'Banaras Hindu University', 
+          state: 'Uttar Pradesh', 
+          district: 'Varanasi', 
+          type: 'Central University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Research Center','Sports Complex','Computer Lab','Museum'], 
+          established: '1916', 
+          courses: '450+', 
+          students: '30000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medicine','Agriculture','Arts'],
+          lat: 25.2677, 
+          lng: 82.9913,
+          careerRelevant: ['computer-engineering', 'business-administration', 'physics', 'chemistry', 'mbbs']
+        },
+        { 
+          name: 'Aligarh Muslim University', 
+          state: 'Uttar Pradesh', 
+          district: 'Aligarh', 
+          type: 'Central University',
+          streams: ['Science','Science/Math','Commerce','Arts/Humanities','Arts/Language'], 
+          facilities: ['Library','Hostel','Sports Complex','Computer Lab','Research Center','Medical College'], 
+          established: '1875', 
+          courses: '350+', 
+          students: '28000+',
+          specialCourses: ['B.Tech','M.Tech','MBA','Medicine','Law','Agriculture'],
+          lat: 27.8974, 
+          lng: 78.0880,
+          careerRelevant: ['computer-engineering', 'business-administration', 'mbbs', 'mechanical-engineering']
+        },
+        { 
+          name: 'IIT Kanpur', 
+          state: 'Uttar Pradesh', 
+          district: 'Kanpur', 
+          type: 'IIT',
+          streams: ['Science/Math'], 
+          facilities: ['Library','Hostel','Sports Complex','Research Labs','Innovation Hub','Flight Lab'], 
+          established: '1959', 
+          courses: '40+', 
+          students: '5500+',
+          specialCourses: ['B.Tech','M.Tech','PhD','Aerospace','Design'],
+          lat: 26.5123, 
+          lng: 80.2329,
+          careerRelevant: ['computer-engineering', 'mechanical-engineering', 'electrical-engineering', 'civil-engineering']
+        }
+      ];
+
+      const stateEl = document.getElementById('q-state');
+      const typeEl = document.getElementById('q-type');
+      const searchInput = document.getElementById('search-input');
+      const showMapBtn = document.getElementById('btn-show-map');
+      const hideMapBtn = document.getElementById('btn-hide-map');
+      const mapContainer = document.getElementById('map-container');
+      const clearFiltersBtn = document.getElementById('btn-clear-filters');
+      const resultsInfoEl = document.getElementById('results-info');
+      const resultsCountEl = document.getElementById('results-count');
+      
+      let map, markers = [];
+      let filteredColleges = [];
+      
+      // Initialize filters
+      function initFilters() {
+        const states = Array.from(new Set(data.map(d => d.state))).sort();
+        stateEl.innerHTML = '<option value="all">All States</option>' + states.map(s => `<option>${s}</option>`).join('');
+        
+        // Pre-select state if coming from career page
+        const params = new URLSearchParams(location.search);
+        const streamFilter = params.get('stream');
+        if (streamFilter) {
+          // Could pre-select relevant filters based on stream
+        }
+      }
+      
+      // Apply filters
+      function applyFilter() {
+        const st = stateEl.value;
+        const type = typeEl.value;
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        let list = data;
+        
+        // Apply search filter
+        if (searchTerm) {
+          list = list.filter(c => 
+            c.name.toLowerCase().includes(searchTerm) ||
+            c.state.toLowerCase().includes(searchTerm) ||
+            c.district.toLowerCase().includes(searchTerm) ||
+            c.type.toLowerCase().includes(searchTerm) ||
+            c.specialCourses.some(course => course.toLowerCase().includes(searchTerm)) ||
+            c.facilities.some(fac => fac.toLowerCase().includes(searchTerm))
+          );
+        }
+        
+        // Apply basic filters
+        if (st !== 'all') list = list.filter(c => c.state === st);
+        if (type !== 'all') list = list.filter(c => c.type === type);
+        
+        render(list);
+        updateResultsCount(list.length);
+      }
+      
+      // Update results count
+      function updateResultsCount(count) {
+        resultsCountEl.textContent = `${count} college${count !== 1 ? 's' : ''} found`;
+        
+        // Show/hide clear button based on active filters
+        const hasActiveFilters = stateEl.value !== 'all' || typeEl.value !== 'all' || searchInput.value.trim();
+        if (hasActiveFilters) {
+          clearFiltersBtn.classList.remove('hidden');
+        } else {
+          clearFiltersBtn.classList.add('hidden');
+        }
+      }
+      
+      // Enhanced Filter Functionality
+      function initEnhancedFilters() {
+        // Clear all filters
+        clearFiltersBtn.addEventListener('click', function() {
+          stateEl.value = 'all';
+          typeEl.value = 'all';
+          searchInput.value = '';
+          
+          // Clear quick filter chips
+          document.querySelectorAll('.quick-filter-chip.active').forEach(chip => {
+            chip.classList.remove('active');
+          });
+          
+          applyFilter();
+        });
+        
+        // Quick filter chips functionality
+        document.querySelectorAll('.quick-filter-chip').forEach(chip => {
+          chip.addEventListener('click', function() {
+            const filterType = this.dataset.type;
+            const filterValue = this.dataset.value;
+            
+            // Clear other active chips of the same type
+            document.querySelectorAll(`[data-type="${filterType}"]`).forEach(otherChip => {
+              otherChip.classList.remove('active');
+            });
+            
+            // Toggle active state
+            this.classList.toggle('active');
+            
+            // Apply the filter
+            if (filterType === 'type') {
+              typeEl.value = this.classList.contains('active') ? filterValue : 'all';
+            } else if (filterType === 'state') {
+              stateEl.value = this.classList.contains('active') ? filterValue : 'all';
+            }
+            
+            applyFilter();
+          });
+        });
+      }
+      
+      // Handle URL parameters from career page
+      const params = new URLSearchParams(location.search);
+      const careerFilter = params.get('career');
+      const streamFilter = params.get('stream');
+      
+      if (careerFilter) {
+        showCareerRedirectMessage(careerFilter);
+      }
+
+      function render(list) {
+        filteredColleges = list;
+        const container = document.getElementById('college-list');
+        if (!list.length) { 
+          container.innerHTML = `
+            <div class="col-span-full flex flex-col items-center justify-center py-16 text-center">
+              <div class="text-8xl mb-6 opacity-30">🔍</div>
+              <h3 class="text-2xl font-bold text-gray-700 mb-4">No Colleges Found</h3>
+              <p class="text-gray-500 mb-6 max-w-md">We couldn't find any colleges matching your criteria. Try adjusting your filters or search terms.</p>
+              <button onclick="clearAllFilters()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                🗑️ Clear All Filters
+              </button>
+            </div>
+          `; 
+          return; 
+        }
+        
+        container.innerHTML = list.map((c, index) => `
+          <div class="college-card" data-lat="${c.lat}" data-lng="${c.lng}" style="animation-delay: ${index * 0.1}s;">
+            <div class="college-header">
+              <div class="college-info">
+                <h3 class="college-name">${c.name}</h3>
+                <div class="college-type-badge">${c.type}</div>
+                <div class="college-location">📍 ${c.state} • ${c.district}</div>
+                <div class="college-meta">
+                  <span>🏛️ Est. ${c.established}</span>
+                  <span>📚 ${c.courses} courses</span>
+                  <span>👥 ${c.students} students</span>
+                </div>
+              </div>
+              <button class="action-btn map" onclick="showCollegeOnMap(${c.lat}, ${c.lng}, '${c.name.replace(/'/g, "\\'")}')">📍 View on Map</button>
+            </div>
+            
+            <div class="college-details">
+              <div class="detail-section">
+                <div class="detail-label">🎓 Special Courses</div>
+                <div class="detail-content">
+                  <div class="stream-tags">
+                    ${c.specialCourses.slice(0, 4).map(course => `<span class="stream-tag">${course}</span>`).join('')}
+                    ${c.specialCourses.length > 4 ? `<span class="stream-tag" style="background: #64748b;">+${c.specialCourses.length - 4} more</span>` : ''}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="detail-section">
+                <div class="detail-label">📖 Academic Streams</div>
+                <div class="detail-content">
+                  <div class="stream-tags">
+                    ${c.streams.map(s => `<span class="stream-tag" style="background: linear-gradient(135deg, #667eea, #764ba2);">${s}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="detail-section">
+                <div class="detail-label">🏢 Campus Facilities</div>
+                <div class="detail-content">
+                  ${c.facilities.slice(0, 6).join(', ')}${c.facilities.length > 6 ? ` and ${c.facilities.length - 6} more facilities` : ''}
+                </div>
+              </div>
+              
+              <div class="college-actions">
+                <button class="action-btn primary" onclick="viewCollegeDetails('${c.name.replace(/'/g, "\\'")}')">📋 View Details</button>
+                <button class="action-btn secondary" onclick="saveCollegeInterest('${c.name.replace(/'/g, "\\'")}')">💾 Save Interest</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        
+        // Add entrance animation
+        const cards = container.querySelectorAll('.college-card');
+        cards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          
+          setTimeout(() => {
+            card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      }
+
+      // Enhanced search functionality with smart features
+      const searchClearBtn = document.getElementById('search-clear');
+      
+      // Smart search with highlighting and suggestions
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.trim();
+        
+        // Show/hide clear button
+        if (searchTerm.length > 0) {
+          searchClearBtn.classList.add('visible');
+        } else {
+          searchClearBtn.classList.remove('visible');
+        }
+        
+        // Apply filter with debouncing
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(() => {
+          applyFilter();
+        }, 300);
+      });
+      
+      // Clear search functionality
+      searchClearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        this.classList.remove('visible');
+        applyFilter();
+        searchInput.focus();
+      });
+      
+      // Enhanced apply filter with smart matching
+      function applyFilter() {
+        const st = stateEl.value;
+        const type = typeEl.value;
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        let list = data;
+        
+        // Smart search with priority scoring
+        if (searchTerm) {
+          list = list.filter(c => {
+            // Primary matches (name, type)
+            const nameMatch = c.name.toLowerCase().includes(searchTerm);
+            const typeMatch = c.type.toLowerCase().includes(searchTerm);
+            
+            // Secondary matches (location, courses)
+            const stateMatch = c.state.toLowerCase().includes(searchTerm);
+            const districtMatch = c.district.toLowerCase().includes(searchTerm);
+            const courseMatch = c.specialCourses.some(course => course.toLowerCase().includes(searchTerm));
+            const facilityMatch = c.facilities.some(fac => fac.toLowerCase().includes(searchTerm));
+            
+            // Fuzzy matching for common typos
+            const fuzzyName = fuzzyMatch(c.name.toLowerCase(), searchTerm);
+            const fuzzyType = fuzzyMatch(c.type.toLowerCase(), searchTerm);
+            
+            return nameMatch || typeMatch || stateMatch || districtMatch || 
+                   courseMatch || facilityMatch || fuzzyName || fuzzyType;
+          });
+          
+          // Sort by relevance (name matches first)
+          list.sort((a, b) => {
+            const aNameMatch = a.name.toLowerCase().includes(searchTerm);
+            const bNameMatch = b.name.toLowerCase().includes(searchTerm);
+            if (aNameMatch && !bNameMatch) return -1;
+            if (!aNameMatch && bNameMatch) return 1;
+            return 0;
+          });
+        }
+        
+        // Apply basic filters
+        if (st !== 'all') list = list.filter(c => c.state === st);
+        if (type !== 'all') list = list.filter(c => c.type === type);
+        
+        render(list);
+        updateResultsCount(list.length);
+        
+        // Update search suggestions
+        updateSearchSuggestions(searchTerm, list);
+      }
+      
+      // Simple fuzzy matching for typos
+      function fuzzyMatch(text, pattern) {
+        if (pattern.length < 3) return false;
+        
+        // Allow one character difference for short patterns
+        const maxDistance = Math.floor(pattern.length / 3);
+        return levenshteinDistance(text, pattern) <= maxDistance;
+      }
+      
+      // Levenshtein distance for fuzzy matching
+      function levenshteinDistance(str1, str2) {
+        const matrix = [];
+        
+        for (let i = 0; i <= str2.length; i++) {
+          matrix[i] = [i];
+        }
+        
+        for (let j = 0; j <= str1.length; j++) {
+          matrix[0][j] = j;
+        }
+        
+        for (let i = 1; i <= str2.length; i++) {
+          for (let j = 1; j <= str1.length; j++) {
+            if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+              matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+              matrix[i][j] = Math.min(
+                matrix[i - 1][j - 1] + 1,
+                matrix[i][j - 1] + 1,
+                matrix[i - 1][j] + 1
+              );
+            }
+          }
+        }
+        
+        return matrix[str2.length][str1.length];
+      }
+      
+      // Update search suggestions (could be expanded for autocomplete)
+      function updateSearchSuggestions(searchTerm, results) {
+        if (searchTerm.length > 0 && results.length === 0) {
+          // Show 'no results' with suggestions
+          console.log(`No results for "${searchTerm}". Try searching for: IIT, NIT, Medical, Engineering`);
+        }
+      }
+      
+      // Initialize enhanced filters
+      initEnhancedFilters();
+      
+      // Helper function to clear all filters
+      function clearAllFilters() {
+        stateEl.value = 'all';
+        typeEl.value = 'all';
+        searchInput.value = '';
+        searchClearBtn.classList.remove('visible');
+        
+        // Clear quick filter chips
+        document.querySelectorAll('.premium-chip.active').forEach(chip => {
+          chip.classList.remove('active');
+        });
+        
+        applyFilter();
+      }
+      
+      // Add to global scope
+      window.clearAllFilters = clearAllFilters;
+      
+      // Map functionality
+      showMapBtn.addEventListener('click', showMap);
+      if (hideMapBtn) hideMapBtn.addEventListener('click', hideMap);
+      
+      // Initialize and render
+      initFilters();
+      applyFilter();
+      
+      // Google Maps functions
+      function initMap() {
+        try {
+          // Center map on J&K region
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: { lat: 33.2778, lng: 75.3412 },
+            mapTypeId: 'roadmap'
+          });
+          
+          // Add a status indicator that maps are working
+          console.log('✅ Google Maps initialized successfully');
+        } catch (error) {
+          console.error('Google Maps failed to load:', error);
+          // Enhanced fallback UI for when maps don't work
+          document.getElementById('map').innerHTML = `
+            <div class="flex items-center justify-center h-full bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-700">
+              <div class="text-center p-8">
+                <div class="text-6xl mb-4">🗺️</div>
+                <h3 class="text-xl font-bold mb-2">Interactive Map</h3>
+                <p class="text-lg font-medium mb-3">Map Service Temporarily Unavailable</p>
+                <p class="text-sm text-gray-600 mb-4">The map feature requires an active internet connection and Google Maps API.</p>
+                <div class="bg-white rounded-lg p-4 text-left inline-block">
+                  <p class="text-sm font-medium mb-2">📍 Featured Colleges Location Info:</p>
+                  <ul class="text-xs text-gray-600 space-y-1">
+                    <li>• University of Kashmir: Srinagar, J&K (34.0837°N, 74.7973°E)</li>
+                    <li>• NIT Srinagar: Srinagar, J&K (34.1260°N, 74.8234°E)</li>
+                    <li>• IIT Delhi: New Delhi (28.5449°N, 77.1929°E)</li>
+                    <li>• IIT Ropar: Punjab (30.9685°N, 76.4754°E)</li>
+                  </ul>
+                </div>
+                <p class="text-xs text-gray-500 mt-4">For full map functionality, please ensure Google Maps is accessible</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+      
+      function showMap() {
+        mapContainer.classList.remove('hidden');
+        showMapBtn.textContent = 'Update Map';
+        
+        // Smooth scroll to map as per project specification
+        setTimeout(() => {
+          mapContainer.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }, 100);
+        
+        if (!map) {
+          initMap();
+        }
+        
+        // Check if Google Maps is available
+        if (typeof google === 'undefined' || !map) {
+          console.log('⚠️ Google Maps not available, showing fallback UI');
+          return;
+        }
+        
+        console.log('🗺️ Updating map with filtered colleges');
+        
+        // Clear existing markers
+        markers.forEach(marker => marker.setMap(null));
+        markers = [];
+        
+        // Add markers for filtered colleges
+        filteredColleges.forEach(college => {
+          if (college.lat && college.lng) {
+            const marker = new google.maps.Marker({
+              position: { lat: college.lat, lng: college.lng },
+              map: map,
+              title: college.name,
+              icon: {
+                url: getMarkerIcon(college.type),
+                scaledSize: new google.maps.Size(30, 30)
+              }
+            });
+            
+            const infoWindow = new google.maps.InfoWindow({
+              content: `
+                <div class="p-3">
+                  <h3 class="font-bold text-lg">${college.name}</h3>
+                  <p class="text-sm text-gray-600">${college.type}</p>
+                  <p class="text-sm"><strong>Location:</strong> ${college.district}, ${college.state}</p>
+                  <p class="text-sm"><strong>Established:</strong> ${college.established}</p>
+                  <p class="text-sm"><strong>Courses:</strong> ${college.courses}</p>
+                  <div class="mt-2">
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${college.specialCourses.slice(0, 3).join(', ')}</span>
+                  </div>
+                </div>
+              `
+            });
+            
+            marker.addListener('click', () => {
+              // Close all other info windows
+              markers.forEach(m => m.infoWindow && m.infoWindow.close());
+              infoWindow.open(map, marker);
+            });
+            
+            marker.infoWindow = infoWindow;
+            markers.push(marker);
+          }
+        });
+        
+        // Adjust map bounds to fit all markers
+        if (markers.length > 0) {
+          const bounds = new google.maps.LatLngBounds();
+          markers.forEach(marker => bounds.extend(marker.getPosition()));
+          map.fitBounds(bounds);
+          
+          // Don't zoom in too much for single markers
+          if (markers.length === 1) {
+            map.setZoom(12);
+          }
+          
+          console.log(`✅ Map updated with ${markers.length} college markers`);
+        }
+      }
+      
+      function hideMap() {
+        mapContainer.classList.add('hidden');
+        showMapBtn.textContent = 'Show on Map';
+      }
+      
+      function getMarkerIcon(type) {
+        const iconMap = {
+          'IIT': 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+          'NIT': 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+          'IIIT': 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+          'Central University': 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+          'State University': 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+          'Medical College': 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
+          'Government College': 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+        };
+        return iconMap[type] || 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+      }
+      
+      function showCollegeOnMap(lat, lng, name) {
+        // Show map if hidden
+        if (mapContainer.classList.contains('hidden')) {
+          showMap();
+        }
+        
+        // Scroll to map container smoothly as per project specification
+        setTimeout(() => {
+          mapContainer.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }, 100);
+        
+        // Ensure map is initialized before proceeding
+        if (!map) {
+          // Wait for map initialization and retry
+          setTimeout(() => showCollegeOnMap(lat, lng, name), 1000);
+          return;
+        }
+        
+        // Center map on the specific college location
+        setTimeout(() => {
+          map.setCenter({ lat, lng });
+          map.setZoom(15);
+          
+          // Find and open the info window for this college
+          const marker = markers.find(m => 
+            Math.abs(m.getPosition().lat() - lat) < 0.001 && 
+            Math.abs(m.getPosition().lng() - lng) < 0.001
+          );
+          
+          if (marker && marker.infoWindow) {
+            // Close all other info windows first
+            markers.forEach(m => m.infoWindow && m.infoWindow.close());
+            marker.infoWindow.open(map, marker);
+          }
+          
+          // Add a subtle animation to highlight the specific marker
+          if (marker) {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(() => marker.setAnimation(null), 2000);
+          }
+        }, 200);
+      }
+      
+      function showCollegeOnMapFromModal(lat, lng, name) {
+        // Close the modal first
+        closeCollegeDetails();
+        
+        // Small delay to allow modal close animation to complete
+        setTimeout(() => {
+          showCollegeOnMap(lat, lng, name);
+        }, 300);
+      }
+      
+      function showCareerRedirectMessage(career) {
+        const messageDiv = document.getElementById('career-redirect-message');
+        const descriptionP = document.getElementById('page-description');
+        
+        messageDiv.classList.remove('hidden');
+        descriptionP.textContent = `Showing colleges that offer programs relevant to ${career.replace('-', ' ')} careers.`;
+      }
+      
+      function viewCollegeDetails(collegeName) {
+        const college = data.find(c => c.name === collegeName);
+        if (!college) return;
+        
+        const modal = document.getElementById('college-details-modal');
+        const content = document.getElementById('college-details-content');
+        
+        content.innerHTML = `
+          <div class="college-details-header">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">${college.name}</h2>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">${college.type}</span>
+                  <span class="text-gray-600">📍 ${college.district}, ${college.state}</span>
+                </div>
+                <p class="text-gray-600">🏛️ Established in ${college.established}</p>
+              </div>
+              <button onclick="closeCollegeDetails()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+            </div>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left Column -->
+            <div>
+              <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-blue-900 mb-4 flex items-center">
+                  📊 Quick Stats
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">${college.courses}</div>
+                    <div class="text-sm text-blue-800">Courses</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">${college.students}</div>
+                    <div class="text-sm text-blue-800">Students</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-green-900 mb-4 flex items-center">
+                  🎓 Special Courses
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  ${college.specialCourses.map(course => `
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-medium">${course}</span>
+                  `).join('')}
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-purple-900 mb-4 flex items-center">
+                  📚 Available Streams
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  ${college.streams.map(stream => `
+                    <span class="bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">${stream}</span>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div>
+              <div class="bg-gradient-to-br from-orange-50 to-red-100 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-orange-900 mb-4 flex items-center">
+                  🏢 Campus Facilities
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                  ${college.facilities.map(facility => `
+                    <div class="flex items-center text-orange-800">
+                      <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                      <span class="text-sm">${facility}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              
+              ${college.lat && college.lng ? `
+                <div class="bg-gradient-to-br from-gray-50 to-slate-100 rounded-xl p-6 mb-6">
+                  <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    📍 Location
+                  </h3>
+                  <div class="text-gray-700 mb-4">
+                    <p><strong>District:</strong> ${college.district}</p>
+                    <p><strong>State:</strong> ${college.state}</p>
+                    <p><strong>Coordinates:</strong> ${college.lat.toFixed(4)}, ${college.lng.toFixed(4)}</p>
+                  </div>
+                  <button onclick="showCollegeOnMap(${college.lat}, ${college.lng}, '${college.name.replace(/'/g, "\\'")}''); closeCollegeDetails();" 
+                          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    📍 View on Map
+                  </button>
+                </div>
+              ` : ''}
+              
+              <div class="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-yellow-900 mb-4 flex items-center">
+                  🎯 Career Relevance
+                </h3>
+                <div class="text-yellow-800 text-sm">
+                  ${college.careerRelevant && college.careerRelevant.length > 0 ? `
+                    <p class="mb-2">This college is particularly relevant for:</p>
+                    <div class="flex flex-wrap gap-2">
+                      ${college.careerRelevant.map(career => `
+                        <span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">${career.replace('-', ' ')}</span>
+                      `).join('')}
+                    </div>
+                  ` : `
+                    <p>General education across multiple career paths</p>
+                  `}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-center mt-8 pt-6 border-t">
+            <div class="text-sm text-gray-500">
+              Last updated: ${new Date().toLocaleDateString()}
+            </div>
+            <div class="flex gap-3">
+              <button onclick="saveCollegeInterest('${college.name.replace(/'/g, "\\'")}')"
+                      class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                💾 Save Interest
+              </button>
+              <button onclick="closeCollegeDetails()"
+                      class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                Close
+              </button>
+            </div>
+          </div>
+        `;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      }
+      
+      function saveCollegeInterest(collegeName) {
+        const savedColleges = window.__storage?.get('saved-colleges', []) || [];
+        const collegeInfo = {
+          name: collegeName,
+          timestamp: new Date().toISOString()
+        };
+        
+        if (!savedColleges.find(c => c.name === collegeName)) {
+          savedColleges.push(collegeInfo);
+          if (window.__storage) {
+            window.__storage.set('saved-colleges', savedColleges);
+          }
+          if (window.__showNotification) {
+            window.__showNotification(`'${collegeName}' saved to your interests!`, 'success');
+          } else {
+            alert(`'${collegeName}' saved to your interests!`);
+          }
+        } else {
+          if (window.__showNotification) {
+            window.__showNotification(`'${collegeName}' is already saved!`, 'info');
+          } else {
+            alert(`'${collegeName}' is already saved!`);
+          }
+        }
+      }
+      
+      function closeCollegeDetails() {
+        const modal = document.getElementById('college-details-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Restore background scrolling
+      }
+      
+      // Close modal when clicking outside
+      document.getElementById('college-details-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeCollegeDetails();
+        }
+      });
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('college-details-modal');
+          if (!modal.classList.contains('hidden')) {
+            closeCollegeDetails();
+          }
+        }
+      });
+
+      initFilters();
+      applyFilter();
+      
+      // Initialize enhanced filter functionality
+      console.log('🚀 Initializing enhanced college filters...');
+      
+      // Make remove filter function globally available
+      window.removeFilter = removeFilter;
+      
+      // FIX: Override viewCollegeDetails to use correct View on Map button
+      console.log('🔧 Applying View on Map fix...');
+      
+      // Store the original function
+      const originalViewCollegeDetails = window.viewCollegeDetails;
+      
+      // Override with fixed version
+      window.viewCollegeDetails = function(collegeName) {
+        const college = data.find(c => c.name === collegeName);
+        if (!college) return;
+        
+        const modal = document.getElementById('college-details-modal');
+        const content = document.getElementById('college-details-content');
+        
+        content.innerHTML = `
+          <div class="college-details-header">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">${college.name}</h2>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">${college.type}</span>
+                  <span class="text-gray-600">📍 ${college.district}, ${college.state}</span>
+                </div>
+                <p class="text-gray-600">🏛️ Established in ${college.established}</p>
+              </div>
+              <button onclick="closeCollegeDetails()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+            </div>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-blue-900 mb-4 flex items-center">
+                  📊 Quick Stats
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">${college.courses}</div>
+                    <div class="text-sm text-blue-800">Courses</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">${college.students}</div>
+                    <div class="text-sm text-blue-800">Students</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-green-900 mb-4 flex items-center">
+                  🎓 Special Courses
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  ${college.specialCourses.map(course => `
+                    <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-medium">${course}</span>
+                  `).join('')}
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-purple-900 mb-4 flex items-center">
+                  📚 Available Streams
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  ${college.streams.map(stream => `
+                    <span class="bg-purple-200 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">${stream}</span>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="bg-gradient-to-br from-orange-50 to-red-100 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-orange-900 mb-4 flex items-center">
+                  🏢 Campus Facilities
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                  ${college.facilities.map(facility => `
+                    <div class="flex items-center text-orange-800">
+                      <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                      <span class="text-sm">${facility}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              
+              ${college.lat && college.lng ? `
+                <div class="bg-gradient-to-br from-gray-50 to-slate-100 rounded-xl p-6 mb-6">
+                  <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    📍 Location
+                  </h3>
+                  <div class="text-gray-700 mb-4">
+                    <p><strong>District:</strong> ${college.district}</p>
+                    <p><strong>State:</strong> ${college.state}</p>
+                    <p><strong>Coordinates:</strong> ${college.lat.toFixed(4)}, ${college.lng.toFixed(4)}</p>
+                  </div>
+                  <button id="fixed-view-on-map-btn" 
+                          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    📍 View on Map
+                  </button>
+                </div>
+              ` : ''}
+              
+              <div class="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-xl p-6">
+                <h3 class="text-xl font-semibold text-yellow-900 mb-4 flex items-center">
+                  🎯 Career Relevance
+                </h3>
+                <div class="text-yellow-800 text-sm">
+                  ${college.careerRelevant && college.careerRelevant.length > 0 ? `
+                    <p class="mb-2">This college is particularly relevant for:</p>
+                    <div class="flex flex-wrap gap-2">
+                      ${college.careerRelevant.map(career => `
+                        <span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">${career.replace('-', ' ')}</span>
+                      `).join('')}
+                    </div>
+                  ` : `
+                    <p>General education across multiple career paths</p>
+                  `}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-center mt-8 pt-6 border-t">
+            <div class="text-sm text-gray-500">
+              Last updated: ${new Date().toLocaleDateString()}
+            </div>
+            <div class="flex gap-3">
+              <button onclick="saveCollegeInterest('${college.name.replace(/'/g, "\'")}')"
+                      class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                💾 Save Interest
+              </button>
+              <button onclick="closeCollegeDetails()"
+                      class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                Close
+              </button>
+            </div>
+          </div>
+        `;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        
+        // Add click handler to the fixed button
+        setTimeout(() => {
+          const fixedBtn = document.getElementById('fixed-view-on-map-btn');
+          if (fixedBtn) {
+            fixedBtn.addEventListener('click', function() {
+              console.log('🎯 Fixed View on Map clicked for:', college.name);
+              // Close modal first
+              modal.classList.add('hidden');
+              document.body.style.overflow = 'auto';
+              // Then show on map with delay
+              setTimeout(() => {
+                showCollegeOnMap(college.lat, college.lng, college.name);
+              }, 300);
+            });
+            console.log('✅ Fixed button handler attached for:', college.name);
+          }
+        }, 50);
+      };
+      
+      console.log('✅ View on Map fix applied!');
+    </script>
+    
+    <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+  </body>
+</html>

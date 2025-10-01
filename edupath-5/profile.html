@@ -1,0 +1,1977 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/styles.css?v=navbar-fix" />
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <div class="page-header">
+          <h1 data-i18n="profile.title">👤 Your Profile</h1>
+          <p data-i18n="profile.subtitle">Manage your preferences, track your progress, and view your educational journey</p>
+        </div>
+
+        <!-- Profile Overview Card -->
+        <div class="profile-overview">
+          <div class="profile-card">
+            <div class="profile-avatar">
+              <div class="avatar-circle" id="user-avatar">
+                <span id="avatar-initials">👤</span>
+              </div>
+              <button class="avatar-edit-btn" onclick="changeAvatar()">📷</button>
+            </div>
+            <div class="profile-info">
+              <h2 id="profile-name">Welcome, Student!</h2>
+              <p id="profile-subtitle">Class 10 • English Medium</p>
+              <div class="profile-stats">
+                <div class="stat-item">
+                  <span class="stat-number" id="courses-explored">0</span>
+                  <span class="stat-label">Courses Explored</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number" id="colleges-saved">0</span>
+                  <span class="stat-label">Colleges Saved</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number" id="quiz-completed">0</span>
+                  <span class="stat-label">Quizzes Taken</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Tabs -->
+        <div class="profile-tabs">
+          <div class="tab-nav" role="tablist" aria-label="Profile sections">
+            <button class="tab-btn active" data-tab="personal" title="Personal Information" role="tab" aria-selected="true" aria-controls="tab-personal" tabindex="0" id="tab-btn-personal">
+              <span class="tab-icon" aria-hidden="true">👤</span>
+              <span class="tab-label">Personal</span>
+            </button>
+            <button class="tab-btn" data-tab="preferences" title="Preferences & Settings" role="tab" aria-selected="false" aria-controls="tab-preferences" tabindex="-1" id="tab-btn-preferences">
+              <span class="tab-icon" aria-hidden="true">⚙️</span>
+              <span class="tab-label">Settings</span>
+            </button>
+            <button class="tab-btn" data-tab="saved" title="Saved Items" role="tab" aria-selected="false" aria-controls="tab-saved" tabindex="-1" id="tab-btn-saved">
+              <span class="tab-icon" aria-hidden="true">💾</span>
+              <span class="tab-label">Saved</span>
+            </button>
+            <button class="tab-btn" data-tab="activity" title="Activity & Progress" role="tab" aria-selected="false" aria-controls="tab-activity" tabindex="-1" id="tab-btn-activity">
+              <span class="tab-icon" aria-hidden="true">📊</span>
+              <span class="tab-label">Activity</span>
+            </button>
+          </div>
+
+          <!-- Personal Information Tab -->
+          <div id="tab-personal" class="tab-content active" role="tabpanel" aria-labelledby="tab-btn-personal">
+            <div class="tab-header">
+              <h3>👤 Personal Information</h3>
+              <p>Update your basic information and academic details</p>
+            </div>
+            
+            <form id="profile-form" class="space-y-6">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">
+                    <span class="label-icon">👤</span>
+                    <span>Full Name</span>
+                  </label>
+                  <input id="name" class="form-input" placeholder="Enter your full name" />
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">
+                    <span class="label-icon">📚</span>
+                    <span>Current Class</span>
+                  </label>
+                  <select id="class" class="form-select">
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                    <option value="graduate">Graduate</option>
+                    <option value="postgraduate">Post Graduate</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">
+                    <span class="label-icon">🌐</span>
+                    <span>Preferred Language</span>
+                  </label>
+                  <select id="medium" class="form-select">
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Urdu</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">
+                    <span class="label-icon">🎯</span>
+                    <span>Preferred Stream</span>
+                  </label>
+                  <select id="prefStream" class="form-select">
+                    <option value="">No preference</option>
+                    <option>Science</option>
+                    <option>Science/Math</option>
+                    <option>Commerce</option>
+                    <option>Arts/Humanities</option>
+                    <option>Arts/Language</option>
+                  </select>
+                </div>
+                
+                <div class="form-group full-width">
+                  <label class="form-label">
+                    <span class="label-icon">📍</span>
+                    <span>Location (Optional)</span>
+                  </label>
+                  <input id="location" class="form-input" placeholder="City, State" />
+                </div>
+                
+                <div class="form-group full-width">
+                  <label class="form-label">
+                    <span class="label-icon">💭</span>
+                    <span>About You (Optional)</span>
+                  </label>
+                  <textarea id="bio" class="form-textarea" rows="3" placeholder="Tell us about your interests, goals, or anything you'd like to share..."></textarea>
+                </div>
+              </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                  <span>💾</span> Save Profile
+                </button>
+                <button type="button" id="reset" class="btn-secondary">
+                  <span>🔄</span> Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Preferences Tab -->
+          <div id="tab-preferences" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-preferences">
+            <div class="tab-header">
+              <h3>⚙️ Preferences & Settings</h3>
+              <p>Customize your EduPath experience</p>
+            </div>
+            
+            <div class="preferences-grid">
+              <div class="preference-card">
+                <h4>🔔 Notifications</h4>
+                <div class="preference-items">
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="notif-deadlines" checked>
+                    <span class="checkmark"></span>
+                    <span>Application deadlines</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="notif-updates">
+                    <span class="checkmark"></span>
+                    <span>Course updates</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="notif-recommendations" checked>
+                    <span class="checkmark"></span>
+                    <span>New recommendations</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="preference-card">
+                <h4>🎯 Career Interests</h4>
+                <div class="interest-tags" id="career-interests">
+                  <!-- Will be populated by JavaScript -->
+                </div>
+                <button class="btn-outline add-interest-btn" onclick="addCareerInterest()">
+                  + Add Interest
+                </button>
+              </div>
+              
+              <div class="preference-card">
+                <h4>📊 Data & Privacy</h4>
+                <div class="preference-items">
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="save-search-history" checked>
+                    <span class="checkmark"></span>
+                    <span>Save search history</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" id="personalized-recommendations" checked>
+                    <span class="checkmark"></span>
+                    <span>Personalized recommendations</span>
+                  </label>
+                  <button class="btn-outline" onclick="exportData()">
+                    📥 Export My Data
+                  </button>
+                  <button class="btn-outline delete-btn" onclick="clearAllData()">
+                    🗑️ Clear All Data
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Saved Items Tab -->
+          <div id="tab-saved" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-saved">
+            <div class="tab-header">
+              <h3>💾 Saved Items</h3>
+              <p>Manage your saved courses, colleges, and career interests</p>
+            </div>
+            
+            <div class="saved-sections">
+              <div class="saved-section">
+                <h4>🎯 Quiz Suggestions</h4>
+                <div id="saved-suggestions" class="saved-items">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+              
+              <div class="saved-section">
+                <h4>💼 Career Interests</h4>
+                <div id="saved-careers" class="saved-items">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+              
+              <div class="saved-section">
+                <h4>🏫 Saved Colleges</h4>
+                <div id="saved-colleges" class="saved-items">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+              
+              <div class="saved-section">
+                <h4>🔍 Saved Searches</h4>
+                <div id="saved-searches" class="saved-items">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity Tab -->
+          <div id="tab-activity" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-activity">
+            <div class="tab-header">
+              <h3>📊 Your Activity</h3>
+              <p>Track your progress and learning journey</p>
+            </div>
+            
+            <div class="activity-dashboard">
+              <div class="activity-summary">
+                <div class="summary-card">
+                  <div class="summary-icon">📅</div>
+                  <div class="summary-content">
+                    <span class="summary-number" id="days-active">0</span>
+                    <span class="summary-label">Days Active</span>
+                  </div>
+                </div>
+                
+                <div class="summary-card">
+                  <div class="summary-icon">🎯</div>
+                  <div class="summary-content">
+                    <span class="summary-number" id="total-interactions">0</span>
+                    <span class="summary-label">Total Interactions</span>
+                  </div>
+                </div>
+                
+                <div class="summary-card">
+                  <div class="summary-icon">🏆</div>
+                  <div class="summary-content">
+                    <span class="summary-number" id="achievements">0</span>
+                    <span class="summary-label">Achievements</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="recent-activity">
+                <h4>📝 Recent Activity</h4>
+                <div id="activity-log" class="activity-list">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+              
+              <div class="achievements-section">
+                <h4>🏆 Achievements</h4>
+                <div id="achievements-list" class="achievements-grid">
+                  <!-- Populated by JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    
+    <script src="assets/main.js"></script>
+    
+    <style>
+      /* Enhanced Profile Page Styles */
+      .profile-overview {
+        margin-bottom: 2rem;
+      }
+      
+      .profile-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .profile-avatar {
+        position: relative;
+        flex-shrink: 0;
+      }
+      
+      .avatar-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+      
+      .avatar-circle:hover {
+        transform: scale(1.05);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      
+      .avatar-edit-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #4f46e5;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      
+      .avatar-edit-btn:hover {
+        background: #3730a3;
+        transform: scale(1.1);
+      }
+      
+      .profile-info {
+        flex: 1;
+      }
+      
+      .profile-info h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      
+      .profile-info p {
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+      }
+      
+      .profile-stats {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .stat-item {
+        text-align: center;
+      }
+      
+      .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 1;
+      }
+      
+      .stat-label {
+        font-size: 0.875rem;
+        opacity: 0.8;
+      }
+      
+      /* Tab Navigation */
+      .profile-tabs {
+        background: white;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(102, 126, 234, 0.08);
+      }
+      
+      .tab-nav {
+        display: flex;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+        justify-content: center;
+        padding: 1rem;
+        gap: 0.75rem;
+        position: relative;
+      }
+      
+      .tab-nav::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+      }
+      
+      .tab-btn {
+        flex: 1;
+        max-width: 140px;
+        min-width: 100px;
+        padding: 1.25rem 1rem;
+        border: none;
+        background: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        font-weight: 500;
+        color: #64748b;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+      
+      .tab-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      
+      .tab-btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2;
+      }
+      
+      .tab-btn > * {
+        position: relative;
+        z-index: 1;
+      }
+      
+      .tab-btn:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-color: rgba(102, 126, 234, 0.3);
+        background: rgba(255, 255, 255, 0.9);
+      }
+      
+      .tab-btn:hover::before {
+        opacity: 0.08;
+      }
+      
+      .tab-btn:hover::after {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .tab-btn:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+      
+      .tab-btn.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        transform: translateY(-6px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3), 0 8px 16px rgba(118, 75, 162, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+      
+      .tab-btn.active::before {
+        opacity: 0;
+      }
+      
+      .tab-btn.active::after {
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+      }
+      
+      .tab-icon {
+        font-size: 1.75rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+      
+      .tab-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        transition: all 0.4s cubic-bezier(0, 0, 0.2, 1);
+        opacity: 0.8;
+      }
+      
+      .tab-btn:hover .tab-icon {
+        transform: scale(1.15) rotate(5deg);
+        filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+      }
+      
+      .tab-btn.active .tab-icon {
+        transform: scale(1.2) rotate(-5deg);
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        animation: activeIconPulse 2s ease-in-out infinite;
+      }
+      
+      .tab-btn.active .tab-label {
+        opacity: 1;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      
+      .tab-btn:hover .tab-label {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+      
+      /* Animated active icon pulse */
+      @keyframes activeIconPulse {
+        0%, 100% {
+          transform: scale(1.2) rotate(-5deg);
+        }
+        50% {
+          transform: scale(1.25) rotate(-5deg);
+        }
+      }
+      
+      /* Tab indicator animation */
+      .tab-nav {
+        position: relative;
+      }
+      
+      .tab-nav::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      }
+      
+      .tab-content {
+        display: none;
+        padding: 2rem;
+      }
+      
+      .tab-content.active {
+        display: block;
+      }
+      
+      .tab-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      
+      .tab-header h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+      }
+      
+      .tab-header p {
+        color: #64748b;
+      }
+      
+      /* Form Styles */
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+      
+      .form-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+      }
+      
+      .label-icon {
+        font-size: 1rem;
+      }
+      
+      .form-input, .form-select, .form-textarea {
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.75rem;
+        background: white;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+      
+      .form-input:focus, .form-select:focus, .form-textarea:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+      
+      .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e2e8f0;
+      }
+      
+      /* Preferences Styles */
+      .preferences-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .preference-card {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid #e2e8f0;
+      }
+      
+      .preference-card h4 {
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 1rem;
+      }
+      
+      .preference-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        user-select: none;
+      }
+      
+      .checkbox-item input[type="checkbox"] {
+        display: none;
+      }
+      
+      .checkmark {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #d1d5db;
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+      
+      .checkbox-item input[type="checkbox"]:checked + .checkmark {
+        background: #4f46e5;
+        border-color: #4f46e5;
+      }
+      
+      .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      
+      .interest-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .interest-tag {
+        background: #4f46e5;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 1.5rem;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .interest-tag .remove {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      
+      .add-interest-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+      
+      .delete-btn {
+        color: #dc2626 !important;
+        border-color: #dc2626 !important;
+      }
+      
+      .delete-btn:hover {
+        background: #dc2626 !important;
+        color: white !important;
+      }
+      
+      /* Saved Items Styles */
+      .saved-sections {
+        display: grid;
+        gap: 2rem;
+      }
+      
+      .saved-section {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid #e2e8f0;
+      }
+      
+      .saved-section h4 {
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 1rem;
+      }
+      
+      .saved-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      
+      .saved-item {
+        background: white;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: #374151;
+      }
+      
+      .saved-item:hover {
+        background: #f3f4f6;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .saved-item .remove {
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: auto;
+      }
+      
+      /* Activity Styles */
+      .activity-dashboard {
+        display: grid;
+        gap: 2rem;
+      }
+      
+      .activity-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      
+      .summary-card {
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid #d1d5db;
+      }
+      
+      .summary-icon {
+        font-size: 2rem;
+        opacity: 0.8;
+      }
+      
+      .summary-content {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .summary-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1e293b;
+      }
+      
+      .summary-label {
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+      
+      .recent-activity, .achievements-section {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid #e2e8f0;
+      }
+      
+      .recent-activity h4, .achievements-section h4 {
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 1rem;
+      }
+      
+      .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .activity-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      
+      .activity-icon {
+        font-size: 1.25rem;
+        opacity: 0.8;
+      }
+      
+      .activity-content {
+        flex: 1;
+      }
+      
+      .activity-title {
+        font-weight: 500;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+      }
+      
+      .activity-time {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+      
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+      
+      .achievement-badge {
+        background: white;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        text-align: center;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
+      }
+      
+      .achievement-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .achievement-badge.unlocked {
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        color: white;
+        border-color: #d97706;
+      }
+      
+      .achievement-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .achievement-title {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .profile-card {
+          flex-direction: column;
+          text-align: center;
+          gap: 1.5rem;
+          padding: 1.5rem;
+        }
+        
+        .profile-stats {
+          justify-content: center;
+          gap: 1.5rem;
+        }
+        
+        .tab-nav {
+          padding: 0.75rem 0.5rem;
+          gap: 0.5rem;
+        }
+        
+        .tab-btn {
+          max-width: none;
+          min-width: 80px;
+          padding: 1rem 0.75rem;
+          border-radius: 1rem;
+        }
+        
+        .tab-icon {
+          font-size: 1.4rem;
+        }
+        
+        .tab-label {
+          font-size: 0.7rem;
+          letter-spacing: 0.6px;
+        }
+        
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        
+        .preferences-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .activity-summary {
+          grid-template-columns: 1fr;
+        }
+        
+        .form-actions {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+      
+      @media (max-width: 520px) {
+        .profile-tabs {
+          margin: 0 0.5rem;
+          border-radius: 1.5rem;
+        }
+        
+        .tab-nav {
+          background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+          border-radius: 1.25rem;
+          padding: 0.5rem;
+          gap: 0.25rem;
+        }
+        
+        .tab-btn {
+          min-width: 70px;
+          padding: 0.875rem 0.5rem;
+          border-radius: 0.875rem;
+          backdrop-filter: blur(8px);
+        }
+        
+        .tab-icon {
+          font-size: 1.25rem;
+        }
+        
+        .tab-label {
+          font-size: 0.65rem;
+          letter-spacing: 0.4px;
+        }
+      }
+      
+      @media (max-width: 400px) {
+        .tab-nav {
+          padding: 0.4rem;
+          gap: 0.2rem;
+        }
+        
+        .tab-btn {
+          min-width: 60px;
+          padding: 0.75rem 0.25rem;
+          gap: 0.5rem;
+        }
+        
+        .tab-label {
+          display: none;
+        }
+        
+        .tab-icon {
+          font-size: 1.5rem;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+          transform: translateY(-2px) scale(1.05);
+        }
+        
+        .tab-btn.active::after {
+          width: 80px;
+          height: 80px;
+        }
+        
+        /* Add tooltip for icon-only mode */
+        .tab-btn {
+          position: relative;
+        }
+        
+        .tab-btn:hover::before {
+          content: attr(title);
+          position: absolute;
+          bottom: -2.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.8);
+          color: white;
+          padding: 0.5rem 0.75rem;
+          border-radius: 0.5rem;
+          font-size: 0.75rem;
+          font-weight: 500;
+          white-space: nowrap;
+          z-index: 1000;
+          animation: tooltipFadeIn 0.2s ease;
+        }
+        
+        @keyframes tooltipFadeIn {
+          from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-4px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+        }
+      }
+      
+      /* Enhanced focus states for accessibility */
+      .tab-btn:focus-visible {
+        outline: 3px solid rgba(102, 126, 234, 0.5);
+        outline-offset: 2px;
+      }
+      
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        .tab-btn {
+          border: 2px solid currentColor;
+        }
+        
+        .tab-btn.active {
+          background: black;
+          color: white;
+        }
+      }
+      
+      /* Reduced motion for accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        .tab-btn,
+        .tab-icon,
+        .tab-label {
+          transition: none;
+        }
+        
+        .tab-btn.active .tab-icon {
+          animation: none;
+        }
+      }
+      
+      /* Enhanced loading states */
+      .tab-loading {
+        position: relative;
+        pointer-events: none;
+      }
+      
+      .tab-loading::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: shimmer 1.5s infinite;
+        z-index: 1000;
+      }
+      
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+      
+      /* Tab indicator styles */
+      .tab-indicator {
+        position: absolute;
+        bottom: -1px;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        z-index: 10;
+      }
+      
+      /* Enhanced transition effects */
+      .tab-content {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Improved touch targets for mobile */
+      @media (hover: none) and (pointer: coarse) {
+        .tab-btn {
+          min-height: 44px;
+          padding: 1rem;
+        }
+        
+        .saved-item .remove,
+        .interest-tag .remove {
+          min-width: 44px;
+          min-height: 44px;
+          padding: 0.5rem;
+        }
+      }
+      
+      /* Focus management for keyboard navigation */
+      .tab-btn:focus-visible {
+        outline: 3px solid rgba(102, 126, 234, 0.5);
+        outline-offset: 2px;
+        z-index: 100;
+      }
+      
+
+      
+      /* Screen reader only content */
+      .sr-only {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+    </style>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('profile');
+
+      // Storage keys
+      const KEYS = {
+        profile: 'profile:data',
+        suggestions: 'quiz:suggestions',
+        careers: 'saved-careers',
+        colleges: 'saved-colleges',
+        searches: 'edupath-saved-searches',
+        activity: 'user-activity',
+        preferences: 'user-preferences'
+      };
+
+      // DOM elements
+      const form = document.getElementById('profile-form');
+      const nameEl = document.getElementById('name');
+      const classEl = document.getElementById('class');
+      const mediumEl = document.getElementById('medium');
+      const prefStreamEl = document.getElementById('prefStream');
+      const locationEl = document.getElementById('location');
+      const bioEl = document.getElementById('bio');
+      const resetBtn = document.getElementById('reset');
+
+      // Enhanced Profile Management
+      class ProfileManager {
+        constructor() {
+          this.currentTab = 'personal';
+          this.initTabs();
+          this.initProfile();
+          this.loadAllData();
+        }
+
+        initTabs() {
+          const tabBtns = document.querySelectorAll('.tab-btn');
+          const tabContents = document.querySelectorAll('.tab-content');
+          let touchStartX = 0;
+          let touchEndX = 0;
+          let swipeThreshold = 50;
+
+          // Enhanced click handler with smooth transitions
+          tabBtns.forEach((btn, index) => {
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              this.switchToTab(btn.dataset.tab, index);
+            });
+
+            // Keyboard navigation
+            btn.addEventListener('keydown', (e) => {
+              let newIndex = index;
+              
+              switch(e.key) {
+                case 'ArrowLeft':
+                  e.preventDefault();
+                  newIndex = index > 0 ? index - 1 : tabBtns.length - 1;
+                  break;
+                case 'ArrowRight':
+                  e.preventDefault();
+                  newIndex = index < tabBtns.length - 1 ? index + 1 : 0;
+                  break;
+                case 'Home':
+                  e.preventDefault();
+                  newIndex = 0;
+                  break;
+                case 'End':
+                  e.preventDefault();
+                  newIndex = tabBtns.length - 1;
+                  break;
+                case 'Enter':
+                case ' ':
+                  e.preventDefault();
+                  this.switchToTab(btn.dataset.tab, index);
+                  return;
+              }
+              
+              if (newIndex !== index) {
+                tabBtns[newIndex].focus();
+                this.switchToTab(tabBtns[newIndex].dataset.tab, newIndex);
+              }
+            });
+
+            // Enhanced hover effects with haptic feedback
+            btn.addEventListener('mouseenter', () => {
+              this.triggerHapticFeedback('light');
+              btn.style.transform = btn.classList.contains('active') ? 
+                'translateY(-6px) scale(1.05)' : 'translateY(-4px) scale(1.02)';
+            });
+
+            btn.addEventListener('mouseleave', () => {
+              if (!btn.classList.contains('active')) {
+                btn.style.transform = '';
+              }
+            });
+          });
+
+          // Touch/swipe navigation for mobile
+          const tabContainer = document.querySelector('.profile-tabs');
+          if (tabContainer) {
+            tabContainer.addEventListener('touchstart', (e) => {
+              touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            tabContainer.addEventListener('touchend', (e) => {
+              touchEndX = e.changedTouches[0].screenX;
+              this.handleSwipe(touchStartX, touchEndX, swipeThreshold);
+            }, { passive: true });
+          }
+
+          // URL hash management for deep linking
+          this.setupHashNavigation();
+
+          // Initialize first tab
+          this.updateTabIndicator();
+        }
+
+        switchToTab(targetTab, tabIndex, smooth = true) {
+          const tabBtns = document.querySelectorAll('.tab-btn');
+          const tabContents = document.querySelectorAll('.tab-content');
+          const currentActiveTab = document.querySelector('.tab-content.active');
+          const targetTabContent = document.getElementById(`tab-${targetTab}`);
+          
+          if (!targetTabContent || this.currentTab === targetTab) return;
+
+          // Add loading state
+          if (smooth) {
+            this.showTabLoadingState(true);
+          }
+
+          // Trigger haptic feedback
+          this.triggerHapticFeedback('medium');
+
+          // Smooth transition effect
+          if (smooth && currentActiveTab) {
+            currentActiveTab.style.opacity = '0';
+            currentActiveTab.style.transform = 'translateX(-20px)';
+            
+            setTimeout(() => {
+              this.completeTabSwitch(tabBtns, tabContents, targetTab, targetTabContent, tabIndex, smooth);
+            }, 150);
+          } else {
+            this.completeTabSwitch(tabBtns, tabContents, targetTab, targetTabContent, tabIndex, smooth);
+          }
+        }
+
+        completeTabSwitch(tabBtns, tabContents, targetTab, targetTabContent, tabIndex, smooth) {
+          // Update active states
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+            b.setAttribute('tabindex', '-1');
+          });
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // Activate new tab
+          const activeBtn = tabBtns[tabIndex];
+          activeBtn.classList.add('active');
+          activeBtn.setAttribute('aria-selected', 'true');
+          activeBtn.setAttribute('tabindex', '0');
+          targetTabContent.classList.add('active');
+          
+          this.currentTab = targetTab;
+          
+          // Smooth entry animation
+          if (smooth) {
+            targetTabContent.style.opacity = '0';
+            targetTabContent.style.transform = 'translateX(20px)';
+            
+            requestAnimationFrame(() => {
+              targetTabContent.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+              targetTabContent.style.opacity = '1';
+              targetTabContent.style.transform = 'translateX(0)';
+              
+              setTimeout(() => {
+                targetTabContent.style.transition = '';
+                this.showTabLoadingState(false);
+              }, 300);
+            });
+          }
+          
+          // Update tab indicator
+          this.updateTabIndicator(tabIndex);
+          
+          // Update URL hash
+          if (history.replaceState) {
+            history.replaceState(null, null, `#${targetTab}`);
+          }
+          
+          // Load specific tab data
+          if (targetTab === 'saved') this.loadSavedItems();
+          if (targetTab === 'activity') this.loadActivityData();
+          
+          // Announce to screen readers
+          this.announceTabChange(targetTab);
+        }
+
+        handleSwipe(startX, endX, threshold) {
+          const tabBtns = document.querySelectorAll('.tab-btn');
+          const currentIndex = Array.from(tabBtns).findIndex(btn => btn.classList.contains('active'));
+          let newIndex = currentIndex;
+          
+          const deltaX = endX - startX;
+          
+          if (Math.abs(deltaX) > threshold) {
+            if (deltaX > 0 && currentIndex > 0) {
+              // Swipe right - go to previous tab
+              newIndex = currentIndex - 1;
+            } else if (deltaX < 0 && currentIndex < tabBtns.length - 1) {
+              // Swipe left - go to next tab
+              newIndex = currentIndex + 1;
+            }
+          }
+          
+          if (newIndex !== currentIndex) {
+            this.switchToTab(tabBtns[newIndex].dataset.tab, newIndex);
+          }
+        }
+
+        updateTabIndicator(activeIndex = 0) {
+          const tabNav = document.querySelector('.tab-nav');
+          const tabBtns = document.querySelectorAll('.tab-btn');
+          
+          if (!tabNav || !tabBtns[activeIndex]) return;
+          
+          // Remove existing indicator
+          let indicator = tabNav.querySelector('.tab-indicator');
+          if (!indicator) {
+            indicator = document.createElement('div');
+            indicator.className = 'tab-indicator';
+            indicator.style.cssText = `
+              position: absolute;
+              bottom: -1px;
+              height: 3px;
+              background: linear-gradient(90deg, #667eea, #764ba2);
+              border-radius: 2px;
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+              z-index: 10;
+            `;
+            tabNav.appendChild(indicator);
+          }
+          
+          // Update indicator position
+          const activeBtn = tabBtns[activeIndex];
+          const navRect = tabNav.getBoundingClientRect();
+          const btnRect = activeBtn.getBoundingClientRect();
+          
+          indicator.style.left = `${btnRect.left - navRect.left}px`;
+          indicator.style.width = `${btnRect.width}px`;
+        }
+
+        setupHashNavigation() {
+          // Handle initial hash
+          const hash = window.location.hash.slice(1);
+          const tabBtns = document.querySelectorAll('.tab-btn');
+          const validTabs = Array.from(tabBtns).map(btn => btn.dataset.tab);
+          
+          if (hash && validTabs.includes(hash)) {
+            const tabIndex = validTabs.indexOf(hash);
+            setTimeout(() => this.switchToTab(hash, tabIndex, false), 100);
+          }
+          
+          // Handle hash changes
+          window.addEventListener('hashchange', () => {
+            const newHash = window.location.hash.slice(1);
+            if (newHash && validTabs.includes(newHash) && newHash !== this.currentTab) {
+              const tabIndex = validTabs.indexOf(newHash);
+              this.switchToTab(newHash, tabIndex);
+            }
+          });
+        }
+
+        showTabLoadingState(show) {
+          const loadingClass = 'tab-loading';
+          const tabNav = document.querySelector('.tab-nav');
+          
+          if (show) {
+            tabNav.classList.add(loadingClass);
+          } else {
+            tabNav.classList.remove(loadingClass);
+          }
+        }
+
+        triggerHapticFeedback(intensity = 'light') {
+          // Haptic feedback for supported devices
+          if ('vibrate' in navigator) {
+            const patterns = {
+              light: 10,
+              medium: 20,
+              strong: 30
+            };
+            navigator.vibrate(patterns[intensity] || 10);
+          }
+        }
+
+        announceTabChange(tabName) {
+          // Create or update screen reader announcement
+          let announcer = document.getElementById('tab-announcer');
+          if (!announcer) {
+            announcer = document.createElement('div');
+            announcer.id = 'tab-announcer';
+            announcer.setAttribute('aria-live', 'polite');
+            announcer.setAttribute('aria-atomic', 'true');
+            announcer.style.cssText = `
+              position: absolute;
+              left: -10000px;
+              width: 1px;
+              height: 1px;
+              overflow: hidden;
+            `;
+            document.body.appendChild(announcer);
+          }
+          
+          const tabNames = {
+            personal: 'Personal Information',
+            preferences: 'Preferences and Settings',
+            saved: 'Saved Items',
+            activity: 'Activity and Progress'
+          };
+          
+          announcer.textContent = `Switched to ${tabNames[tabName] || tabName} tab`;
+        }
+
+        initProfile() {
+          const profile = this.load(KEYS.profile);
+          
+          // Update profile display
+          this.updateProfileDisplay(profile);
+          
+          // Load form data
+          nameEl.value = profile.name || '';
+          classEl.value = profile.class || '10';
+          mediumEl.value = profile.medium || 'English';
+          prefStreamEl.value = profile.prefStream || '';
+          if (locationEl) locationEl.value = profile.location || '';
+          if (bioEl) bioEl.value = profile.bio || '';
+          
+          // Update avatar
+          this.updateAvatar(profile.name);
+        }
+
+        updateProfileDisplay(profile) {
+          const name = profile.name || 'Student';
+          const className = profile.class || '10';
+          const medium = profile.medium || 'English';
+          
+          const profileNameEl = document.getElementById('profile-name');
+          const profileSubtitleEl = document.getElementById('profile-subtitle');
+          
+          if (profileNameEl) profileNameEl.textContent = `Welcome, ${name}!`;
+          if (profileSubtitleEl) profileSubtitleEl.textContent = `Class ${className} • ${medium} Medium`;
+          
+          // Update stats
+          this.updateStats();
+        }
+
+        updateAvatar(name) {
+          const avatarEl = document.getElementById('avatar-initials');
+          const initialsEl = document.getElementById('user-avatar');
+          
+          if (avatarEl && name && name.length > 0) {
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+            avatarEl.textContent = initials;
+            if (initialsEl) {
+              initialsEl.style.background = `linear-gradient(135deg, ${this.getColorForName(name)}, ${this.getColorForName(name + '2')})`;
+            }
+          } else if (avatarEl) {
+            avatarEl.textContent = '👤';
+          }
+        }
+
+        getColorForName(name) {
+          const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#43e97b', '#38f9d7'];
+          let hash = 0;
+          for (let i = 0; i < name.length; i++) {
+            hash = name.charCodeAt(i) + ((hash << 5) - hash);
+          }
+          return colors[Math.abs(hash) % colors.length];
+        }
+
+        updateStats() {
+          const suggestions = this.load(KEYS.suggestions, []);
+          const colleges = this.load(KEYS.colleges, []);
+          const activity = this.load(KEYS.activity, []);
+          
+          const coursesEl = document.getElementById('courses-explored');
+          const collegesEl = document.getElementById('colleges-saved');
+          const quizEl = document.getElementById('quiz-completed');
+          
+          if (coursesEl) coursesEl.textContent = suggestions.length;
+          if (collegesEl) collegesEl.textContent = colleges.length;
+          if (quizEl) quizEl.textContent = activity.filter(a => a.type === 'quiz').length;
+        }
+
+        loadAllData() {
+          // Load saved items for the saved tab
+          this.loadSavedItems();
+          // Load activity data
+          this.loadActivityData();
+        }
+
+        loadActivityData() {
+          const activity = this.load(KEYS.activity, []);
+          const activityContainer = document.getElementById('activity-log');
+          const achievementsContainer = document.getElementById('achievements-list');
+          
+          // Update activity summary
+          const daysActiveEl = document.getElementById('days-active');
+          const totalInteractionsEl = document.getElementById('total-interactions');
+          const achievementsEl = document.getElementById('achievements');
+          
+          if (daysActiveEl) {
+            const uniqueDays = new Set(activity.map(a => new Date(a.timestamp).toDateString())).size;
+            daysActiveEl.textContent = uniqueDays;
+          }
+          
+          if (totalInteractionsEl) {
+            totalInteractionsEl.textContent = activity.length;
+          }
+          
+          // Render recent activity
+          if (activityContainer) {
+            if (activity.length === 0) {
+              activityContainer.innerHTML = '<div class="text-sm text-gray-600">No activity recorded yet. Start exploring to see your journey!</div>';
+            } else {
+              const recentActivity = activity.slice(-10).reverse();
+              activityContainer.innerHTML = recentActivity.map(item => `
+                <div class="activity-item">
+                  <span class="activity-icon">${this.getActivityIcon(item.type)}</span>
+                  <div class="activity-content">
+                    <div class="activity-title">${item.action || 'Activity'}</div>
+                    <div class="activity-time">${this.formatRelativeTime(item.timestamp)}</div>
+                  </div>
+                </div>
+              `).join('');
+            }
+          }
+          
+          // Render achievements
+          if (achievementsContainer) {
+            const achievements = this.calculateAchievements(activity);
+            if (achievementsEl) achievementsEl.textContent = achievements.filter(a => a.unlocked).length;
+            
+            achievementsContainer.innerHTML = achievements.map(achievement => `
+              <div class="achievement-badge ${achievement.unlocked ? 'unlocked' : ''}">
+                <div class="achievement-icon">${achievement.icon}</div>
+                <div class="achievement-title">${achievement.title}</div>
+              </div>
+            `).join('');
+          }
+        }
+        
+        getActivityIcon(type) {
+          const icons = {
+            quiz: '🎯',
+            career: '💼',
+            college: '🏫',
+            course: '📚',
+            search: '🔍',
+            profile: '👤',
+            login: '🔐',
+            default: '📝'
+          };
+          return icons[type] || icons.default;
+        }
+        
+        formatRelativeTime(timestamp) {
+          const now = new Date();
+          const time = new Date(timestamp);
+          const diffMs = now - time;
+          const diffMins = Math.floor(diffMs / 60000);
+          const diffHours = Math.floor(diffMs / 3600000);
+          const diffDays = Math.floor(diffMs / 86400000);
+          
+          if (diffMins < 1) return 'Just now';
+          if (diffMins < 60) return `${diffMins}m ago`;
+          if (diffHours < 24) return `${diffHours}h ago`;
+          if (diffDays < 7) return `${diffDays}d ago`;
+          return time.toLocaleDateString();
+        }
+        
+        calculateAchievements(activity) {
+          const achievements = [
+            {
+              id: 'first_quiz',
+              title: 'First Quiz',
+              icon: '🎯',
+              unlocked: activity.some(a => a.type === 'quiz')
+            },
+            {
+              id: 'profile_complete',
+              title: 'Profile Complete',
+              icon: '✅',
+              unlocked: this.load(KEYS.profile, {}).name && this.load(KEYS.profile, {}).bio
+            },
+            {
+              id: 'explorer',
+              title: 'Explorer',
+              icon: '🗺️',
+              unlocked: activity.length >= 10
+            },
+            {
+              id: 'researcher',
+              title: 'Researcher',
+              icon: '🔬',
+              unlocked: activity.filter(a => a.type === 'search').length >= 5
+            },
+            {
+              id: 'planner',
+              title: 'Future Planner',
+              icon: '📅',
+              unlocked: this.load(KEYS.colleges, []).length >= 3
+            },
+            {
+              id: 'dedicated',
+              title: 'Dedicated Learner',
+              icon: '🏆',
+              unlocked: new Set(activity.map(a => new Date(a.timestamp).toDateString())).size >= 7
+            }
+          ];
+          
+          return achievements;
+        }
+
+        loadSavedItems() {
+          this.renderSavedSuggestions();
+          this.renderSavedCareers();
+          this.renderSavedColleges();
+          this.renderSavedSearches();
+        }
+
+        renderSavedSuggestions() {
+          const container = document.getElementById('saved-suggestions');
+          if (!container) return;
+          
+          const suggestions = this.load(KEYS.suggestions, []);
+          
+          if (suggestions.length === 0) {
+            container.innerHTML = '<div class=\"text-sm text-gray-600\">No saved suggestions yet. Take the quiz to get started.</div>';
+            return;
+          }
+          
+          container.innerHTML = suggestions.map(s => `
+            <div class=\"saved-item\">
+              <span>🎯 ${s}</span>
+              <span class=\"remove\" onclick=\"profileManager.removeSuggestion('${s}')\">&times;</span>
+            </div>
+          `).join('');
+        }
+
+        renderSavedCareers() {
+          const container = document.getElementById('saved-careers');
+          if (!container) return;
+          
+          const careers = this.load(KEYS.careers, []);
+          
+          if (careers.length === 0) {
+            container.innerHTML = '<div class=\"text-sm text-gray-600\">No saved career interests yet. Explore careers to save them.</div>';
+            return;
+          }
+          
+          container.innerHTML = careers.map(career => `
+            <div class=\"saved-item\">
+              <span>💼 ${career.specialization || career.name || career} (${career.stream || 'General'})</span>
+              <span class=\"remove\" onclick=\"profileManager.removeCareer('${career.specialization || career.name || career}')\">&times;</span>
+            </div>
+          `).join('');
+        }
+
+        renderSavedColleges() {
+          const container = document.getElementById('saved-colleges');
+          if (!container) return;
+          
+          const colleges = this.load(KEYS.colleges, []);
+          
+          if (colleges.length === 0) {
+            container.innerHTML = '<div class=\"text-sm text-gray-600\">No saved colleges yet. Explore colleges and save your favorites.</div>';
+            return;
+          }
+          
+          container.innerHTML = colleges.map(college => `
+            <div class=\"saved-item\">
+              <span>🏫 ${college.name || college}</span>
+              <span class=\"remove\" onclick=\"profileManager.removeCollege('${college.name || college}')\">&times;</span>
+            </div>
+          `).join('');
+        }
+
+        renderSavedSearches() {
+          const container = document.getElementById('saved-searches');
+          if (!container) return;
+          
+          const searches = this.load(KEYS.searches, []);
+          
+          if (searches.length === 0) {
+            container.innerHTML = '<div class=\"text-sm text-gray-600\">No saved searches yet. Use the advanced filters in colleges to save searches.</div>';
+            return;
+          }
+          
+          container.innerHTML = searches.map((search, index) => `
+            <div class=\"saved-item\">
+              <span>🔍 ${search.name} (${search.resultCount} results)</span>
+              <span class=\"remove\" onclick=\"profileManager.removeSearch(${index})\">&times;</span>
+            </div>
+          `).join('');
+        }
+
+        // Helper methods
+        load(key, defaultValue = {}) {
+          return window.__storage?.get(key, defaultValue) || defaultValue;
+        }
+
+        save(key, value) {
+          window.__storage?.set(key, value);
+        }
+
+        // Remove methods
+        removeSuggestion(suggestion) {
+          const suggestions = this.load(KEYS.suggestions, []);
+          const updated = suggestions.filter(s => s !== suggestion);
+          this.save(KEYS.suggestions, updated);
+          this.renderSavedSuggestions();
+          this.updateStats();
+        }
+
+        removeCareer(careerName) {
+          const careers = this.load(KEYS.careers, []);
+          const updated = careers.filter(c => (c.specialization || c.name || c) !== careerName);
+          this.save(KEYS.careers, updated);
+          this.renderSavedCareers();
+          this.updateStats();
+        }
+
+        removeCollege(collegeName) {
+          const colleges = this.load(KEYS.colleges, []);
+          const updated = colleges.filter(c => (c.name || c) !== collegeName);
+          this.save(KEYS.colleges, updated);
+          this.renderSavedColleges();
+          this.updateStats();
+        }
+
+        removeSearch(index) {
+          const searches = this.load(KEYS.searches, []);
+          searches.splice(index, 1);
+          this.save(KEYS.searches, searches);
+          this.renderSavedSearches();
+        }
+      }
+
+      // Global functions
+      function changeAvatar() {
+        const emojis = ['👤', '👦', '👧', '👨', '👩', '👱', '👵', '👶', '🤓', '😎'];
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        const avatarEl = document.getElementById('avatar-initials');
+        if (avatarEl) avatarEl.textContent = randomEmoji;
+      }
+
+      // Form handling
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const profileData = {
+          name: nameEl.value.trim(),
+          class: classEl.value,
+          medium: mediumEl.value,
+          prefStream: prefStreamEl.value,
+          location: locationEl ? locationEl.value.trim() : '',
+          bio: bioEl ? bioEl.value.trim() : '',
+          lastUpdated: new Date().toISOString()
+        };
+        
+        profileManager.save(KEYS.profile, profileData);
+        profileManager.updateProfileDisplay(profileData);
+        profileManager.updateAvatar(profileData.name);
+        
+        window.__showNotification && window.__showNotification('Profile saved successfully!', 'success');
+      });
+
+      resetBtn.addEventListener('click', () => {
+        if (!confirm('Reset profile? This will clear all your profile information.')) return;
+        profileManager.save(KEYS.profile, {});
+        profileManager.initProfile();
+        window.__showNotification && window.__showNotification('Profile reset successfully!', 'info');
+      });
+
+      // Initialize profile manager
+      const profileManager = new ProfileManager();
+      
+      // Make it globally available for onclick handlers
+      window.profileManager = profileManager;
+      window.changeAvatar = changeAvatar;
+      
+      // Initialize language selectors
+      document.addEventListener('DOMContentLoaded', () => {
+        // Language selector removed from navbar as per user request
+        // i18n system initializes automatically when loaded
+      });
+      
+      console.log('🚀 Enhanced profile page initialized!');
+    </script>
+  </body>
+</html>

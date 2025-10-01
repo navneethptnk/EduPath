@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Timeline (Updated)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+    <link rel="stylesheet" href="assets/styles.css?v=2" />
+  </head>
+  <body class="bg-white text-gray-900">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link active" data-i18n="nav.timeline">Timeline</a>
+
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link active" data-i18n="nav.timeline">Timeline</a>
+
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Timeline & Exam Calendar</h1>
+          <p class="text-sm text-gray-600 mb-6">Track admission dates, scholarships, government exams, and important deadlines with live data from our unified API.</p>
+        </div>
+        
+        <!-- Government Announcements Section -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-6 border border-blue-200">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-gray-900 flex items-center">
+              <span class="text-2xl mr-2">📢</span>
+              Government Exam Announcements
+            </h2>
+            <button id="refresh-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              🔄 Refresh
+            </button>
+          </div>
+          <div id="announcements-container">
+            <div class="text-center py-4">
+              <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+              <p class="text-sm text-gray-600 mt-2">Loading announcements...</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Personal Timeline Section -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+            <span class="text-2xl mr-2">📅</span>
+            Personal Timeline
+          </h2>
+
+          <form id="item-form" class="card mb-6 grid gap-3 md:grid-cols-4">
+            <input id="title" class="select md:col-span-2" placeholder="Title (e.g., Scholarship form)" />
+            <input id="date" type="date" class="select" />
+            <select id="category" class="select">
+              <option>Admission</option>
+              <option>Scholarship</option>
+              <option>Exam</option>
+              <option>Other</option>
+            </select>
+            <button type="submit" class="btn-primary md:col-span-1">Add</button>
+          </form>
+
+          <div class="flex items-center gap-3 mb-3 text-sm" style="flex-wrap: wrap;">
+            <label class="text-gray-600">Filter</label>
+            <select id="filter" class="select">
+              <option value="all">All</option>
+              <option>Admission</option>
+              <option>Scholarship</option>
+              <option>Exam</option>
+              <option>Other</option>
+            </select>
+            <button id="clear" class="btn-secondary">Clear All</button>
+          </div>
+
+          <div id="list" class="space-y-3"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js?v=updated-announcements"></script>
+    
+    <script>
+      // Initialize page
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('timeline');
+
+      // Enhanced API integration with fallback data support
+      async function loadAnnouncements(forceRefresh = false) {
+        const container = document.getElementById('announcements-container');
+        
+        try {
+          // Show loading state
+          if (forceRefresh) {
+            container.innerHTML = `
+              <div class="text-center py-4">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-sm text-gray-600 mt-2">Refreshing data from API...</p>
+              </div>
+            `;
+          }
+          
+          // Try to use enhanced API client from main.js if available
+          let data;
+          if (window.__timelineAPI && window.__timelineAPI.loadAnnouncements) {
+            console.log('🔄 Using enhanced API client with fallback data');
+            data = await window.__timelineAPI.loadAnnouncements(forceRefresh);
+          } else {
+            // Fallback to direct API call
+            console.log('🔄 Using direct API call');
+            const timestamp = new Date().getTime();
+            const cacheBuster = `t=${timestamp}`;
+            
+            if (forceRefresh) {
+              // Try to trigger API refresh first
+              try {
+                await fetch('http://localhost:3000/api/refresh', { 
+                  method: 'POST',
+                  headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'edupath-admin-2024-secure-key'
+                  }
+                });
+                console.log('✅ API refresh triggered');
+                await new Promise(resolve => setTimeout(resolve, 2000));
+              } catch (refreshError) {
+                console.warn('⚠️ API refresh failed:', refreshError.message);
+              }
+            }
+            
+            const response = await fetch(`http://localhost:3000/api/announcements?limit=10&${cacheBuster}`, {
+              cache: 'no-cache',
+              headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+              }
+            });
+            
+            data = await response.json();
+            
+            // If no data from API, provide fallback demo data
+            if (!data.success || !data.data || data.data.length === 0) {
+              console.log('🔄 Using fallback demo data');
+              const currentDate = new Date();
+              const futureDate30 = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+              const futureDate45 = new Date(Date.now() + 45 * 24 * 60 * 60 * 1000);
+              const futureDate60 = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000);
+              
+              data = {
+                success: true,
+                data: [
+                  {
+                    id: 'current-1',
+                    title: 'JEE Main 2025 Registration Open - Apply Now!',
+                    description: 'National Testing Agency has announced JEE Main 2025 registration. Apply online for engineering entrance exam with new pattern and syllabus updates.',
+                    category: 'exam',
+                    status: 'active',
+                    priority: 'high',
+                    source_name: 'NTA',
+                    date_published: currentDate.toISOString(),
+                    date_application_end: futureDate30.toISOString(),
+                    links: {
+                      official_url: 'https://jeemain.nta.nic.in'
+                    },
+                    financial: {
+                      amount: 0,
+                      frequency: 'One-time'
+                    }
+                  },
+                  {
+                    id: 'current-2',
+                    title: 'NEET UG 2025 - Medical Entrance Preparation',
+                    description: 'National Eligibility Entrance Test for medical courses 2025. Updated eligibility criteria and exam pattern for MBBS/BDS admissions.',
+                    category: 'exam',
+                    status: 'upcoming',
+                    priority: 'high',
+                    source_name: 'NTA',
+                    date_published: currentDate.toISOString(),
+                    date_application_end: futureDate45.toISOString(),
+                    links: {
+                      official_url: 'https://neet.nta.nic.in'
+                    },
+                    financial: {
+                      amount: 0,
+                      frequency: 'One-time'
+                    }
+                  },
+                  {
+                    id: 'current-3',
+                    title: 'PM Scholarship Scheme 2024-25 - ₹3L Annual',
+                    description: 'Prime Minister Scholarship for meritorious students. Apply for ₹3,00,000 annual scholarship covering tuition and living expenses.',
+                    category: 'scholarship',
+                    status: 'active',
+                    priority: 'high',
+                    source_name: 'NSP',
+                    date_published: currentDate.toISOString(),
+                    date_application_end: futureDate60.toISOString(),
+                    links: {
+                      official_url: 'https://scholarships.gov.in'
+                    },
+                    financial: {
+                      amount: 300000,
+                      frequency: 'Annual'
+                    }
+                  },
+                  {
+                    id: 'current-4',
+                    title: 'CUET UG 2025 - Common University Entrance',
+                    description: 'Common University Entrance Test for undergraduate admissions in central universities. New exam pattern and registration process.',
+                    category: 'exam',
+                    status: 'upcoming',
+                    priority: 'medium',
+                    source_name: 'NTA',
+                    date_published: currentDate.toISOString(),
+                    date_application_end: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000).toISOString(),
+                    links: {
+                      official_url: 'https://cuet.samarth.ac.in'
+                    },
+                    financial: {
+                      amount: 0,
+                      frequency: 'One-time'
+                    }
+                  },
+                  {
+                    id: 'current-5',
+                    title: 'Digital India Scholarship 2024-25',
+                    description: 'Ministry of Electronics & IT scholarship for computer science and IT students. Covers full tuition + ₹50K stipend for top performers.',
+                    category: 'scholarship',
+                    status: 'active',
+                    priority: 'high',
+                    source_name: 'MeitY',
+                    date_published: currentDate.toISOString(),
+                    date_application_end: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString(),
+                    links: {
+                      official_url: 'https://digitalindia.gov.in/scholarships'
+                    },
+                    financial: {
+                      amount: 250000,
+                      frequency: 'Annual'
+                    }
+                  }
+                ],
+                count: 5,
+                timestamp: currentDate.toISOString(),
+                fallback: true
+              };
+            }
+          }
+          
+          if (data.success && data.data && data.data.length > 0) {
+            const isFallback = data.fallback || false;
+            let html = `
+              <div class="${isFallback ? 'bg-orange-50 border-orange-200' : 'bg-green-50 border-green-200'} border rounded-lg p-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <span class="${isFallback ? 'text-orange-600' : 'text-green-600'} mr-2">${isFallback ? '🟡' : '🟢'}</span>
+                    <span class="text-sm ${isFallback ? 'text-orange-800' : 'text-green-800'}">
+                      <strong>${data.data.length}</strong> ${isFallback ? 'demo announcements (API fallback)' : 'live announcements from Government API'}
+                    </span>
+                  </div>
+                  <span class="text-xs ${isFallback ? 'text-orange-600' : 'text-green-600'}">
+                    Last updated: ${new Date().toLocaleTimeString()}
+                  </span>
+                </div>
+                ${isFallback ? `
+                  <div class="mt-2 text-xs text-orange-700">
+                    📌 Demo data is shown because the API server has no live announcements. Click refresh to check for updates.
+                  </div>
+                ` : ''}
+              </div>
+              <div class="grid gap-4 md:grid-cols-2">
+            `;
+            
+            data.data.forEach(item => {
+              const statusColor = item.status === 'upcoming' ? 'bg-blue-100 text-blue-800' :
+                               item.status === 'active' ? 'bg-green-100 text-green-800' :
+                               'bg-gray-100 text-gray-800';
+              
+              const icon = item.status === 'upcoming' ? '⏰' :
+                          item.status === 'active' ? '✅' : '📋';
+              
+              html += `
+                <div class="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow">
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                      <h3 class="font-bold text-gray-900 mb-1">${item.title}</h3>
+                      <p class="text-sm text-gray-600">${item.category}</p>
+                      <div class="flex items-center mt-1">
+                        <span class="inline-block w-2 h-2 ${isFallback ? 'bg-orange-500' : 'bg-green-500'} rounded-full mr-2"></span>
+                        <span class="text-xs ${isFallback ? 'text-orange-700' : 'text-green-700'}">${isFallback ? 'Demo Data' : 'Live from ' + item.source_name}</span>
+                      </div>
+                    </div>
+                    <span class="px-2 py-1 rounded-full text-xs font-medium ${statusColor}">
+                      ${icon} ${item.status}
+                    </span>
+                  </div>
+                  
+                  <p class="text-sm text-gray-700 mb-4">${item.description}</p>
+                  
+                  ${item.financial && item.financial.amount ? `
+                    <div class="bg-green-50 border border-green-200 rounded p-2 mb-3">
+                      <p class="text-sm text-green-800">
+                        <strong>Amount:</strong> ₹${item.financial.amount.toLocaleString()} ${item.financial.frequency || ''}
+                      </p>
+                    </div>
+                  ` : ''}
+                  
+                  <div class="flex gap-2">
+                    <a href="${item.links?.official_url || '#'}" target="_blank" 
+                       class="bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700 transition-colors flex-1 text-center">
+                      Official Website
+                    </a>
+                    <button onclick="addToTimeline('${item.title.replace(/'/g, '&apos;')}', '${item.date_application_end || item.date_published}', '${item.category === 'scholarship' ? 'Scholarship' : 'Exam'}')" 
+                            class="bg-gray-600 text-white px-3 py-1 rounded text-xs hover:bg-gray-700 transition-colors">
+                      Add to Timeline
+                    </button>
+                  </div>
+                </div>
+              `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            
+            // Show success message for refresh
+            if (forceRefresh) {
+              setTimeout(() => {
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                successMsg.textContent = '✅ Data refreshed successfully!';
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
+              }, 500);
+            }
+            
+          } else {
+            container.innerHTML = `
+              <div class="text-center py-8">
+                <div class="text-4xl mb-2">📚</div>
+                <p class="text-gray-600">No announcements available at the moment.</p>
+                <p class="text-xs text-gray-500 mt-2">Last checked: ${new Date().toLocaleString()}</p>
+                <button onclick="loadAnnouncements(true)" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                  🔄 Try Refreshing
+                </button>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Failed to load announcements:', error);
+          container.innerHTML = `
+            <div class="text-center py-8">
+              <div class="text-4xl mb-2">⚠️</div>
+              <p class="text-gray-600">Unable to connect to API.</p>
+              <p class="text-sm text-gray-500 mt-2">${error.message}</p>
+              <p class="text-xs text-gray-400 mt-1">Last attempt: ${new Date().toLocaleString()}</p>
+              <button onclick="loadAnnouncements(true)" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                🔄 Retry
+              </button>
+            </div>
+          `;
+        }
+      }
+
+      // Personal Timeline Management
+      const KEY = 'timeline:items';
+      const listEl = document.getElementById('list');
+      const form = document.getElementById('item-form');
+      const titleEl = document.getElementById('title');
+      const dateEl = document.getElementById('date');
+      const catEl = document.getElementById('category');
+      const filterEl = document.getElementById('filter');
+      const clearBtn = document.getElementById('clear');
+      const refreshBtn = document.getElementById('refresh-btn');
+
+      function load() { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+      function save(items) { localStorage.setItem(KEY, JSON.stringify(items)); }
+
+      function render(items) {
+        if (!items.length) {
+          listEl.innerHTML = '<div class="text-sm text-gray-600 p-4 text-center">No personal timeline items yet. Add announcements from above or create your own.</div>';
+          return;
+        }
+        listEl.innerHTML = items.map((it, idx) => {
+          const dateObj = new Date(it.date);
+          const isUpcoming = dateObj >= new Date();
+          const daysUntil = Math.ceil((dateObj - new Date()) / (1000 * 60 * 60 * 24));
+          
+          return `
+            <div class="card flex items-center justify-between" style="gap: 0.75rem; flex-wrap: wrap; ${!isUpcoming ? 'opacity-60' : ''}">
+              <div class="flex-1">
+                <div class="font-medium flex items-center gap-2">
+                  <span class="text-lg">${getCategoryIcon(it.category)}</span>
+                  ${it.title}
+                  ${isUpcoming && daysUntil <= 7 ? '<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-2">Urgent</span>' : ''}
+                </div>
+                <div class="text-xs text-gray-600 mt-1">
+                  ${it.category} • ${formatDate(it.date)}
+                  ${isUpcoming ? ` • ${daysUntil} days left` : ' • Past event'}
+                </div>
+              </div>
+              <button data-idx="${idx}" class="btn-secondary text-xs">Remove</button>
+            </div>
+          `;
+        }).join('');
+      }
+      
+      function getCategoryIcon(category) {
+        const icons = {
+          'Admission': '🎓',
+          'Scholarship': '💰',
+          'Exam': '📝',
+          'Other': '📌'
+        };
+        return icons[category] || '📌';
+      }
+      
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-IN', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        });
+      }
+
+      function applyFilter() {
+        const filter = filterEl.value;
+        const items = load();
+        const filtered = filter === 'all' ? items : items.filter(it => it.category === filter);
+        render(filtered.sort((a, b) => new Date(a.date) - new Date(b.date)));
+      }
+
+      // Add to timeline function
+      window.addToTimeline = function(title, date, category) {
+        const items = load();
+        items.push({ title, date, category });
+        save(items);
+        applyFilter();
+        alert('Added to personal timeline!');
+      };
+
+      // Event listeners
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = titleEl.value.trim();
+        const date = dateEl.value;
+        const category = catEl.value;
+        if (!title || !date) {
+          alert('Please fill in all fields');
+          return;
+        }
+        const items = load();
+        items.push({ title, date, category });
+        save(items);
+        titleEl.value = '';
+        dateEl.value = '';
+        applyFilter();
+        alert('Timeline item added successfully!');
+      });
+
+      listEl.addEventListener('click', (e) => {
+        const idx = e.target && e.target.getAttribute('data-idx');
+        if (idx == null) return;
+        const items = load();
+        items.splice(Number(idx), 1);
+        save(items);
+        applyFilter();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        if (!confirm('Clear all timeline items?')) return;
+        save([]);
+        applyFilter();
+      });
+
+      filterEl.addEventListener('change', applyFilter);
+      
+      refreshBtn.addEventListener('click', () => {
+        refreshBtn.innerHTML = '⏳ Loading...';
+        loadAnnouncements().finally(() => {
+          refreshBtn.innerHTML = '🔄 Refresh';
+        });
+      });
+      
+      // Initialize
+      applyFilter();
+      loadAnnouncements();
+    </script>
+    
+    <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+  </body>
+</html>

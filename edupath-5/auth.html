@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EduPath — Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="site-header bg-white/90 backdrop-blur-sm">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Simple Navigation for Auth -->
+        <nav class="nav-desktop">
+          <a href="index.html" class="nav-link">← Back to Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex items-center justify-center min-h-screen py-12 px-4">
+      <div class="auth-container">
+        <!-- Auth Header -->
+        <div class="auth-header">
+          <div class="logo-section">
+            <h1 class="auth-title">Welcome to EduPath</h1>
+            <p class="auth-subtitle">Your personalized career guidance platform</p>
+          </div>
+          
+          <!-- Tab Navigation -->
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">
+              <span>🔐</span> Sign In
+            </button>
+            <button class="auth-tab" data-tab="register">
+              <span>📝</span> Sign Up
+            </button>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="tab-login" class="auth-form active">
+          <div class="form-header">
+            <h2>Sign In to Your Account</h2>
+            <p>Continue your educational journey</p>
+          </div>
+          
+          <form id="login-form" class="auth-form-content">
+            <div class="form-group">
+              <label class="form-label">
+                <span class="label-icon">📧</span>
+                <span>Email Address</span>
+              </label>
+              <input type="email" id="login-email" class="form-input" 
+                     placeholder="Enter your email" required />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <span class="label-icon">🔒</span>
+                <span>Password</span>
+              </label>
+              <div class="password-field">
+                <input type="password" id="login-password" class="form-input" 
+                       placeholder="Enter your password" required />
+                <button type="button" class="password-toggle" onclick="togglePassword('login-password')">
+                  👁️
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-options">
+              <label class="checkbox-item">
+                <input type="checkbox" id="remember-me">
+                <span class="checkmark"></span>
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="forgot-link" onclick="showForgotPassword()">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn-primary auth-btn">
+              <span>🚀</span> Sign In
+            </button>
+            
+            <div class="auth-divider">
+              <span>or continue with</span>
+            </div>
+            
+            <div class="social-auth">
+              <button type="button" class="social-btn google-btn" onclick="socialLogin('google')">
+                <span>🌐</span> Google
+              </button>
+              <button type="button" class="social-btn guest-btn" onclick="continueAsGuest()">
+                <span>👤</span> Guest Mode
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="tab-register" class="auth-form">
+          <div class="form-header">
+            <h2>Create Your Account</h2>
+            <p>Start your personalized learning experience</p>
+          </div>
+          
+          <form id="register-form" class="auth-form-content">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">
+                  <span class="label-icon">👤</span>
+                  <span>Full Name</span>
+                </label>
+                <input type="text" id="register-name" class="form-input" 
+                       placeholder="Enter your full name" required />
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">
+                  <span class="label-icon">📧</span>
+                  <span>Email Address</span>
+                </label>
+                <input type="email" id="register-email" class="form-input" 
+                       placeholder="Enter your email" required />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <span class="label-icon">🔒</span>
+                <span>Password</span>
+              </label>
+              <div class="password-field">
+                <input type="password" id="register-password" class="form-input" 
+                       placeholder="Create a strong password" required />
+                <button type="button" class="password-toggle" onclick="togglePassword('register-password')">
+                  👁️
+                </button>
+              </div>
+              <div class="password-strength" id="password-strength"></div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <span class="label-icon">✅</span>
+                <span>Confirm Password</span>
+              </label>
+              <div class="password-field">
+                <input type="password" id="confirm-password" class="form-input" 
+                       placeholder="Confirm your password" required />
+                <button type="button" class="password-toggle" onclick="togglePassword('confirm-password')">
+                  👁️
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">
+                  <span class="label-icon">🎓</span>
+                  <span>Current Class</span>
+                </label>
+                <select id="register-class" class="form-input" required>
+                  <option value="">Select your class</option>
+                  <option value="10">Class 10</option>
+                  <option value="11">Class 11</option>
+                  <option value="12">Class 12</option>
+                  <option value="graduate">Graduate</option>
+                  <option value="postgraduate">Post Graduate</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">
+                  <span class="label-icon">🌐</span>
+                  <span>Preferred Language</span>
+                </label>
+                <select id="register-medium" class="form-input" required>
+                  <option value="">Select language</option>
+                  <option value="English">English</option>
+                  <option value="Hindi">Hindi</option>
+                  <option value="Urdu">Urdu</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-options">
+              <label class="checkbox-item">
+                <input type="checkbox" id="agree-terms" required>
+                <span class="checkmark"></span>
+                <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn-primary auth-btn">
+              <span>🎉</span> Create Account
+            </button>
+            
+            <div class="auth-divider">
+              <span>or sign up with</span>
+            </div>
+            
+            <div class="social-auth">
+              <button type="button" class="social-btn google-btn" onclick="socialLogin('google')">
+                <span>🌐</span> Google
+              </button>
+              <button type="button" class="social-btn guest-btn" onclick="continueAsGuest()">
+                <span>👤</span> Continue as Guest
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Forgot Password Modal -->
+        <div id="forgot-password-modal" class="modal hidden">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Reset Your Password</h3>
+              <button class="modal-close" onclick="hideForgotPassword()">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Enter your email address and we'll send you a link to reset your password.</p>
+              <form id="forgot-password-form">
+                <div class="form-group">
+                  <label class="form-label">
+                    <span class="label-icon">📧</span>
+                    <span>Email Address</span>
+                  </label>
+                  <input type="email" id="forgot-email" class="form-input" 
+                         placeholder="Enter your email" required />
+                </div>
+                <button type="submit" class="btn-primary">
+                  <span>📤</span> Send Reset Link
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    
+    <script>
+      // Authentication System
+      class AuthSystem {
+        constructor() {
+          this.currentUser = null;
+          this.initTabs();
+          this.initForms();
+          this.checkExistingAuth();
+        }
+
+        initTabs() {
+          const tabBtns = document.querySelectorAll('.auth-tab');
+          const tabContents = document.querySelectorAll('.auth-form');
+
+          tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+              const targetTab = btn.dataset.tab;
+              
+              // Update active states
+              tabBtns.forEach(b => b.classList.remove('active'));
+              tabContents.forEach(c => c.classList.remove('active'));
+              
+              btn.classList.add('active');
+              document.getElementById(`tab-${targetTab}`).classList.add('active');
+            });
+          });
+        }
+
+        initForms() {
+          // Login form
+          document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleLogin();
+          });
+
+          // Register form
+          document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleRegister();
+          });
+
+          // Forgot password form
+          document.getElementById('forgot-password-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleForgotPassword();
+          });
+
+          // Password strength checker
+          document.getElementById('register-password').addEventListener('input', (e) => {
+            this.checkPasswordStrength(e.target.value);
+          });
+
+          // Password confirmation
+          document.getElementById('confirm-password').addEventListener('input', (e) => {
+            this.checkPasswordMatch();
+          });
+        }
+
+        checkExistingAuth() {
+          const user = this.getStoredUser();
+          if (user) {
+            // User is already logged in, redirect to home
+            this.showNotification('You are already signed in!', 'info');
+            setTimeout(() => {
+              window.location.href = this.getRedirectUrl();
+            }, 1500);
+          }
+        }
+
+        async handleLogin() {
+          const email = document.getElementById('login-email').value.trim();
+          const password = document.getElementById('login-password').value;
+          const rememberMe = document.getElementById('remember-me').checked;
+
+          if (!this.validateEmail(email)) {
+            this.showNotification('Please enter a valid email address', 'error');
+            return;
+          }
+
+          if (password.length < 6) {
+            this.showNotification('Password must be at least 6 characters', 'error');
+            return;
+          }
+
+          this.showLoading('Signing you in...');
+
+          try {
+            // Simulate API call
+            await this.delay(1500);
+            
+            // Check if user exists in localStorage (demo mode)
+            const storedUsers = JSON.parse(localStorage.getItem('edupath-users') || '[]');
+            const user = storedUsers.find(u => u.email === email);
+            
+            if (!user) {
+              throw new Error('No account found with this email address');
+            }
+            
+            if (user.password !== password) {
+              throw new Error('Incorrect password');
+            }
+
+            // Successful login
+            this.currentUser = user;
+            this.storeUser(user, rememberMe);
+            this.logActivity('login', 'User logged in successfully');
+            
+            this.hideLoading();
+            this.showNotification(`Welcome back, ${user.name}!`, 'success');
+            
+            setTimeout(() => {
+              window.location.href = this.getRedirectUrl();
+            }, 1500);
+
+          } catch (error) {
+            this.hideLoading();
+            this.showNotification(error.message, 'error');
+          }
+        }
+
+        async handleRegister() {
+          const name = document.getElementById('register-name').value.trim();
+          const email = document.getElementById('register-email').value.trim();
+          const password = document.getElementById('register-password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          const className = document.getElementById('register-class').value;
+          const medium = document.getElementById('register-medium').value;
+          const agreeTerms = document.getElementById('agree-terms').checked;
+
+          // Validation
+          if (!name || name.length < 2) {
+            this.showNotification('Please enter your full name', 'error');
+            return;
+          }
+
+          if (!this.validateEmail(email)) {
+            this.showNotification('Please enter a valid email address', 'error');
+            return;
+          }
+
+          if (password.length < 6) {
+            this.showNotification('Password must be at least 6 characters', 'error');
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            this.showNotification('Passwords do not match', 'error');
+            return;
+          }
+
+          if (!className || !medium) {
+            this.showNotification('Please fill in all required fields', 'error');
+            return;
+          }
+
+          if (!agreeTerms) {
+            this.showNotification('Please agree to the terms and conditions', 'error');
+            return;
+          }
+
+          this.showLoading('Creating your account...');
+
+          try {
+            // Simulate API call
+            await this.delay(2000);
+            
+            // Check if user already exists
+            const storedUsers = JSON.parse(localStorage.getItem('edupath-users') || '[]');
+            if (storedUsers.find(u => u.email === email)) {
+              throw new Error('An account with this email already exists');
+            }
+
+            // Create new user
+            const newUser = {
+              id: Date.now().toString(),
+              name,
+              email,
+              password, // In production, this would be hashed
+              class: className,
+              medium,
+              createdAt: new Date().toISOString(),
+              isVerified: true // Auto-verify for demo
+            };
+
+            // Store user
+            storedUsers.push(newUser);
+            localStorage.setItem('edupath-users', JSON.stringify(storedUsers));
+            
+            // Create initial profile
+            this.createInitialProfile(newUser);
+            
+            // Auto-login
+            this.currentUser = newUser;
+            this.storeUser(newUser, true);
+            this.logActivity('register', 'User account created successfully');
+            
+            this.hideLoading();
+            this.showNotification(`Account created successfully! Welcome, ${name}!`, 'success');
+            
+            setTimeout(() => {
+              window.location.href = this.getRedirectUrl();
+            }, 2000);
+
+          } catch (error) {
+            this.hideLoading();
+            this.showNotification(error.message, 'error');
+          }
+        }
+
+        async handleForgotPassword() {
+          const email = document.getElementById('forgot-email').value.trim();
+          
+          if (!this.validateEmail(email)) {
+            this.showNotification('Please enter a valid email address', 'error');
+            return;
+          }
+
+          this.showLoading('Sending reset link...');
+
+          try {
+            // Simulate API call
+            await this.delay(1500);
+            
+            // In a real app, this would send an email
+            this.hideLoading();
+            this.showNotification('Password reset link sent to your email!', 'success');
+            this.hideForgotPassword();
+
+          } catch (error) {
+            this.hideLoading();
+            this.showNotification('Failed to send reset link', 'error');
+          }
+        }
+
+        createInitialProfile(user) {
+          // Create initial profile data
+          const profileData = {
+            name: user.name,
+            class: user.class,
+            medium: user.medium,
+            prefStream: '',
+            location: '',
+            bio: '',
+            lastUpdated: new Date().toISOString()
+          };
+          
+          window.__storage?.set('profile:data', profileData);
+        }
+
+        checkPasswordStrength(password) {
+          const strengthDiv = document.getElementById('password-strength');
+          let strength = 0;
+          let strengthText = '';
+          let strengthClass = '';
+
+          if (password.length >= 6) strength++;
+          if (password.match(/[a-z]/)) strength++;
+          if (password.match(/[A-Z]/)) strength++;
+          if (password.match(/[0-9]/)) strength++;
+          if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+          if (strength < 3) {
+            strengthText = 'Weak';
+            strengthClass = 'weak';
+          } else if (strength < 5) {
+            strengthText = 'Medium';
+            strengthClass = 'medium';
+          } else {
+            strengthText = 'Strong';
+            strengthClass = 'strong';
+          }
+
+          strengthDiv.innerHTML = `
+            <div class="strength-indicator">
+              <span class="strength-text">${strengthText}</span>
+              <div class="strength-bars">
+                <div class="strength-bar ${strength >= 1 ? strengthClass : ''}"></div>
+                <div class="strength-bar ${strength >= 3 ? strengthClass : ''}"></div>
+                <div class="strength-bar ${strength >= 5 ? strengthClass : ''}"></div>
+              </div>
+            </div>
+          `;
+        }
+
+        checkPasswordMatch() {
+          const password = document.getElementById('register-password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          const confirmField = document.getElementById('confirm-password');
+
+          if (confirmPassword && password !== confirmPassword) {
+            confirmField.style.borderColor = '#ef4444';
+          } else {
+            confirmField.style.borderColor = '#e5e7eb';
+          }
+        }
+
+        validateEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+
+        storeUser(user, persistent = false) {
+          const userData = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            class: user.class,
+            medium: user.medium,
+            loginTime: new Date().toISOString()
+          };
+
+          if (persistent) {
+            localStorage.setItem('edupath-current-user', JSON.stringify(userData));
+          } else {
+            sessionStorage.setItem('edupath-current-user', JSON.stringify(userData));
+          }
+        }
+
+        getStoredUser() {
+          const sessionUser = sessionStorage.getItem('edupath-current-user');
+          const localUser = localStorage.getItem('edupath-current-user');
+          
+          if (sessionUser) return JSON.parse(sessionUser);
+          if (localUser) return JSON.parse(localUser);
+          
+          return null;
+        }
+
+        logActivity(type, description) {
+          const activity = window.__storage?.get('user-activity', []) || [];
+          activity.push({
+            type,
+            description,
+            timestamp: new Date().toISOString()
+          });
+          window.__storage?.set('user-activity', activity);
+        }
+
+        getRedirectUrl() {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get('redirect') || 'index.html';
+        }
+
+        showLoading(message) {
+          // Create or update loading overlay
+          let loading = document.getElementById('loading-overlay');
+          if (!loading) {
+            loading = document.createElement('div');
+            loading.id = 'loading-overlay';
+            loading.style.cssText = `
+              position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+              background: rgba(0, 0, 0, 0.5); display: flex;
+              align-items: center; justify-content: center; z-index: 2000;
+            `;
+            loading.innerHTML = `
+              <div style="background: white; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+                <div style="width: 40px; height: 40px; border: 3px solid #e5e7eb; border-top: 3px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                <div id="loading-message" style="color: #374151; font-weight: 500;">${message}</div>
+              </div>
+            `;
+            document.body.appendChild(loading);
+            
+            // Add spin animation
+            const style = document.createElement('style');
+            style.textContent = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+            document.head.appendChild(style);
+          } else {
+            document.getElementById('loading-message').textContent = message;
+            loading.style.display = 'flex';
+          }
+        }
+
+        hideLoading() {
+          const loading = document.getElementById('loading-overlay');
+          if (loading) {
+            loading.style.display = 'none';
+          }
+        }
+
+        showNotification(message, type = 'info') {
+          if (window.__showNotification) {
+            window.__showNotification(message, type);
+          } else {
+            // Fallback alert
+            alert(message);
+          }
+        }
+
+        delay(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+      }
+
+      // Global functions
+      function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        const button = field.nextElementSibling;
+        
+        if (field.type === 'password') {
+          field.type = 'text';
+          button.textContent = '🙈';
+        } else {
+          field.type = 'password';
+          button.textContent = '👁️';
+        }
+      }
+
+      function showForgotPassword() {
+        document.getElementById('forgot-password-modal').classList.remove('hidden');
+      }
+
+      function hideForgotPassword() {
+        document.getElementById('forgot-password-modal').classList.add('hidden');
+      }
+
+      function socialLogin(provider) {
+        authSystem.showNotification(`${provider} login will be available soon!`, 'info');
+      }
+
+      function continueAsGuest() {
+        // Set guest user
+        const guestUser = {
+          id: 'guest',
+          name: 'Guest User',
+          email: 'guest@edupath.local',
+          class: '12',
+          medium: 'English',
+          isGuest: true
+        };
+        
+        authSystem.storeUser(guestUser, false);
+        authSystem.logActivity('guest', 'Continued as guest user');
+        authSystem.showNotification('Welcome! You\'re browsing as a guest.', 'info');
+        
+        setTimeout(() => {
+          window.location.href = authSystem.getRedirectUrl();
+        }, 1500);
+      }
+
+      // Initialize authentication system
+      const authSystem = new AuthSystem();
+      
+      // Make functions globally available
+      window.togglePassword = togglePassword;
+      window.showForgotPassword = showForgotPassword;
+      window.hideForgotPassword = hideForgotPassword;
+      window.socialLogin = socialLogin;
+      window.continueAsGuest = continueAsGuest;
+      window.authSystem = authSystem;
+      
+      console.log('🔐 Authentication system initialized!');
+    </script>
+    
+    <style>
+      /* Authentication Page Styles */
+      .auth-container {
+        max-width: 480px;
+        width: 100%;
+        background: white;
+        border-radius: 2rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .auth-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+      
+      .auth-title {
+        font-size: 1.875rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      
+      .auth-subtitle {
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+      
+      .auth-tabs {
+        display: flex;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 0.25rem;
+      }
+      
+      .auth-tab {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        background: transparent;
+        color: white;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      .auth-tab.active {
+        background: white;
+        color: #667eea;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .auth-form {
+        display: none;
+        padding: 2rem;
+      }
+      
+      .auth-form.active {
+        display: block;
+      }
+      
+      .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      
+      .form-header h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+      }
+      
+      .form-header p {
+        color: #64748b;
+      }
+      
+      .auth-form-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .form-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+      }
+      
+      .label-icon {
+        font-size: 1rem;
+      }
+      
+      .form-input {
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.75rem;
+        background: white;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+      
+      .form-input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        transform: translateY(-1px);
+      }
+      
+      .password-field {
+        position: relative;
+      }
+      
+      .password-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+      }
+      
+      .password-toggle:hover {
+        opacity: 1;
+      }
+      
+      .password-strength {
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        display: flex;
+        gap: 0.25rem;
+      }
+      
+      .strength-bar {
+        height: 4px;
+        flex: 1;
+        background: #e5e7eb;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+      }
+      
+      .strength-bar.weak { background: #ef4444; }
+      .strength-bar.medium { background: #f59e0b; }
+      .strength-bar.strong { background: #10b981; }
+      
+      .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.875rem;
+      }
+      
+      .checkbox-item input[type="checkbox"] {
+        display: none;
+      }
+      
+      .checkmark {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #d1d5db;
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+      
+      .checkbox-item input[type="checkbox"]:checked + .checkmark {
+        background: #667eea;
+        border-color: #667eea;
+      }
+      
+      .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      
+      .forgot-link {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      
+      .forgot-link:hover {
+        text-decoration: underline;
+      }
+      
+      .auth-btn {
+        padding: 0.875rem 1.5rem;
+        font-weight: 600;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      
+      .auth-divider {
+        text-align: center;
+        position: relative;
+        color: #64748b;
+        font-size: 0.875rem;
+        margin: 1rem 0;
+      }
+      
+      .auth-divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #e5e7eb;
+        z-index: 1;
+      }
+      
+      .auth-divider span {
+        background: white;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .social-auth {
+        display: flex;
+        gap: 1rem;
+      }
+      
+      .social-btn {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.75rem;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      .social-btn:hover {
+        background: #f8fafc;
+        border-color: #d1d5db;
+        transform: translateY(-1px);
+      }
+      
+      .google-btn {
+        color: #4285f4;
+      }
+      
+      .guest-btn {
+        color: #6b7280;
+      }
+      
+      .link {
+        color: #667eea;
+        text-decoration: none;
+      }
+      
+      .link:hover {
+        text-decoration: underline;
+      }
+      
+      /* Modal Styles */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 1rem;
+      }
+      
+      .modal.hidden {
+        display: none;
+      }
+      
+      .modal-content {
+        background: white;
+        border-radius: 1rem;
+        max-width: 400px;
+        width: 100%;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      
+      .modal-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .modal-header h3 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #1e293b;
+      }
+      
+      .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #6b7280;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+      
+      .modal-close:hover {
+        background: #f3f4f6;
+        color: #374151;
+      }
+      
+      .modal-body {
+        padding: 1.5rem;
+      }
+      
+      .modal-body p {
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 640px) {
+        .auth-container {
+          margin: 1rem;
+          border-radius: 1.5rem;
+        }
+        
+        .auth-header {
+          padding: 1.5rem;
+        }
+        
+        .auth-form {
+          padding: 1.5rem;
+        }
+        
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .form-options {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        .social-auth {
+          flex-direction: column;
+        }
+      }
+      
+      /* Animation for form switching */
+      .auth-form {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    
+    <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+  </body>
+</html>

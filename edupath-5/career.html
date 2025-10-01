@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cache Control Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>EduPath — Career Explorer</title>
+    <script src="assets/i18n.js?v=lang-consistency"></script>
+    <link rel="stylesheet" href="assets/styles.css?v=noflash" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">EduPath</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+          <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+          <a href="career.html" data-nav="career" class="nav-link active" data-i18n="nav.career">Career</a>
+          <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+          <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+          <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" aria-label="Open menu" data-open-drawer>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" data-drawer>
+        <a href="index.html" data-nav="home" class="nav-link" data-i18n="nav.home">Home</a>
+        <a href="quiz.html" data-nav="quiz" class="nav-link" data-i18n="nav.quiz">Quiz</a>
+        <a href="courses.html" data-nav="courses" class="nav-link" data-i18n="nav.courses">Courses</a>
+        <a href="career.html" data-nav="career" class="nav-link active" data-i18n="nav.career">Career</a>
+        <a href="colleges.html" data-nav="colleges" class="nav-link" data-i18n="nav.colleges">Colleges</a>
+        <a href="scholarships.html" data-nav="scholarships" class="nav-link" data-i18n="nav.scholarships">Scholarships</a>
+        <a href="timeline.html" data-nav="timeline" class="nav-link" data-i18n="nav.timeline">Timeline</a>
+      </nav>
+
+      <!-- Backdrop -->
+      <div class="backdrop" data-backdrop></div>
+    </header>
+
+    <main class="content-page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Career Explorer</h1>
+          <p>Discover your career path with our interactive one-touch interface. Select your stream and explore endless possibilities.</p>
+        </div>
+
+        <!-- Stream Selection -->
+        <section id="stream-selection" class="career-section">
+          <h2>Choose Your Stream</h2>
+          <div class="stream-grid">
+            <div class="stream-card" data-stream="MPC">
+              <div class="stream-icon">🔬</div>
+              <h3>MPC</h3>
+              <p>Mathematics, Physics, Chemistry</p>
+              <div class="stream-description">Engineering, Medicine, Pure Sciences, Research</div>
+            </div>
+            <div class="stream-card" data-stream="BiPC">
+              <div class="stream-icon">🧬</div>
+              <h3>BiPC</h3>
+              <p>Biology, Physics, Chemistry</p>
+              <div class="stream-description">Medicine, Pharmacy, Biotechnology, Life Sciences</div>
+            </div>
+            <div class="stream-card" data-stream="Commerce">
+              <div class="stream-icon">💼</div>
+              <h3>Commerce</h3>
+              <p>Business, Economics, Accounting</p>
+              <div class="stream-description">Business, Finance, Management, Entrepreneurship</div>
+            </div>
+            <div class="stream-card" data-stream="Arts">
+              <div class="stream-icon">🎨</div>
+              <h3>Arts</h3>
+              <p>Humanities, Languages, Social Sciences</p>
+              <div class="stream-description">Literature, History, Psychology, Social Work</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Career Categories -->
+        <section id="career-categories" class="career-section hidden">
+          <div class="breadcrumb">
+            <button class="breadcrumb-btn" onclick="showStreamSelection()">← Back to Streams</button>
+            <span id="selected-stream-name"></span>
+          </div>
+          <h2>Career Categories</h2>
+          <div id="career-categories-grid" class="career-grid"></div>
+        </section>
+
+        <!-- Specializations -->
+        <section id="specializations" class="career-section hidden">
+          <div class="breadcrumb">
+            <button class="breadcrumb-btn" onclick="showCareerCategories()">← Back to Categories</button>
+            <span id="selected-category-name"></span>
+          </div>
+          <h2>Specializations</h2>
+          <div id="specializations-grid" class="career-grid"></div>
+        </section>
+
+        <!-- Career Details -->
+        <section id="career-details" class="career-section hidden">
+          <div class="breadcrumb">
+            <button class="breadcrumb-btn" onclick="showSpecializations()">← Back to Specializations</button>
+            <span id="selected-specialization-name"></span>
+          </div>
+          <div id="career-details-content" class="career-details-container"></div>
+        </section>
+
+        <!-- Recommended Courses -->
+        <section id="recommended-courses" class="career-section hidden">
+          <div class="breadcrumb">
+            <button class="breadcrumb-btn" onclick="showCareerDetails()">← Back to Career Details</button>
+            <span id="course-specialization-name"></span>
+          </div>
+          <h2>Recommended Courses for <span id="course-specialization-name-2"></span></h2>
+          <p class="text-gray-600 mb-6">These courses will help you build the skills and qualifications needed for this career path.</p>
+          <div id="recommended-courses-content" class="courses-grid"></div>
+        </section>
+
+        <!-- Education Paths -->
+        <section id="education-paths" class="career-section hidden">
+          <div class="breadcrumb">
+            <button class="breadcrumb-btn" onclick="showCareerDetails()">← Back to Career Details</button>
+            <span>Education Paths</span>
+          </div>
+          <h2>Education & Training Paths</h2>
+          <div id="education-paths-content" class="education-paths-container"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© <span id="year"></span> EduPath. Empowering students to make informed career decisions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="page-transitions.js"></script>
+    <script src="assets/main.js"></script>
+    <script src="assets/career-data.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      window.__setActiveNav && window.__setActiveNav('career');
+
+      let currentStream = null;
+      let currentCategory = null;
+      let currentSpecialization = null;
+
+      // Initialize page and handle URL parameters
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof careerData !== 'undefined') {
+          handleURLParameters();
+        } else {
+          // Retry after a short delay if career data isn't loaded yet
+          setTimeout(handleURLParameters, 100);
+        }
+      });
+
+      function handleURLParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const stream = urlParams.get('stream');
+        const career = urlParams.get('career');
+        
+        if (stream && career) {
+          // Direct navigation to specific career
+          navigateToCareer(stream, career);
+        }
+      }
+
+      function navigateToCareer(stream, careerName) {
+        // Find the career specialization based on the career name
+        const streamData = careerData[stream];
+        if (!streamData) {
+          console.warn('Stream not found:', stream);
+          return;
+        }
+        
+        // Search through all categories and specializations
+        for (const category of streamData.categories) {
+          for (const specialization of category.specializations) {
+            // Match by name or ID (flexible matching)
+            if (specialization.name.toLowerCase().includes(careerName.toLowerCase()) || 
+                specialization.id === careerName.toLowerCase() ||
+                careerName.toLowerCase().includes(specialization.name.toLowerCase()) ||
+                specialization.id.includes(careerName.toLowerCase())) {
+              
+              currentStream = stream;
+              currentCategory = category.id;
+              currentSpecialization = specialization.id;
+              
+              // Update breadcrumb displays
+              document.getElementById('selected-stream-name').textContent = stream;
+              document.getElementById('selected-category-name').textContent = category.name;
+              document.getElementById('selected-specialization-name').textContent = specialization.name;
+              
+              // Small delay to ensure DOM is ready, then show career details
+              setTimeout(() => {
+                showCareerDetails();
+              }, 100);
+              return;
+            }
+          }
+        }
+        
+        // If specific career not found, show categories for the stream
+        if (streamData) {
+          currentStream = stream;
+          document.getElementById('selected-stream-name').textContent = stream;
+          showCareerCategories();
+        }
+      }
+
+      // Stream selection
+      document.querySelectorAll('.stream-card').forEach(card => {
+        card.addEventListener('click', () => {
+          currentStream = card.dataset.stream;
+          document.getElementById('selected-stream-name').textContent = currentStream;
+          showCareerCategories();
+        });
+      });
+
+      function showStreamSelection() {
+        document.getElementById('stream-selection').classList.remove('hidden');
+        document.getElementById('career-categories').classList.add('hidden');
+        document.getElementById('specializations').classList.add('hidden');
+        document.getElementById('career-details').classList.add('hidden');
+        document.getElementById('recommended-courses').classList.add('hidden');
+        document.getElementById('education-paths').classList.add('hidden');
+      }
+
+      function showCareerCategories() {
+        document.getElementById('stream-selection').classList.add('hidden');
+        document.getElementById('career-categories').classList.remove('hidden');
+        document.getElementById('specializations').classList.add('hidden');
+        document.getElementById('career-details').classList.add('hidden');
+        document.getElementById('recommended-courses').classList.add('hidden');
+        document.getElementById('education-paths').classList.add('hidden');
+        
+        const categories = careerData[currentStream]?.categories || [];
+        const grid = document.getElementById('career-categories-grid');
+        grid.innerHTML = categories.map(category => `
+          <div class="career-card" onclick="selectCategory('${category.id}')">
+            <div class="career-icon">${category.icon}</div>
+            <h3>${category.name}</h3>
+            <p>${category.description}</p>
+            <div class="career-stats">
+              <span class="stat">${category.specializations?.length || 0} Specializations</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function selectCategory(categoryId) {
+        currentCategory = categoryId;
+        const category = careerData[currentStream]?.categories?.find(c => c.id === categoryId);
+        document.getElementById('selected-category-name').textContent = category?.name || '';
+        showSpecializations();
+      }
+
+      function showSpecializations() {
+        document.getElementById('career-categories').classList.add('hidden');
+        document.getElementById('specializations').classList.remove('hidden');
+        document.getElementById('career-details').classList.add('hidden');
+        document.getElementById('recommended-courses').classList.add('hidden');
+        document.getElementById('education-paths').classList.add('hidden');
+        
+        const category = careerData[currentStream]?.categories?.find(c => c.id === currentCategory);
+        const specializations = category?.specializations || [];
+        const grid = document.getElementById('specializations-grid');
+        grid.innerHTML = specializations.map(spec => `
+          <div class="career-card" onclick="selectSpecialization('${spec.id}')">
+            <div class="career-icon">${spec.icon}</div>
+            <h3>${spec.name}</h3>
+            <p>${spec.description}</p>
+            <div class="career-stats">
+              <span class="stat">₹${spec.salaryRange}</span>
+              <span class="stat">${spec.growth}% Growth</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function selectSpecialization(specializationId) {
+        currentSpecialization = specializationId;
+        const category = careerData[currentStream]?.categories?.find(c => c.id === currentCategory);
+        const specialization = category?.specializations?.find(s => s.id === specializationId);
+        document.getElementById('selected-specialization-name').textContent = specialization?.name || '';
+        showCareerDetails();
+      }
+
+      function showCareerDetails() {
+        // Hide ALL other sections first
+        document.getElementById('stream-selection').classList.add('hidden');
+        document.getElementById('career-categories').classList.add('hidden');
+        document.getElementById('specializations').classList.add('hidden');
+        document.getElementById('recommended-courses').classList.add('hidden');
+        document.getElementById('education-paths').classList.add('hidden');
+        
+        // Show career details section
+        document.getElementById('career-details').classList.remove('hidden');
+        
+        const category = careerData[currentStream]?.categories?.find(c => c.id === currentCategory);
+        const specialization = category?.specializations?.find(s => s.id === currentSpecialization);
+        
+        if (!specialization) {
+          console.error('Specialization not found!');
+          return;
+        }
+        
+        const content = document.getElementById('career-details-content');
+        content.innerHTML = `
+          <div class="career-detail-card">
+            <div class="career-header">
+              <div class="career-icon-large">${specialization?.icon}</div>
+              <div class="career-info">
+                <h2>${specialization?.name}</h2>
+                <p class="career-description">${specialization?.description}</p>
+              </div>
+            </div>
+            
+            <div class="career-details-grid">
+              <div class="detail-section">
+                <h3>💰 Salary Range</h3>
+                <p class="salary">${specialization?.salaryRange}</p>
+              </div>
+              
+              <div class="detail-section">
+                <h3>📈 Growth Rate</h3>
+                <p class="growth">${specialization?.growth}% annually</p>
+              </div>
+              
+              <div class="detail-section">
+                <h3>🎯 Key Skills</h3>
+                <div class="skills-list">
+                  ${specialization?.skills?.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                </div>
+              </div>
+              
+              <div class="detail-section">
+                <h3>🏢 Work Environment</h3>
+                <p>${specialization?.workEnvironment}</p>
+              </div>
+              
+              <div class="detail-section">
+                <h3>📋 Job Responsibilities</h3>
+                <ul class="responsibilities-list">
+                  ${specialization?.responsibilities?.map(resp => `<li>${resp}</li>`).join('')}
+                </ul>
+              </div>
+              
+              <div class="detail-section">
+                <h3>🌟 Career Prospects</h3>
+                <p>${specialization?.prospects}</p>
+              </div>
+            </div>
+            
+            <div class="career-actions">
+              <button class="btn-primary" onclick="showRecommendedCourses()">View Recommended Courses</button>
+              <button class="btn-secondary" onclick="showEducationPaths()">View Education Paths</button>
+              <button class="btn-secondary" onclick="showRecommendedColleges()">Find Colleges</button>
+              <button class="btn-secondary" onclick="saveCareerInterest()">Save to Profile</button>
+            </div>
+          </div>
+        `;
+      }
+
+      function showRecommendedCourses() {
+        document.getElementById('career-details').classList.add('hidden');
+        document.getElementById('recommended-courses').classList.remove('hidden');
+        document.getElementById('education-paths').classList.add('hidden');
+        
+        const category = careerData[currentStream]?.categories?.find(c => c.id === currentCategory);
+        const specialization = category?.specializations?.find(s => s.id === currentSpecialization);
+        
+        document.getElementById('course-specialization-name').textContent = specialization?.name || '';
+        document.getElementById('course-specialization-name-2').textContent = specialization?.name || '';
+        
+        const content = document.getElementById('recommended-courses-content');
+        const courses = specialization?.recommendedCourses || [];
+        
+        if (courses.length === 0) {
+          // Fallback: generate relevant courses based on career specialization
+          const fallbackCourses = generateFallbackCourses(specialization, currentStream);
+          if (fallbackCourses.length > 0) {
+            content.innerHTML = fallbackCourses.map(course => `
+              <div class="course-card">
+                <div class="course-header">
+                  <div class="course-level-badge">${course.level}</div>
+                  <div class="course-duration">${course.duration}</div>
+                </div>
+                <h3 class="course-name">${course.name}</h3>
+                <p class="course-description">${course.description}</p>
+                <div class="course-details">
+                  <div class="course-stream">
+                    <span class="label">Stream:</span>
+                    <span class="value">${course.stream}</span>
+                  </div>
+                  <div class="course-relevance">
+                    <span class="label">Relevance:</span>
+                    <span class="value">${course.careerRelevance}</span>
+                  </div>
+                </div>
+                <div class="course-actions">
+                  <a href="courses.html?stream=${encodeURIComponent(course.stream)}&level=${encodeURIComponent(course.level)}&search=${encodeURIComponent(course.name)}" 
+                     class="btn-primary" onclick="console.log('Navigating to:', this.href)">Explore Course</a>
+                  <button class="btn-secondary" onclick="saveCourseInterest('${course.name}', '${course.stream}')">Save Interest</button>
+                </div>
+              </div>
+            `).join('');
+          } else {
+            content.innerHTML = '<div class="text-center text-gray-600 py-8">No specific course recommendations available for this career.</div>';
+          }
+          return;
+        }
+        
+        content.innerHTML = courses.map(course => `
+          <div class="course-card">
+            <div class="course-header">
+              <div class="course-level-badge">${course.level}</div>
+              <div class="course-duration">${course.duration}</div>
+            </div>
+            <h3 class="course-name">${course.name}</h3>
+            <p class="course-description">${course.description}</p>
+            <div class="course-details">
+              <div class="course-stream">
+                <span class="label">Stream:</span>
+                <span class="value">${course.stream}</span>
+              </div>
+              <div class="course-relevance">
+                <span class="label">Relevance:</span>
+                <span class="value">${course.careerRelevance}</span>
+              </div>
+            </div>
+            <div class="course-actions">
+              <a href="courses.html?stream=${encodeURIComponent(course.stream)}&level=${encodeURIComponent(course.level)}&search=${encodeURIComponent(course.name)}" 
+                 class="btn-primary" onclick="console.log('Navigating to:', this.href)">Explore Course</a>
+              <button class="btn-secondary" onclick="saveCourseInterest('${course.name}', '${course.stream}')">Save Interest</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function showEducationPaths() {
+        document.getElementById('career-details').classList.add('hidden');
+        document.getElementById('recommended-courses').classList.add('hidden');
+        document.getElementById('education-paths').classList.remove('hidden');
+        
+        const category = careerData[currentStream]?.categories?.find(c => c.id === currentCategory);
+        const specialization = category?.specializations?.find(s => s.id === currentSpecialization);
+        
+        const content = document.getElementById('education-paths-content');
+        content.innerHTML = `
+          <div class="education-paths-grid">
+            ${specialization?.educationPaths?.map(path => `
+              <div class="education-path-card">
+                <h3>${path.level}</h3>
+                <div class="path-details">
+                  <p><strong>Duration:</strong> ${path.duration}</p>
+                  <p><strong>Eligibility:</strong> ${path.eligibility}</p>
+                  <p><strong>Key Subjects:</strong> ${path.subjects?.join(', ')}</p>
+                  <p><strong>Career Outcomes:</strong> ${path.outcomes?.join(', ')}</p>
+                </div>
+                <div class="path-actions">
+                  <button class="btn-primary" onclick="exploreCourses('${path.level}')">Explore Courses</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      function exploreCourses(level) {
+        // Enhanced stream mapping to match courses database
+        const streamMapping = {
+          'MPC': 'Science/Math',
+          'BiPC': 'Science', 
+          'Commerce': 'Commerce',
+          'Arts': 'Arts/Humanities'
+        };
+        
+        const mappedStream = streamMapping[currentStream] || 'Science';
+        const url = `courses.html?level=${encodeURIComponent(level)}&stream=${encodeURIComponent(mappedStream)}`;
+        console.log('Explore courses URL:', url);
+        window.location.href = url;
+      }
+
+      function saveCareerInterest() {
+        const category = careerData[currentStream]?.categories?.find(c => c.id === currentCategory);
+        const specialization = category?.specializations?.find(s => s.id === currentSpecialization);
+        
+        const savedCareers = window.__storage.get('saved-careers', []);
+        const careerInfo = {
+          stream: currentStream,
+          category: category?.name,
+          specialization: specialization?.name,
+          timestamp: new Date().toISOString()
+        };
+        
+        if (!savedCareers.find(c => c.specialization === careerInfo.specialization)) {
+          savedCareers.push(careerInfo);
+          window.__storage.set('saved-careers', savedCareers);
+          window.__showNotification && window.__showNotification('Career interest saved to profile!', 'success');
+        } else {
+          window.__showNotification && window.__showNotification('Career already saved!', 'info');
+        }
+      }
+      
+      function showRecommendedColleges() {
+        // Navigate to colleges page with career filter
+        const url = `colleges.html?career=${encodeURIComponent(currentSpecialization)}&stream=${encodeURIComponent(getStreamMapping(currentStream))}`;
+        console.log('Navigating to colleges:', url);
+        window.location.href = url;
+      }
+      
+      function getStreamMapping(stream) {
+        const streamMapping = {
+          'MPC': 'Science/Math',
+          'BiPC': 'Science', 
+          'Commerce': 'Commerce',
+          'Arts': 'Arts/Humanities'
+        };
+        return streamMapping[stream] || 'Science';
+      }
+
+      function saveCourseInterest(courseName, stream) {
+        const savedCourses = window.__storage.get('saved-courses', []);
+        const courseInfo = {
+          name: courseName,
+          stream: stream,
+          timestamp: new Date().toISOString()
+        };
+        
+        if (!savedCourses.find(c => c.name === courseName && c.stream === stream)) {
+          savedCourses.push(courseInfo);
+          window.__storage.set('saved-courses', savedCourses);
+          window.__showNotification && window.__showNotification(`'${courseName}' saved to your interests!`, 'success');
+        } else {
+          window.__showNotification && window.__showNotification(`'${courseName}' is already saved!`, 'info');
+        }
+      }
+      
+      // Enhanced fallback course generator based on career specialization
+      function generateFallbackCourses(specialization, stream) {
+        const fallbackCourses = {
+          'MPC': {
+            'computer-engineering': [
+              { name: 'B.Tech Computer Science', level: 'Bachelor\'s Degree', duration: '4 years', stream: 'Science/Math', description: 'Core computer science engineering program', careerRelevance: 'Direct pathway to computer engineering careers' },
+              { name: 'B.Sc. Computer Science', level: 'Bachelor\'s Degree', duration: '3 years', stream: 'Science', description: 'Computer science fundamentals and programming', careerRelevance: 'Strong foundation for software development' }
+            ],
+            'mechanical-engineering': [
+              { name: 'B.Tech Mechanical Engineering', level: 'Bachelor\'s Degree', duration: '4 years', stream: 'Science/Math', description: 'Mechanical engineering design and manufacturing', careerRelevance: 'Essential for mechanical engineering careers' }
+            ],
+            'civil-engineering': [
+              { name: 'B.Tech Civil Engineering', level: 'Bachelor\'s Degree', duration: '4 years', stream: 'Science/Math', description: 'Infrastructure design and construction engineering', careerRelevance: 'Core qualification for civil engineering' }
+            ],
+            'electrical-engineering': [
+              { name: 'B.Tech Electrical Engineering', level: 'Bachelor\'s Degree', duration: '4 years', stream: 'Science/Math', description: 'Electrical systems and power engineering', careerRelevance: 'Essential for electrical engineering careers' }
+            ]
+          },
+          'BiPC': {
+            'mbbs': [
+              { name: 'MBBS', level: 'Bachelor\'s Degree', duration: '5.5 years', stream: 'Science', description: 'Medical degree for clinical practice', careerRelevance: 'Required for medical practice' }
+            ],
+            'dentistry': [
+              { name: 'BDS', level: 'Bachelor\'s Degree', duration: '5 years', stream: 'Science', description: 'Dental surgery and oral health', careerRelevance: 'Essential for dental practice' }
+            ],
+            'pharmacy': [
+              { name: 'B.Pharm', level: 'Bachelor\'s Degree', duration: '4 years', stream: 'Science', description: 'Pharmaceutical sciences and drug development', careerRelevance: 'Core qualification for pharmacy careers' }
+            ]
+          },
+          'Commerce': {
+            'business-administration': [
+              { name: 'BBA', level: 'Bachelor\'s Degree', duration: '3 years', stream: 'Commerce', description: 'Business administration and management', careerRelevance: 'Foundation for business management careers' },
+              { name: 'MBA', level: 'Master\'s Degree', duration: '2 years', stream: 'Commerce', description: 'Advanced business administration', careerRelevance: 'Essential for senior management roles' }
+            ],
+            'marketing': [
+              { name: 'BBA in Marketing', level: 'Bachelor\'s Degree', duration: '3 years', stream: 'Commerce', description: 'Marketing and brand management', careerRelevance: 'Specialized training for marketing careers' }
+            ],
+            'chartered-accountancy': [
+              { name: 'B.Com', level: 'Bachelor\'s Degree', duration: '3 years', stream: 'Commerce', description: 'Commerce and accounting fundamentals', careerRelevance: 'Foundation for CA preparation' }
+            ]
+          },
+          'Arts': {
+            'psychology': [
+              { name: 'B.A. Psychology', level: 'Bachelor\'s Degree', duration: '3 years', stream: 'Arts/Humanities', description: 'Human behavior and mental processes', careerRelevance: 'Essential for psychology careers' }
+            ],
+            'journalism': [
+              { name: 'B.A. Journalism', level: 'Bachelor\'s Degree', duration: '3 years', stream: 'Arts/Language', description: 'News reporting and media production', careerRelevance: 'Core training for journalism careers' }
+            ]
+          }
+        };
+        
+        const streamCourses = fallbackCourses[stream] || {};
+        return streamCourses[specialization?.id] || [];
+      }
+    </script>
+    
+    <script>
+        // Language selector removed from navbar as per user request
+        document.addEventListener('DOMContentLoaded', function() {
+            // i18n system initializes automatically when loaded
+        });
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code4Cause Projects</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .project-description {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Code4Cause Projects</h1>
+        
+        <div class="project-card">
+            <div class="project-title">📚 EduPath - Career Guidance Platform</div>
+            <div class="project-description">
+                A comprehensive career guidance platform designed to help students make informed decisions about their education and career paths. Features include career assessments, course exploration, college information, scholarship tracking, and personalized timeline management.
+            </div>
+            
+            <div class="features">
+                <div class="feature">🎯 Career Assessment Quiz</div>
+                <div class="feature">📚 750+ Courses Database</div>
+                <div class="feature">🏛️ 3,250+ Colleges</div>
+                <div class="feature">💰 Live Scholarships</div>
+                <div class="feature">📅 Timeline Management</div>
+                <div class="feature">🌐 Multilingual Support</div>
+                <div class="feature">📱 Mobile Responsive</div>
+                <div class="feature">🗺️ Interactive Maps</div>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+                <a href="edupath-5/" class="btn">🎓 Launch EduPath</a>
+                <a href="https://github.com/your-username/code4cause" class="btn" style="margin-left: 1rem;">📖 View Source</a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem; opacity: 0.8;">
+            <p>Built with modern web technologies for educational purposes</p>
+            <p><small>HTML5 • CSS3 • JavaScript ES6+ • Progressive Web App • Service Worker</small></p>
+        </div>
+    </div>
+</body>
+</html>
